@@ -1,600 +1,916 @@
-<!-- =========================================
-NEW PROFESSIONAL CONTENT STRUCTURE
-Elegant, modern and user-friendly portfolio layout
-Integrates ALL provided content into proper sections
-========================================= -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fardin Farhan Khan | Civil Engineer</title>
 
-<!-- =========================
-PERSONAL SECTION
-========================= -->
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-<section class="section" id="personal">
+  <!-- Font Awesome -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
 
-<div class="section-title">
+  <style>
 
-<h2>Personal Profile</h2>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      scroll-behavior:smooth;
+    }
 
-<p>
-A multidisciplinary Civil Engineer and Transportation Researcher
-with experience in infrastructure consultancy,
-transport analytics,
-development sector projects,
-media production,
-strategic communication,
-and sustainable mobility planning.
-</p>
+    :root{
+      --bg:#0b1120;
+      --card:rgba(255,255,255,0.08);
+      --border:rgba(255,255,255,0.12);
+      --text:#ffffff;
+      --muted:#cbd5e1;
+      --accent:#38bdf8;
+      --accent2:#8b5cf6;
+      --shadow:0 10px 40px rgba(0,0,0,0.35);
+    }
 
-</div>
+    body{
+      font-family:'Inter',sans-serif;
+      background:
+      radial-gradient(circle at top left,#172554 0%,transparent 30%),
+      radial-gradient(circle at bottom right,#581c87 0%,transparent 30%),
+      var(--bg);
+      color:var(--text);
+      overflow-x:hidden;
+    }
 
-<div class="about-grid">
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
 
-<div class="card">
+    img{
+      width:100%;
+      display:block;
+    }
 
-<h3>
-<i class="fa-solid fa-user"></i>
-Personal Objective
-</h3>
+    section{
+      padding:100px 8%;
+      position:relative;
+    }
 
-<p>
-A Civil Engineer with strong analytical,
-organizational,
-and problem-solving skills.
-A proactive and adaptable individual with a positive
-“can-do” attitude,
-capable of working effectively both independently
-and within collaborative team environments.
-Able to perform efficiently under pressure while maintaining
-professionalism,
-responsiveness,
-and commitment to quality work.
-</p>
+    .container{
+      max-width:1400px;
+      margin:auto;
+    }
 
-</div>
+    /* NAVBAR */
 
-<div class="card">
+    nav{
+      position:fixed;
+      width:100%;
+      top:0;
+      z-index:999;
+      backdrop-filter:blur(18px);
+      background:rgba(10,15,30,0.6);
+      border-bottom:1px solid rgba(255,255,255,0.08);
+    }
 
-<h3>
-<i class="fa-solid fa-language"></i>
-Language Proficiency
-</h3>
+    .nav-container{
+      max-width:1400px;
+      margin:auto;
+      padding:18px 8%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
 
-<ul>
+    .logo{
+      font-size:1.3rem;
+      font-weight:800;
+      letter-spacing:1px;
+    }
 
-<li><strong>English:</strong> Fluent in Speaking and Writing</li>
+    .logo span{
+      color:var(--accent);
+    }
 
-<li><strong>Bangla:</strong> Native Language</li>
+    .nav-links{
+      display:flex;
+      gap:28px;
+    }
 
-</ul>
+    .nav-links a{
+      color:var(--muted);
+      font-size:0.95rem;
+      transition:0.3s;
+    }
 
-</div>
+    .nav-links a:hover{
+      color:white;
+    }
 
-</div>
+    /* HERO */
+
+    .hero{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      position:relative;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.2fr 0.8fr;
+      gap:60px;
+      align-items:center;
+    }
+
+    .hero-text h1{
+      font-size:4.5rem;
+      line-height:1.1;
+      margin-bottom:20px;
+      font-weight:900;
+    }
+
+    .hero-text h1 span{
+      background:linear-gradient(90deg,var(--accent),#ffffff);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+
+    .hero-text p{
+      color:var(--muted);
+      font-size:1.1rem;
+      line-height:1.8;
+      max-width:700px;
+      margin-bottom:35px;
+    }
+
+    .hero-buttons{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      padding:15px 28px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,0.1);
+      background:rgba(255,255,255,0.08);
+      backdrop-filter:blur(10px);
+      color:white;
+      transition:0.4s;
+      font-weight:600;
+    }
+
+    .btn:hover{
+      transform:translateY(-4px);
+      background:linear-gradient(90deg,var(--accent),var(--accent2));
+    }
+
+    .hero-card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:30px;
+      padding:40px;
+      backdrop-filter:blur(20px);
+      box-shadow:var(--shadow);
+      animation:float 5s ease-in-out infinite;
+    }
+
+    .hero-card h3{
+      margin-bottom:20px;
+      font-size:1.4rem;
+    }
+
+    .hero-card ul{
+      list-style:none;
+    }
+
+    .hero-card li{
+      padding:14px 0;
+      border-bottom:1px solid rgba(255,255,255,0.08);
+      color:var(--muted);
+    }
+
+    @keyframes float{
+      0%,100%{transform:translateY(0);}
+      50%{transform:translateY(-12px);}
+    }
+
+    /* SECTION TITLE */
+
+    .section-title{
+      margin-bottom:60px;
+      text-align:center;
+    }
+
+    .section-title h2{
+      font-size:3rem;
+      margin-bottom:18px;
+      font-weight:800;
+    }
+
+    .section-title p{
+      max-width:800px;
+      margin:auto;
+      color:var(--muted);
+      line-height:1.8;
+    }
+
+    /* GLASS CARD */
+
+    .glass-card{
+      background:var(--card);
+      border:1px solid var(--border);
+      backdrop-filter:blur(18px);
+      border-radius:24px;
+      padding:35px;
+      transition:0.4s;
+      box-shadow:var(--shadow);
+    }
+
+    .glass-card:hover{
+      transform:translateY(-8px);
+      border-color:rgba(255,255,255,0.2);
+    }
+
+    /* ABOUT */
+
+    .about-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+      gap:30px;
+    }
+
+    .glass-card h3{
+      margin-bottom:18px;
+      font-size:1.3rem;
+    }
+
+    .glass-card p,
+    .glass-card li{
+      color:var(--muted);
+      line-height:1.8;
+    }
+
+    .glass-card ul{
+      padding-left:18px;
+    }
+
+    /* SKILLS */
+
+    .skills-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:25px;
+    }
+
+    .skill-box{
+      text-align:center;
+      padding:35px 20px;
+    }
+
+    .skill-box i{
+      font-size:2rem;
+      margin-bottom:18px;
+      color:var(--accent);
+    }
+
+    .skill-box h4{
+      font-size:1rem;
+      font-weight:600;
+    }
+
+    /* PROJECTS */
+
+    .project-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
+      gap:30px;
+    }
+
+    .project-card{
+      overflow:hidden;
+      border-radius:26px;
+      background:var(--card);
+      border:1px solid var(--border);
+      backdrop-filter:blur(20px);
+      transition:0.4s;
+      box-shadow:var(--shadow);
+    }
+
+    .project-card:hover{
+      transform:translateY(-10px);
+    }
+
+    .project-card img{
+      height:240px;
+      object-fit:cover;
+    }
+
+    .project-content{
+      padding:28px;
+    }
+
+    .project-content h3{
+      margin-bottom:16px;
+      line-height:1.5;
+      font-size:1.2rem;
+    }
+
+    .project-content p{
+      color:var(--muted);
+      line-height:1.8;
+      margin-bottom:22px;
+    }
+
+    .project-meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+    }
+
+    .project-meta span{
+      padding:8px 14px;
+      border-radius:30px;
+      background:rgba(255,255,255,0.08);
+      font-size:0.82rem;
+      color:var(--muted);
+    }
+
+    /* TIMELINE */
+
+    .timeline{
+      position:relative;
+      max-width:1000px;
+      margin:auto;
+    }
+
+    .timeline::before{
+      content:'';
+      position:absolute;
+      left:20px;
+      top:0;
+      width:2px;
+      height:100%;
+      background:rgba(255,255,255,0.12);
+    }
+
+    .timeline-item{
+      position:relative;
+      margin-left:60px;
+      margin-bottom:40px;
+      padding:30px;
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:20px;
+      backdrop-filter:blur(18px);
+    }
+
+    .timeline-item::before{
+      content:'';
+      position:absolute;
+      left:-52px;
+      top:32px;
+      width:18px;
+      height:18px;
+      border-radius:50%;
+      background:var(--accent);
+    }
+
+    .timeline-item h3{
+      margin-bottom:12px;
+    }
+
+    .timeline-item p{
+      color:var(--muted);
+      line-height:1.8;
+    }
+
+    /* MEMBERSHIP */
+
+    .membership-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:25px;
+    }
+
+    .membership-card{
+      text-align:center;
+    }
+
+    .membership-card h3{
+      margin-bottom:10px;
+      font-size:1.1rem;
+    }
+
+    .membership-card p{
+      color:var(--muted);
+      margin-bottom:5px;
+    }
+
+    /* FOOTER */
+
+    footer{
+      padding:50px 8%;
+      text-align:center;
+      border-top:1px solid rgba(255,255,255,0.08);
+      color:var(--muted);
+    }
+
+    /* ANIMATIONS */
+
+    .fade-up{
+      opacity:0;
+      transform:translateY(40px);
+      transition:all 1s ease;
+    }
+
+    .fade-up.active{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:980px){
+
+      .hero-grid{
+        grid-template-columns:1fr;
+      }
+
+      .hero-text h1{
+        font-size:3rem;
+      }
+
+      .nav-links{
+        display:none;
+      }
+
+    }
+
+    @media(max-width:600px){
+
+      section{
+        padding:80px 6%;
+      }
+
+      .hero-text h1{
+        font-size:2.4rem;
+      }
+
+      .section-title h2{
+        font-size:2.2rem;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav>
+  <div class="nav-container">
+
+    <div class="logo">
+      Fardin <span>Farhan Khan</span>
+    </div>
+
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#competencies">Competencies</a>
+      <a href="#projects">Projects</a>
+      <a href="#development">Development</a>
+      <a href="#leadership">Leadership</a>
+      <a href="#memberships">Memberships</a>
+    </div>
+
+  </div>
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+
+  <div class="container hero-grid">
+
+    <div class="hero-text fade-up">
+
+      <h1>
+        Civil Engineer &
+        <span>Transportation Researcher</span>
+      </h1>
+
+      <p>
+        Multidisciplinary Civil Engineer, Transportation Researcher,
+        and Business Development Professional from Bangladesh with
+        experience in infrastructure consultancy, sustainable mobility,
+        transport analytics, development sector projects, strategic communication,
+        and technical proposal management.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="#projects" class="btn">View Projects</a>
+        <a href="#contact" class="btn">Contact Me</a>
+      </div>
+
+    </div>
+
+    <div class="hero-card fade-up">
+
+      <h3>Professional Snapshot</h3>
+
+      <ul>
+        <li>Assistant Manager – Business Development</li>
+        <li>Civil Engineer & Transportation Researcher</li>
+        <li>Infrastructure Consultancy Specialist</li>
+        <li>Proposal & Methodology Development</li>
+        <li>Transport Infrastructure Projects</li>
+        <li>Development Sector Campaigns</li>
+      </ul>
+
+    </div>
+
+  </div>
 
 </section>
 
-<!-- =========================
-MEMBERSHIPS SECTION
-========================= -->
+<!-- ABOUT -->
 
-<section class="section" id="memberships">
+<section id="about">
 
-<div class="section-title">
+  <div class="container">
 
-<h2>Professional Memberships</h2>
+    <div class="section-title fade-up">
+      <h2>Personal Profile</h2>
+      <p>
+        A proactive and adaptable Civil Engineer with strong analytical,
+        organizational, and problem-solving skills capable of working
+        effectively under pressure within collaborative and multidisciplinary environments.
+      </p>
+    </div>
 
-<p>
-Active memberships with internationally recognized
-engineering and professional organizations.
-</p>
+    <div class="about-grid">
 
-</div>
+      <div class="glass-card fade-up">
 
-<div class="project-grid">
+        <h3>
+          <i class="fa-solid fa-user"></i>
+          Personal Objective
+        </h3>
 
-<div class="card">
-<h3>The Institution of Engineers, Bangladesh (IEB)</h3>
-<p>Associate Member</p>
-<p>ID: A-29714</p>
-</div>
+        <p>
+          A Civil Engineer with strong analytical,
+          organizational, and problem-solving skills.
+          Able to perform efficiently under pressure while maintaining
+          professionalism, responsiveness, and commitment to quality work.
+        </p>
 
-<div class="card">
-<h3>American Society of Civil Engineers (ASCE)</h3>
-<p>Member</p>
-<p>ID: 12593046</p>
-</div>
+      </div>
 
-<div class="card">
-<h3>Internet Society</h3>
-<p>Member</p>
-<p>ID: 2366769</p>
-</div>
+      <div class="glass-card fade-up">
 
-<div class="card">
-<h3>Institution of Civil Engineers (ICE)</h3>
-<p>Student Member</p>
-<p>ID: 093987105</p>
-</div>
+        <h3>
+          <i class="fa-solid fa-language"></i>
+          Language Proficiency
+        </h3>
 
-<div class="card">
-<h3>Institute of Transportation Engineers (ITE)</h3>
-<p>Student Member</p>
-<p>ID: S-1092703</p>
-</div>
+        <ul>
+          <li><strong>English:</strong> Fluent in Speaking and Writing</li>
+          <li><strong>Bangla:</strong> Native Language</li>
+        </ul>
 
-<div class="card">
-<h3>American Concrete Institute (ACI)</h3>
-<p>Student Member</p>
-<p>ID: 02020088</p>
-</div>
+      </div>
 
-<div class="card">
-<h3>International Association of Engineers (IAENG)</h3>
-<p>Member</p>
-<p>ID: 565647</p>
-</div>
+    </div>
 
-</div>
+  </div>
 
 </section>
 
-<!-- =========================
-CORE COMPETENCIES
-========================= -->
+<!-- CORE COMPETENCIES -->
 
-<section class="section" id="competencies">
+<section id="competencies">
 
-<div class="section-title">
+  <div class="container">
 
-<h2>Core Competencies</h2>
+    <div class="section-title fade-up">
+      <h2>Core Competencies</h2>
+    </div>
 
-<p>
-Professional strengths developed through engineering consultancy,
-research,
-project management,
-and development sector engagement.
-</p>
+    <div class="skills-grid">
 
-</div>
+      <div class="glass-card skill-box fade-up">
+        <i class="fa-solid fa-diagram-project"></i>
+        <h4>Project Coordination</h4>
+      </div>
 
-<div class="skills-grid">
+      <div class="glass-card skill-box fade-up">
+        <i class="fa-solid fa-file-contract"></i>
+        <h4>Proposal Writing</h4>
+      </div>
 
-<div class="skill-box">
-<i class="fa-solid fa-diagram-project"></i>
-<h4>Project Coordination</h4>
-</div>
+      <div class="glass-card skill-box fade-up">
+        <i class="fa-solid fa-chart-line"></i>
+        <h4>Market Analysis</h4>
+      </div>
 
-<div class="skill-box">
-<i class="fa-solid fa-file-contract"></i>
-<h4>Proposal Writing</h4>
-</div>
+      <div class="glass-card skill-box fade-up">
+        <i class="fa-solid fa-users"></i>
+        <h4>Stakeholder Engagement</h4>
+      </div>
 
-<div class="skill-box">
-<i class="fa-solid fa-clipboard-list"></i>
-<h4>BOQ & Methodologies</h4>
-</div>
+      <div class="glass-card skill-box fade-up">
+        <i class="fa-solid fa-comments"></i>
+        <h4>Client Communication</h4>
+      </div>
 
-<div class="skill-box">
-<i class="fa-solid fa-chart-line"></i>
-<h4>Market Analysis</h4>
-</div>
+      <div class="glass-card skill-box fade-up">
+        <i class="fa-solid fa-lightbulb"></i>
+        <h4>Problem Solving</h4>
+      </div>
 
-<div class="skill-box">
-<i class="fa-solid fa-users"></i>
-<h4>Stakeholder Engagement</h4>
-</div>
+    </div>
 
-<div class="skill-box">
-<i class="fa-solid fa-comments"></i>
-<h4>Client Communication</h4>
-</div>
-
-<div class="skill-box">
-<i class="fa-solid fa-lightbulb"></i>
-<h4>Problem Solving</h4>
-</div>
-
-<div class="skill-box">
-<i class="fa-solid fa-clock"></i>
-<h4>Deadline Management</h4>
-</div>
-
-</div>
+  </div>
 
 </section>
 
-<!-- =========================
-INFRASTRUCTURE PROJECTS
-========================= -->
+<!-- PROJECTS -->
 
-<section class="section" id="projects">
+<section id="projects">
 
-<div class="section-title">
+  <div class="container">
 
-<h2>Infrastructure Consultancy Projects</h2>
+    <div class="section-title fade-up">
+      <h2>Infrastructure Consultancy Projects</h2>
+    </div>
 
-<p>
-Selected infrastructure consultancy and transportation projects
-contributed through technical methodology development,
-proposal preparation,
-site inspections,
-and strategic planning support.
-</p>
+    <div class="project-grid">
 
-</div>
+      <!-- Project 1 -->
+      <div class="project-card fade-up">
 
-<div class="project-grid">
+        <img src="https://images.pexels.com/photos/302428/pexels-photo-302428.jpeg">
 
-<div class="project-card">
+        <div class="project-content">
 
-<img src="https://images.pexels.com/photos/302428/pexels-photo-302428.jpeg">
+          <h3>Dhaka–Chittagong Freight Corridor Project</h3>
 
-<div class="project-content">
+          <p>
+            Developed technical approach, methodology,
+            and project workplan supported by site inspections,
+            contributing to securing the US$ 2.5 million project.
+          </p>
 
-<h3>
-Feasibility Study of Dhaka–Chittagong Freight Corridor Project
-</h3>
+          <div class="project-meta">
+            <span>Railway</span>
+            <span>Freight Logistics</span>
+            <span>US$ 2.5M</span>
+          </div>
 
-<p>
-Developed technical approach,
-methodology,
-and project workplan supported by site inspections,
-contributing to securing the US$ 2.5 million project.
-</p>
+        </div>
 
-<div class="project-meta">
-<span>Railway</span>
-<span>Freight Logistics</span>
-<span>US$ 2.5M</span>
-</div>
+      </div>
 
-</div>
+      <!-- Project 2 -->
+      <div class="project-card fade-up">
 
-</div>
+        <img src="https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg">
 
-<div class="project-card">
+        <div class="project-content">
 
-<img src="https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg">
+          <h3>First Dhaka Elevated Expressway Project</h3>
 
-<div class="project-content">
+          <p>
+            Supported the Independent Engineer consultancy through
+            technical methodologies, project workplan development,
+            and site inspection coordination.
+          </p>
 
-<h3>
-First Dhaka Elevated Expressway Project
-</h3>
+          <div class="project-meta">
+            <span>Expressway</span>
+            <span>Infrastructure</span>
+            <span>US$ 2M</span>
+          </div>
 
-<p>
-Supported the Independent Engineer consultancy
-through technical methodologies,
-project workplan development,
-and site inspection coordination.
-</p>
+        </div>
 
-<div class="project-meta">
-<span>Expressway</span>
-<span>Transport Infrastructure</span>
-<span>US$ 2M</span>
-</div>
+      </div>
 
-</div>
+      <!-- Project 3 -->
+      <div class="project-card fade-up">
 
-</div>
+        <img src="https://images.pexels.com/photos/1105766/pexels-photo-1105766.jpeg">
 
-<div class="project-card">
+        <div class="project-content">
 
-<img src="https://images.pexels.com/photos/1105766/pexels-photo-1105766.jpeg">
+          <h3>Joydebpur–Ishurdi Dual Gauge Project</h3>
 
-<div class="project-content">
+          <p>
+            Prepared technical methodologies,
+            workplan strategies, and proposal documentation
+            for the US$ 6 million railway project.
+          </p>
 
-<h3>
-Joydebpur–Ishurdi Dual Gauge Construction Project
-</h3>
+          <div class="project-meta">
+            <span>Railway</span>
+            <span>Dual Gauge</span>
+            <span>US$ 6M</span>
+          </div>
 
-<p>
-Prepared technical methodologies,
-workplan strategies,
-and proposal documentation
-for the US$ 6 million railway project.
-</p>
+        </div>
 
-<div class="project-meta">
-<span>Railway</span>
-<span>Dual Gauge</span>
-<span>US$ 6M</span>
-</div>
+      </div>
 
-</div>
+    </div>
 
-</div>
-
-<div class="project-card">
-
-<img src="https://images.pexels.com/photos/2199293/pexels-photo-2199293.jpeg">
-
-<div class="project-content">
-
-<h3>
-SASEC Integrated Trade Facilitation Development Project
-</h3>
-
-<p>
-Developed technical approach and methodologies
-for the National Board of Revenue (NBR) component
-of the regional trade facilitation initiative.
-</p>
-
-<div class="project-meta">
-<span>SASEC</span>
-<span>NBR</span>
-<span>US$ 3M</span>
-</div>
-
-</div>
-
-</div>
-
-<div class="project-card">
-
-<img src="https://images.pexels.com/photos/210182/pexels-photo-210182.jpeg">
-
-<div class="project-content">
-
-<h3>
-RIVER Project
-</h3>
-
-<p>
-Resilient Infrastructure for Adaptation and Vulnerability Reduction project
-support through methodology development,
-site inspections,
-and technical proposal preparation.
-</p>
-
-<div class="project-meta">
-<span>Climate Resilience</span>
-<span>Infrastructure</span>
-<span>US$ 20M</span>
-</div>
-
-</div>
-
-</div>
-
-<div class="project-card">
-
-<img src="https://images.pexels.com/photos/373543/pexels-photo-373543.jpeg">
-
-<div class="project-content">
-
-<h3>
-Sylhet–Chhatak Rail Rehabilitation Project
-</h3>
-
-<p>
-Technical support and project methodology development
-for rehabilitation of flood-affected railway infrastructure.
-</p>
-
-<div class="project-meta">
-<span>Rail Rehabilitation</span>
-<span>Flood Recovery</span>
-<span>US$ 1M</span>
-</div>
-
-</div>
-
-</div>
-
-</div>
+  </div>
 
 </section>
 
-<!-- =========================
-MEDIA & DEVELOPMENT PROJECTS
-========================= -->
+<!-- DEVELOPMENT -->
 
-<section class="section">
+<section id="development">
 
-<div class="section-title">
+  <div class="container">
 
-<h2>Media, Campaign & Development Sector Projects</h2>
+    <div class="section-title fade-up">
 
-<p>
-Creative production,
-documentation,
-campaign management,
-event execution,
-and communication support
-for development organizations,
-international agencies,
-and corporate brands.
-</p>
+      <h2>Development & Media Projects</h2>
 
-</div>
+      <p>
+        Creative production, campaign execution,
+        strategic communication, and development sector engagement.
+      </p>
 
-<div class="timeline">
+    </div>
 
-<div class="timeline-item">
-<h3>UNODC GLO.ACT 2023</h3>
-<p>
-Proposal submission,
-negotiation,
-financial management,
-and project coordination for simultaneous interpretation services.
-</p>
-</div>
+    <div class="timeline">
 
-<div class="timeline-item">
-<h3>World Press Freedom Day 2024</h3>
-<p>
-Simultaneous Interpretation Service support for the WPFD 2024 event.
-</p>
-</div>
+      <div class="timeline-item fade-up">
+        <h3>UNODC GLO.ACT 2023</h3>
+        <p>
+          Proposal submission, negotiation, financial management,
+          and project coordination for simultaneous interpretation services.
+        </p>
+      </div>
 
-<div class="timeline-item">
-<h3>UNDP Civic Responsibility Campaign</h3>
-<p>
-Developed TikTok content,
-reels,
-and YouTube Shorts
-with influencers across Bangladesh.
-</p>
-</div>
+      <div class="timeline-item fade-up">
+        <h3>World Press Freedom Day 2024</h3>
+        <p>
+          Simultaneous Interpretation Service support for the WPFD 2024 event.
+        </p>
+      </div>
 
-<div class="timeline-item">
-<h3>LCOY Bangladesh 2023</h3>
-<p>
-Event management,
-documentation,
-and production support
-for the national climate youth conference.
-</p>
-</div>
+      <div class="timeline-item fade-up">
+        <h3>UNDP Civic Responsibility Campaign</h3>
+        <p>
+          Developed TikTok content, reels, and YouTube Shorts
+          with influencers across Bangladesh.
+        </p>
+      </div>
 
-<div class="timeline-item">
-<h3>Digital Khichuri Challenge</h3>
-<p>
-Training material development,
-campaign management,
-orientation sessions,
-and national gala execution.
-</p>
-</div>
+    </div>
 
-<div class="timeline-item">
-<h3>Bangabandhu International Cyber Security Awareness Award</h3>
-<p>
-Website development,
-design management,
-documentary production,
-and launch event support.
-</p>
-</div>
-
-<div class="timeline-item">
-<h3>Pathao & bKash Campaigns</h3>
-<p>
-Meme marketing,
-content creation,
-social media seeding,
-and promotional campaign execution.
-</p>
-</div>
-
-<div class="timeline-item">
-<h3>The Rantages Show</h3>
-<p>
-Planned and produced multiple seasons
-of the entertainment and social commentary series.
-</p>
-</div>
-
-</div>
+  </div>
 
 </section>
 
-<!-- =========================
-LEADERSHIP SECTION
-========================= -->
+<!-- MEMBERSHIPS -->
 
-<section class="section" id="leadership">
+<section id="memberships">
 
-<div class="section-title">
+  <div class="container">
 
-<h2>Leadership Roles & Activities</h2>
+    <div class="section-title fade-up">
 
-</div>
+      <h2>Professional Memberships</h2>
 
-<div class="about-grid">
+    </div>
 
-<div class="card">
+    <div class="membership-grid">
 
-<h3>Leadership Experience</h3>
+      <div class="glass-card membership-card fade-up">
+        <h3>IEB</h3>
+        <p>Associate Member</p>
+        <p>ID: A-29714</p>
+      </div>
 
-<ul>
+      <div class="glass-card membership-card fade-up">
+        <h3>ASCE</h3>
+        <p>Member</p>
+        <p>ID: 12593046</p>
+      </div>
 
-<li>Founding Member — Humans of IUT</li>
+      <div class="glass-card membership-card fade-up">
+        <h3>ICE</h3>
+        <p>Student Member</p>
+        <p>ID: 093987105</p>
+      </div>
 
-<li>Organizing Committee Member — Cennovation 2018–2019</li>
+      <div class="glass-card membership-card fade-up">
+        <h3>ITE</h3>
+        <p>Student Member</p>
+        <p>ID: S-1092703</p>
+      </div>
 
-<li>Campaign Lead — Cyber Savers</li>
+    </div>
 
-<li>Treasurer — IUT CEE Cricket Team 2021</li>
-
-<li>Organizing Secretary — Scintilla Science Club</li>
-
-<li>Corresponding Secretary — Josephite Cultural Forum</li>
-
-</ul>
-
-</div>
-
-<div class="card">
-
-<h3>Professional Strengths</h3>
-
-<ul>
-
-<li>Strategic Planning & Coordination</li>
-
-<li>Transportation & Infrastructure Consultancy</li>
-
-<li>Research Analytics & Reporting</li>
-
-<li>Team Management & Leadership</li>
-
-<li>Stakeholder Communication</li>
-
-<li>Creative Campaign Execution</li>
-
-<li>Technical Documentation</li>
-
-<li>Problem Solving & Adaptability</li>
-
-</ul>
-
-</div>
-
-</div>
+  </div>
 
 </section>
 
-<!-- =========================
-BRAND AFFILIATIONS
-========================= -->
+<!-- LEADERSHIP -->
 
-<section class="section" id="affiliations">
+<section id="leadership">
 
-<div class="section-title">
+  <div class="container">
 
-<h2>Organizations & Brand Affiliations</h2>
+    <div class="section-title fade-up">
+      <h2>Leadership Roles & Activities</h2>
+    </div>
 
-<p>
-Worked with national and international organizations,
-development agencies,
-government institutions,
-and global brands.
-</p>
+    <div class="about-grid">
 
-</div>
+      <div class="glass-card fade-up">
 
-<div class="skills-grid">
+        <h3>Leadership Experience</h3>
 
-<div class="skill-box"><h4>Bangladesh Railway</h4></div>
-<div class="skill-box"><h4>Bangladesh Bridge Authority</h4></div>
-<div class="skill-box"><h4>NBR</h4></div>
-<div class="skill-box"><h4>LGED</h4></div>
-<div class="skill-box"><h4>UNDP</h4></div>
-<div class="skill-box"><h4>UNODC</h4></div>
-<div class="skill-box"><h4>ILO</h4></div>
-<div class="skill-box"><h4>Commonwealth Secretariat</h4></div>
-<div class="skill-box"><h4>Marico</h4></div>
-<div class="skill-box"><h4>Pathao</h4></div>
-<div class="skill-box"><h4>bKash</h4></div>
-<div class="skill-box"><h4>Decathlon</h4></div>
-<div class="skill-box"><h4>Domino's Pizza</h4></div>
-<div class="skill-box"><h4>Grameenphone</h4></div>
-<div class="skill-box"><h4>Standard Chartered</h4></div>
-<div class="skill-box"><h4>Power Grid Company Bangladesh</h4></div>
+        <ul>
+          <li>Founding Member — Humans of IUT</li>
+          <li>Campaign Lead — Cyber Savers</li>
+          <li>Treasurer — IUT CEE Cricket Team 2021</li>
+          <li>Organizing Secretary — Scintilla Science Club</li>
+        </ul>
 
-</div>
+      </div>
+
+      <div class="glass-card fade-up">
+
+        <h3>Professional Strengths</h3>
+
+        <ul>
+          <li>Strategic Planning & Coordination</li>
+          <li>Transportation Consultancy</li>
+          <li>Research Analytics & Reporting</li>
+          <li>Team Management & Leadership</li>
+          <li>Technical Documentation</li>
+        </ul>
+
+      </div>
+
+    </div>
+
+  </div>
 
 </section>
+
+<!-- FOOTER -->
+
+<footer id="contact">
+
+  <h2>Fardin Farhan Khan</h2>
+
+  <p>
+    Civil Engineer • Transportation Researcher • Business Development Professional
+  </p>
+
+  <br>
+
+  <p>
+    Designed with a premium modern engineering portfolio aesthetic.
+  </p>
+
+</footer>
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+  const fadeElements = document.querySelectorAll('.fade-up');
+
+  const observer = new IntersectionObserver((entries)=>{
+
+    entries.forEach(entry=>{
+
+      if(entry.isIntersecting){
+        entry.target.classList.add('active');
+      }
+
+    });
+
+  },{threshold:0.2});
+
+  fadeElements.forEach(el=>{
+    observer.observe(el);
+  });
+
+</script>
+
+</body>
+</html>
