@@ -1,175 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fardin Farhan Khan | Portfolio</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Fardin Farhan Khan | Portfolio</title>
 
-  <script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Fade-in animation */
+  .fade {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 1s ease;
+  }
+
+  .fade.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Floating animation */
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+  }
+
+  .float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  /* Glow hover */
+  .glow:hover {
+    box-shadow: 0 0 25px rgba(56,189,248,0.4);
+    transform: translateY(-3px);
+    transition: 0.3s ease;
+  }
+</style>
 </head>
 
 <body class="bg-slate-950 text-white">
 
 <!-- HERO -->
-<section class="min-h-screen flex items-center justify-center px-6">
-  <div class="max-w-4xl text-center">
+<section class="min-h-screen flex items-center justify-center px-6 relative overflow-hidden">
 
-    <p class="text-sky-400 uppercase tracking-[0.3em] mb-4">
-      Civil Engineer • Transportation Researcher • Data Scientist
+  <div class="absolute w-[500px] h-[500px] bg-sky-500/20 blur-3xl rounded-full top-10 left-10"></div>
+  <div class="absolute w-[400px] h-[400px] bg-purple-500/10 blur-3xl rounded-full bottom-10 right-10"></div>
+
+  <div class="text-center max-w-4xl fade show float">
+
+    <p class="text-sky-400 tracking-[0.3em] uppercase mb-4">
+      Civil Engineer • Researcher • Data Scientist
     </p>
 
     <h1 class="text-5xl md:text-7xl font-bold mb-6">
       Fardin Farhan Khan
     </h1>
 
-    <p class="text-slate-300 text-lg leading-relaxed mb-8">
-      Civil Engineering graduate with strong interest in transportation engineering,
-      travel behaviour analysis, traffic safety, transport modelling, and data-driven infrastructure planning.
-      Passionate about solving real-world mobility and safety problems in developing countries.
+    <p class="text-slate-300 text-lg mb-8 leading-relaxed">
+      Transportation engineering researcher focused on travel behaviour,
+      safety modelling, transport systems, and data-driven infrastructure planning.
     </p>
 
-    <div class="flex flex-wrap justify-center gap-4">
-      <a href="https://linkedin.com"
-         class="bg-sky-500 hover:bg-sky-400 px-6 py-3 rounded-2xl font-semibold">
-        LinkedIn
+    <div class="flex justify-center gap-4 flex-wrap">
+
+      <a href="#about"
+         class="glow bg-sky-500 px-6 py-3 rounded-2xl font-semibold">
+        Explore Profile
       </a>
 
       <a href="https://github.com"
-         class="border border-slate-600 hover:border-sky-400 px-6 py-3 rounded-2xl font-semibold">
+         class="glow border border-slate-600 px-6 py-3 rounded-2xl">
         GitHub
       </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="py-24 px-6">
+<div class="max-w-5xl mx-auto fade">
+
+  <h2 class="text-4xl font-bold mb-6">About Me</h2>
+
+  <p class="text-slate-300 leading-relaxed text-lg">
+    I am a Civil Engineering graduate with strong interest in transportation systems,
+    behavioural modelling, and infrastructure development.
+    I enjoy solving real-world mobility challenges using data, simulation, and analytical methods.
+  </p>
+
+</div>
+</section>
+
+<!-- RESEARCH -->
+<section class="py-24 px-6 bg-slate-900/40">
+<div class="max-w-5xl mx-auto fade">
+
+  <h2 class="text-4xl font-bold mb-10">Research Interests</h2>
+
+  <div class="grid md:grid-cols-2 gap-4">
+
+    <div class="bg-slate-900 p-5 rounded-2xl glow">Travel Behaviour Analysis</div>
+    <div class="bg-slate-900 p-5 rounded-2xl glow">Transport Demand Modelling</div>
+    <div class="bg-slate-900 p-5 rounded-2xl glow">Traffic Safety & Crash Analysis</div>
+    <div class="bg-slate-900 p-5 rounded-2xl glow">Discrete Choice Modelling</div>
+    <div class="bg-slate-900 p-5 rounded-2xl glow">Emergency Transport Systems</div>
+    <div class="bg-slate-900 p-5 rounded-2xl glow">Urban Mobility Planning</div>
+
+  </div>
+
+</div>
+</section>
+
+<!-- PROJECTS -->
+<section class="py-24 px-6">
+<div class="max-w-5xl mx-auto fade">
+
+  <h2 class="text-4xl font-bold mb-10">Projects & Work</h2>
+
+  <div class="space-y-6">
+
+    <div class="bg-slate-900 p-6 rounded-2xl glow">
+      <h3 class="text-2xl font-semibold mb-2">
+        Emergency Travel Behaviour Study
+      </h3>
+      <p class="text-slate-300">
+        Analyzed trip generation and modal choice patterns during emergency dispatch scenarios in Bangladesh.
+      </p>
+    </div>
+
+    <div class="bg-slate-900 p-6 rounded-2xl glow">
+      <h3 class="text-2xl font-semibold mb-2">
+        Residential Building Design Project
+      </h3>
+      <p class="text-slate-300">
+        Structural design and environmental assessment of a 12-storey building using ETABS & AutoCAD.
+      </p>
     </div>
 
   </div>
+
+</div>
 </section>
 
-<!-- OBJECTIVE -->
-<section class="px-6 py-20">
-  <div class="max-w-5xl mx-auto">
+<!-- SKILLS -->
+<section class="py-24 px-6 bg-slate-900/40">
+<div class="max-w-5xl mx-auto fade">
 
-    <h2 class="text-4xl font-bold mb-6">Personal Objective</h2>
+  <h2 class="text-4xl font-bold mb-10">Skills</h2>
 
-    <p class="text-slate-300 leading-relaxed">
-      Civil Engineering graduate with a hardworking and organized mindset.
-      I believe in a “can do, will do” attitude and can work independently as well as in teams under pressure.
-      My goal is to contribute to sustainable transportation systems and data-driven infrastructure development.
-    </p>
+  <div class="flex flex-wrap gap-4">
 
-  </div>
-</section>
-
-<!-- RESEARCH INTEREST -->
-<section class="px-6 py-20 bg-slate-900/40">
-  <div class="max-w-5xl mx-auto">
-
-    <h2 class="text-4xl font-bold mb-10">Research Interests</h2>
-
-    <div class="flex flex-wrap gap-4 text-slate-200">
-
-      <div class="bg-slate-900 px-5 py-3 rounded-2xl">Travel Behaviour Analysis</div>
-      <div class="bg-slate-900 px-5 py-3 rounded-2xl">Travel Demand Forecasting</div>
-      <div class="bg-slate-900 px-5 py-3 rounded-2xl">Transportation Modelling</div>
-      <div class="bg-slate-900 px-5 py-3 rounded-2xl">Discrete Choice Models</div>
-      <div class="bg-slate-900 px-5 py-3 rounded-2xl">Road Safety & Crash Analysis</div>
-      <div class="bg-slate-900 px-5 py-3 rounded-2xl">Behavioural Transport Studies</div>
-      <div class="bg-slate-900 px-5 py-3 rounded-2xl">Transportation in Developing Countries</div>
-
-    </div>
+    <div class="bg-slate-900 px-5 py-3 rounded-2xl glow">AutoCAD</div>
+    <div class="bg-slate-900 px-5 py-3 rounded-2xl glow">ETABS</div>
+    <div class="bg-slate-900 px-5 py-3 rounded-2xl glow">CUBE</div>
+    <div class="bg-slate-900 px-5 py-3 rounded-2xl glow">SUMO</div>
+    <div class="bg-slate-900 px-5 py-3 rounded-2xl glow">Python</div>
+    <div class="bg-slate-900 px-5 py-3 rounded-2xl glow">STATA</div>
 
   </div>
-</section>
 
-<!-- THESIS -->
-<section class="px-6 py-20">
-  <div class="max-w-5xl mx-auto">
-
-    <h2 class="text-4xl font-bold mb-6">Undergraduate Thesis</h2>
-
-    <p class="text-slate-300 leading-relaxed">
-      <span class="text-white font-semibold">
-        Investigating trip generation and modal choice during emergency dispatch in Bangladesh
-      </span>
-      <br><br>
-      Focused on understanding how travel behaviour changes during emergency situations
-      and how transport systems can be optimized for faster response and better accessibility.
-    </p>
-
-  </div>
-</section>
-
-<!-- FINAL YEAR PROJECT -->
-<section class="px-6 py-20 bg-slate-900/40">
-  <div class="max-w-5xl mx-auto">
-
-    <h2 class="text-4xl font-bold mb-6">Final Year Design Project</h2>
-
-    <p class="text-slate-300 leading-relaxed">
-      Design and environmental assessment of a 12-storey residential building in Purbachal New Town,
-      including structural analysis using ETABS and AutoCAD, along with Initial Environmental Examination (IEE)
-      and planning of infrastructure components.
-    </p>
-
-  </div>
-</section>
-
-<!-- SOFTWARE -->
-<section class="px-6 py-20">
-  <div class="max-w-5xl mx-auto">
-
-    <h2 class="text-4xl font-bold mb-10">Software Proficiency</h2>
-
-    <div class="flex flex-wrap gap-4">
-
-      <div class="bg-slate-900 px-5 py-3 rounded-2xl">AutoCAD</div>
-      <div class="bg-slate-900 px-5 py-3 rounded-2xl">ETABS</div>
-      <div class="bg-slate-900 px-5 py-3 rounded-2xl">SAP</div>
-      <div class="bg-slate-900 px-5 py-3 rounded-2xl">PLAXIS</div>
-      <div class="bg-slate-900 px-5 py-3 rounded-2xl">CUBE</div>
-      <div class="bg-slate-900 px-5 py-3 rounded-2xl">SUMO</div>
-      <div class="bg-slate-900 px-5 py-3 rounded-2xl">STATA</div>
-      <div class="bg-slate-900 px-5 py-3 rounded-2xl">Python</div>
-
-    </div>
-
-  </div>
-</section>
-
-<!-- CORE COMPETENCIES -->
-<section class="px-6 py-20 bg-slate-900/40">
-  <div class="max-w-5xl mx-auto">
-
-    <h2 class="text-4xl font-bold mb-10">Core Competencies</h2>
-
-    <div class="flex flex-wrap gap-4">
-
-      <div class="bg-slate-900 px-5 py-3 rounded-2xl">Problem Solver</div>
-      <div class="bg-slate-900 px-5 py-3 rounded-2xl">Team Player</div>
-      <div class="bg-slate-900 px-5 py-3 rounded-2xl">Hardworking</div>
-      <div class="bg-slate-900 px-5 py-3 rounded-2xl">Decision Making</div>
-      <div class="bg-slate-900 px-5 py-3 rounded-2xl">Research & Analysis</div>
-
-    </div>
-
-  </div>
+</div>
 </section>
 
 <!-- CONTACT -->
-<section class="px-6 py-20">
-  <div class="max-w-4xl mx-auto text-center">
+<section class="py-24 px-6">
+<div class="max-w-4xl mx-auto text-center fade">
 
-    <h2 class="text-4xl font-bold mb-6">Let’s Connect</h2>
+  <h2 class="text-4xl font-bold mb-6">Let’s Connect</h2>
 
-    <p class="text-slate-300 mb-8">
-      Open to research collaboration, transportation projects, consultancy, and data-driven engineering work.
-    </p>
+  <p class="text-slate-300 mb-8">
+    Open to research collaboration, consultancy, and transportation engineering roles.
+  </p>
 
-    <a href="mailto:yourmail@example.com"
-       class="bg-sky-500 hover:bg-sky-400 px-6 py-3 rounded-2xl font-semibold">
-      Contact Me
-    </a>
+  <a href="mailto:yourmail@example.com"
+     class="bg-sky-500 px-6 py-3 rounded-2xl glow font-semibold">
+    Contact Me
+  </a>
 
-  </div>
+</div>
 </section>
+
+<!-- ANIMATION SCRIPT -->
+<script>
+  const elements = document.querySelectorAll('.fade');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+      }
+    });
+  });
+
+  elements.forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>
