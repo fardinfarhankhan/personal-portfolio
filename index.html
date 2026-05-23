@@ -1,698 +1,679 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fardin Farhan Khan | Transportation Engineer</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-<style>
-
-:root{
---bg:#071018;
---surface:#101c2b;
---card:#132235;
---primary:#58a6ff;
---secondary:#00d4ff;
---text:#f3f7ff;
---muted:#9fb2c8;
---border:rgba(255,255,255,0.08);
---shadow:0 10px 35px rgba(0,0,0,0.35);
-}
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
-
-html{
-scroll-behavior:smooth;
-}
-
-body{
-font-family:'Inter',sans-serif;
-background:linear-gradient(180deg,#071018,#08131f);
-color:var(--text);
-overflow-x:hidden;
-}
-
-body::before{
-content:'';
-position:fixed;
-inset:0;
-background-image:
-linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-background-size:40px 40px;
-pointer-events:none;
-z-index:-1;
-}
-
-nav{
-position:fixed;
-top:0;
-width:100%;
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:18px 70px;
-background:rgba(5,12,20,0.85);
-backdrop-filter:blur(20px);
-z-index:999;
-border-bottom:1px solid rgba(255,255,255,0.05);
-}
-
-.logo{
-font-size:1.4rem;
-font-weight:700;
-font-family:'Space Grotesk',sans-serif;
-}
-
-.logo span{
-color:var(--secondary);
-}
-
-.nav-links{
-display:flex;
-gap:30px;
-}
-
-.nav-links a{
-text-decoration:none;
-color:var(--muted);
-transition:0.3s;
-font-size:0.95rem;
-}
-
-.nav-links a:hover{
-color:var(--secondary);
-}
-
-.hero{
-min-height:100vh;
-display:grid;
-grid-template-columns:1.2fr 0.8fr;
-align-items:center;
-padding:130px 80px 80px;
-gap:60px;
-position:relative;
-}
-
-.hero::before{
-content:'';
-position:absolute;
-inset:0;
-background:
-linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.75)),
-url('https://images.pexels.com/photos/210182/pexels-photo-210182.jpeg');
-background-size:cover;
-background-position:center;
-opacity:0.18;
-z-index:-2;
-}
-
-.hero-content h4{
-letter-spacing:3px;
-text-transform:uppercase;
-color:var(--secondary);
-margin-bottom:20px;
-font-size:0.9rem;
-}
-
-.hero-content h1{
-font-size:5rem;
-line-height:1.05;
-font-family:'Space Grotesk',sans-serif;
-margin-bottom:25px;
-}
-
-.hero-content h1 span{
-color:var(--secondary);
-}
-
-.hero-content p{
-line-height:1.9;
-color:var(--muted);
-font-size:1.05rem;
-max-width:720px;
-}
-
-.hero-buttons{
-display:flex;
-gap:18px;
-margin-top:35px;
-flex-wrap:wrap;
-}
-
-.btn{
-padding:14px 28px;
-border-radius:14px;
-text-decoration:none;
-font-weight:600;
-transition:0.3s;
-}
-
-.btn-primary{
-background:linear-gradient(135deg,var(--primary),var(--secondary));
-color:white;
-}
-
-.btn-secondary{
-border:1px solid rgba(255,255,255,0.12);
-color:white;
-}
-
-.btn:hover{
-transform:translateY(-4px);
-}
-
-.hero-image img{
-width:100%;
-max-width:420px;
-border-radius:28px;
-border:1px solid rgba(255,255,255,0.08);
-box-shadow:var(--shadow);
-}
-
-.section{
-padding:110px 80px;
-}
-
-.section-title{
-margin-bottom:60px;
-}
-
-.section-title h2{
-font-size:3rem;
-font-family:'Space Grotesk',sans-serif;
-margin-bottom:15px;
-}
-
-.section-title p{
-color:var(--muted);
-max-width:800px;
-line-height:1.8;
-}
-
-.about-grid,
-.dashboard,
-.project-grid,
-.skills-grid,
-.gallery-grid{
-display:grid;
-gap:28px;
-}
-
-.about-grid{
-grid-template-columns:1fr 1fr;
-}
-
-.card{
-background:rgba(16,28,43,0.75);
-border:1px solid var(--border);
-border-radius:24px;
-padding:32px;
-backdrop-filter:blur(16px);
-transition:0.35s;
-}
-
-.card:hover{
-transform:translateY(-8px);
-border-color:rgba(0,212,255,0.35);
-}
-
-.card h3{
-margin-bottom:18px;
-font-size:1.35rem;
-}
-
-.card p,
-.card li{
-line-height:1.9;
-color:var(--muted);
-}
-
-.research-list{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
-margin-top:30px;
-}
-
-.research-item{
-background:var(--card);
-padding:24px;
-border-radius:18px;
-border:1px solid rgba(255,255,255,0.06);
-}
-
-.project-grid{
-grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-}
-
-.project-card{
-overflow:hidden;
-background:var(--surface);
-border-radius:24px;
-border:1px solid var(--border);
-transition:0.35s;
-}
-
-.project-card:hover{
-transform:translateY(-10px);
-}
-
-.project-card img{
-width:100%;
-height:240px;
-object-fit:cover;
-}
-
-.project-content{
-padding:28px;
-}
-
-.project-content h3{
-margin-bottom:12px;
-}
-
-.project-meta{
-display:flex;
-flex-wrap:wrap;
-gap:12px;
-margin-top:18px;
-}
-
-.project-meta span{
-background:rgba(255,255,255,0.06);
-padding:8px 14px;
-border-radius:30px;
-font-size:0.85rem;
-}
-
-.dashboard{
-grid-template-columns:repeat(3,1fr);
-}
-
-.dashboard-box{
-background:linear-gradient(180deg,#122234,#0c1724);
-padding:24px;
-border-radius:22px;
-border:1px solid rgba(255,255,255,0.06);
-}
-
-.dashboard-box img{
-width:100%;
-margin-top:18px;
-border-radius:14px;
-}
-
-.timeline{
-border-left:2px solid rgba(88,166,255,0.3);
-padding-left:40px;
-margin-left:15px;
-}
-
-.timeline-item{
-margin-bottom:50px;
-position:relative;
-}
-
-.timeline-item::before{
-content:'';
-position:absolute;
-width:16px;
-height:16px;
-background:var(--secondary);
-border-radius:50%;
-left:-49px;
-top:6px;
-}
-
-.skills-grid{
-grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-}
-
-.skill-box{
-background:rgba(255,255,255,0.04);
-padding:24px;
-text-align:center;
-border-radius:18px;
-border:1px solid rgba(255,255,255,0.06);
-}
-
-.skill-box i{
-font-size:2rem;
-color:var(--secondary);
-margin-bottom:15px;
-}
-
-.gallery-grid{
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-}
-
-.gallery-grid img{
-width:100%;
-height:240px;
-object-fit:cover;
-border-radius:20px;
-transition:0.35s;
-}
-
-.gallery-grid img:hover{
-transform:scale(1.03);
-}
-
-.contact-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:40px;
-}
-
-.contact-item{
-margin-bottom:18px;
-color:var(--muted);
-}
-
-.contact-item i{
-color:var(--secondary);
-margin-right:10px;
-}
-
-footer{
-padding:40px;
-text-align:center;
-color:var(--muted);
-border-top:1px solid rgba(255,255,255,0.05);
-}
-
-@media(max-width:992px){
-.hero,
-.about-grid,
-.contact-grid{
-grid-template-columns:1fr;
-}
-
-.dashboard{
-grid-template-columns:1fr 1fr;
-}
-
-.hero-content h1{
-font-size:3.5rem;
-}
-}
-
-@media(max-width:768px){
-nav{
-padding:18px 24px;
-}
-
-.nav-links{
-display:none;
-}
-
-.hero,
-.section{
-padding-left:24px;
-padding-right:24px;
-}
-
-.hero-content h1{
-font-size:2.6rem;
-}
-
-.dashboard{
-grid-template-columns:1fr;
-}
-}
-
-</style>
-</head>
-<body>
-
-<nav>
-<div class="logo">Fardin <span>FK</span></div>
-<div class="nav-links">
-<a href="#about">About</a>
-<a href="#research">Research</a>
-<a href="#projects">Projects</a>
-<a href="#experience">Experience</a>
-<a href="#gallery">Gallery</a>
-<a href="#contact">Contact</a>
-</div>
-</nav>
+<!-- =========================================
+UPDATED CONTENT STRUCTURE
+Based on ALL accessible pages/subpages from:
+https://sites.google.com/view/fardinfarhankhan
+
+You can directly replace sections in your existing code
+========================================= -->
+
+<!-- HERO SECTION -->
 
 <section class="hero">
+
 <div class="hero-content">
-<h4>Transportation Engineering • GIS • Infrastructure Consultancy</h4>
-<h1>Fardin Farhan Khan<br><span>Civil Engineer & Transportation Researcher</span></h1>
+
+<h4>
+Transportation Engineering • Infrastructure Consultancy • Research • Media & Development Projects
+</h4>
+
+<h1>
+Fardin Farhan Khan<br>
+<span>Civil Engineer, Transportation Researcher & Business Development Engineer</span>
+</h1>
+
 <p>
-Civil Engineer and infrastructure consultant specializing in transportation systems,
-railway modernization, freight logistics, GIS analytics, transport modelling,
-and infrastructure strategy. Experienced in donor-funded consultancy projects,
-proposal development, transport analytics, and sustainable mobility planning.
+Civil Engineering graduate from Islamic University of Technology (IUT)
+specializing in transportation systems, travel behaviour analysis,
+freight logistics, infrastructure consultancy, GIS analytics,
+transport modelling, and sustainable mobility planning.
+Experienced in donor-funded infrastructure projects,
+technical proposal preparation, strategic business development,
+event coordination, media production, and international development initiatives.
 </p>
 
 <div class="hero-buttons">
-<a href="#projects" class="btn btn-primary">View Projects</a>
+<a href="#projects" class="btn btn-primary">Explore Projects</a>
 <a href="#research" class="btn btn-secondary">Research</a>
-<a href="#contact" class="btn btn-secondary">Contact</a>
+<a href="#experience" class="btn btn-secondary">Experience</a>
 </div>
+
 </div>
 
 <div class="hero-image">
-<img src="YOUR_HEADSHOT.jpg" alt="Fardin Farhan Khan">
+<img src="YOUR_PROFILE_IMAGE.jpg" alt="Fardin Farhan Khan">
 </div>
+
 </section>
 
+<!-- ABOUT SECTION -->
+
 <section class="section" id="about">
+
 <div class="section-title">
+
 <h2>About Me</h2>
+
 <p>
-Transportation researcher and infrastructure professional with expertise in railway planning,
-travel behavior analysis, freight logistics, transport modelling, GIS-based analytics,
-and infrastructure consultancy in Bangladesh and international development contexts.
+A multidisciplinary Civil Engineer with experience spanning transportation engineering,
+infrastructure consultancy, development sector projects,
+transport analytics, media documentation,
+strategic proposal development, and research.
+Passionate about sustainable transportation systems,
+railway modernization, smart mobility,
+and infrastructure planning in developing countries.
 </p>
+
 </div>
 
 <div class="about-grid">
+
 <div class="card">
-<h3><i class="fa-solid fa-user"></i> Personal Objective</h3>
+
+<h3>
+<i class="fa-solid fa-user"></i>
+Professional Objective
+</h3>
+
 <p>
-Civil Engineering graduate from Islamic University of Technology (IUT), passionate about
-sustainable transportation systems, infrastructure modernization, and transport data analytics.
-Strong experience in consultancy proposal preparation, donor-funded projects,
-and interdisciplinary engineering collaboration.
+Hardworking and responsive engineering professional with strong organizational,
+technical, analytical, and communication skills.
+Capable of working independently and collaboratively under pressure,
+with practical experience in consultancy,
+research, project coordination, logistics,
+and infrastructure development.
 </p>
+
 </div>
 
 <div class="card">
-<h3><i class="fa-solid fa-graduation-cap"></i> Academic Background</h3>
+
+<h3>
+<i class="fa-solid fa-graduation-cap"></i>
+Academic Background
+</h3>
+
 <p>
-Bachelor of Science in Civil Engineering from Islamic University of Technology (IUT).
-Research interests include transportation modelling, travel demand forecasting,
-Bayesian networks, discrete choice modelling, and road safety analysis.
+Bachelor of Science in Civil Engineering from
+Islamic University of Technology (IUT).
+Academic focus includes transportation engineering,
+structural engineering, geotechnical engineering,
+environmental assessment, and infrastructure systems analysis.
 </p>
+
 </div>
+
 </div>
+
 </section>
+
+<!-- RESEARCH SECTION -->
 
 <section class="section" id="research">
+
 <div class="section-title">
+
 <h2>Research Interests</h2>
+
 <p>
-Research-driven transportation systems analysis focusing on sustainable mobility,
-travel behaviour, freight transport optimization, and data-driven infrastructure planning.
+Research-driven transportation systems analysis focusing on travel behaviour,
+transport modelling, sustainable mobility,
+rail freight development,
+and data-driven infrastructure planning.
 </p>
+
 </div>
 
-<div class="research-list">
-<div class="research-item">Travel Behaviour Analysis</div>
-<div class="research-item">Transportation Modelling</div>
-<div class="research-item">Bayesian Belief Networks</div>
-<div class="research-item">Discrete Choice Modelling</div>
-<div class="research-item">Travel Demand Forecasting</div>
-<div class="research-item">Road Safety & Collision Analysis</div>
-<div class="research-item">Freight Logistics</div>
-<div class="research-item">Transportation in Developing Countries</div>
+<div class="skills-grid">
+
+<div class="skill-box">
+<i class="fa-solid fa-chart-line"></i>
+<h4>Travel Behaviour Analysis</h4>
 </div>
+
+<div class="skill-box">
+<i class="fa-solid fa-road"></i>
+<h4>Transportation Modelling</h4>
+</div>
+
+<div class="skill-box">
+<i class="fa-solid fa-network-wired"></i>
+<h4>Bayesian Belief Networks</h4>
+</div>
+
+<div class="skill-box">
+<i class="fa-solid fa-route"></i>
+<h4>Travel Demand Forecasting</h4>
+</div>
+
+<div class="skill-box">
+<i class="fa-solid fa-car-burst"></i>
+<h4>Road Safety Analysis</h4>
+</div>
+
+<div class="skill-box">
+<i class="fa-solid fa-train"></i>
+<h4>Railway Planning</h4>
+</div>
+
+<div class="skill-box">
+<i class="fa-solid fa-truck"></i>
+<h4>Freight Logistics</h4>
+</div>
+
+<div class="skill-box">
+<i class="fa-solid fa-earth-asia"></i>
+<h4>Transportation in Developing Countries</h4>
+</div>
+
+</div>
+
 </section>
 
-<section class="section" id="projects">
+<!-- THESIS SECTION -->
+
+<section class="section">
+
 <div class="section-title">
-<h2>Projects & Consultancy Works</h2>
-<p>
-Selected projects from infrastructure consultancy, transportation analytics,
-media production, logistics coordination, and donor-funded development initiatives.
-</p>
+
+<h2>Research & Academic Projects</h2>
+
 </div>
 
 <div class="project-grid">
 
 <div class="project-card">
+
 <img src="https://images.pexels.com/photos/302428/pexels-photo-302428.jpeg">
+
 <div class="project-content">
-<h3>Dhaka–Chattogram Freight Corridor</h3>
-<p>Rail freight modernization and corridor optimization research for sustainable logistics planning in Bangladesh.</p>
-<div class="project-meta">
-<span>Railway Planning</span>
-<span>GIS Analysis</span>
-<span>Freight Logistics</span>
-</div>
-</div>
-</div>
 
-<div class="project-card">
-<img src="https://images.pexels.com/photos/163777/pexels-photo-163777.jpeg">
-<div class="project-content">
-<h3>Transport Analytics & GIS Dashboard</h3>
-<p>Interactive transport intelligence dashboards integrating GIS mapping, modal analysis, and corridor performance visualization.</p>
-<div class="project-meta">
-<span>Power BI</span>
-<span>QGIS</span>
-<span>Analytics</span>
-</div>
-</div>
-</div>
+<h3>
+Undergraduate Thesis
+</h3>
 
-<div class="project-card">
-<img src="https://images.pexels.com/photos/1105766/pexels-photo-1105766.jpeg">
-<div class="project-content">
-<h3>Infrastructure Consultancy Proposals</h3>
-<p>Preparation of technical and financial proposals for infrastructure projects funded by ADB, World Bank, and JICA.</p>
-<div class="project-meta">
-<span>SMEC</span>
-<span>Consultancy</span>
-<span>Infrastructure</span>
-</div>
-</div>
-</div>
-
-</div>
-</section>
-
-<section class="section">
-<div class="section-title">
-<h2>Transport Analytics Dashboard</h2>
 <p>
-Transportation intelligence inspired by smart mobility systems and GIS-based infrastructure analytics.
+Investigating trip generation and modal choice approach during emergency dispatch in Bangladesh.
+The research focused on transportation behaviour,
+emergency mobility,
+Bayesian Belief Networks,
+and travel demand modelling.
 </p>
+
+<div class="project-meta">
+<span>Transportation Research</span>
+<span>Bayesian Network</span>
+<span>Travel Behaviour</span>
 </div>
 
-<div class="dashboard">
-<div class="dashboard-box">
-<h3>Freight Flow Mapping</h3>
-<img src="https://images.pexels.com/photos/2199293/pexels-photo-2199293.jpeg">
 </div>
 
-<div class="dashboard-box">
-<h3>GIS Corridor Analysis</h3>
-<img src="https://images.pexels.com/photos/373543/pexels-photo-373543.jpeg">
 </div>
 
-<div class="dashboard-box">
-<h3>Smart Mobility Systems</h3>
+<div class="project-card">
+
+<img src="https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg">
+
+<div class="project-content">
+
+<h3>
+Purbachal New Town Project
+</h3>
+
+<p>
+Designed a 12-storey residential building for the Purbachal New Town Project.
+Performed environmental assessment,
+structural modelling using ETABS,
+AutoCAD drafting,
+and transportation & geotechnical analysis.
+</p>
+
+<div class="project-meta">
+<span>ETABS</span>
+<span>AutoCAD</span>
+<span>Structural Design</span>
+</div>
+
+</div>
+
+</div>
+
+<div class="project-card">
+
 <img src="https://images.pexels.com/photos/256381/pexels-photo-256381.jpeg">
+
+<div class="project-content">
+
+<h3>
+Industrial Training Program
+</h3>
+
+<p>
+Participated in extensive industrial training on steel structures,
+RCC building design,
+road construction,
+river training,
+project planning,
+quality control,
+and infrastructure implementation.
+</p>
+
+<div class="project-meta">
+<span>Infrastructure</span>
+<span>Construction</span>
+<span>Project Planning</span>
 </div>
+
 </div>
+
+</div>
+
+</div>
+
 </section>
+
+<!-- PROFESSIONAL EXPERIENCE -->
 
 <section class="section" id="experience">
+
 <div class="section-title">
+
 <h2>Professional Experience</h2>
+
 </div>
 
 <div class="timeline">
+
 <div class="timeline-item">
-<h3>SMEC International Pty Ltd</h3>
+
+<h3>
+SMEC International Pty Ltd
+</h3>
+
 <p>
 Business Development Engineer involved in strategic market analysis,
-transport infrastructure consultancy, railway projects, proposal preparation,
-and donor-funded infrastructure projects.
+technical proposal preparation,
+infrastructure consultancy,
+transportation projects,
+railways,
+roads,
+bridges,
+metro systems,
+water infrastructure,
+and donor-funded development projects.
 </p>
+
 </div>
 
 <div class="timeline-item">
-<h3>Infrastructure & Media Projects</h3>
+
+<h3>
+International Development & Consultancy Projects
+</h3>
+
 <p>
-Worked in project coordination, documentation, transport logistics,
-and event infrastructure support for international organizations,
-UN agencies, and national initiatives.
+Worked on consultancy coordination,
+logistical support,
+event operations,
+technical documentation,
+simultaneous interpretation services,
+and stakeholder coordination for organizations including
+UNDP,
+ILO,
+UNODC,
+Commonwealth Secretariat,
+and other development partners.
 </p>
+
 </div>
+
+<div class="timeline-item">
+
+<h3>
+Media Production & Campaign Management
+</h3>
+
+<p>
+Managed media campaigns,
+videography,
+documentation,
+social media campaigns,
+branding,
+promotional activities,
+event management,
+and digital engagement campaigns
+for corporate and development sector initiatives.
+</p>
+
 </div>
+
+</div>
+
 </section>
 
-<section class="section">
+<!-- MAJOR PROJECTS -->
+
+<section class="section" id="projects">
+
 <div class="section-title">
-<h2>Technical Skills</h2>
+
+<h2>Major Projects & Campaigns</h2>
+
+<p>
+Selected projects from infrastructure consultancy,
+development communication,
+transportation research,
+event coordination,
+and media production.
+</p>
+
+</div>
+
+<div class="project-grid">
+
+<div class="project-card">
+
+<img src="https://images.pexels.com/photos/1105766/pexels-photo-1105766.jpeg">
+
+<div class="project-content">
+
+<h3>
+UNODC GLO.ACT Projects
+</h3>
+
+<p>
+Proposal preparation,
+financial negotiation,
+project coordination,
+venue visualization,
+and simultaneous interpretation services
+for international seminars and development programs.
+</p>
+
+<div class="project-meta">
+<span>UNODC</span>
+<span>Project Management</span>
+<span>Interpretation</span>
+</div>
+
+</div>
+
+</div>
+
+<div class="project-card">
+
+<img src="https://images.pexels.com/photos/2199293/pexels-photo-2199293.jpeg">
+
+<div class="project-content">
+
+<h3>
+Transport & Logistical Support Projects
+</h3>
+
+<p>
+Coordinated transport and logistics support
+for Commonwealth delegations,
+international organizations,
+and development sector events.
+</p>
+
+<div class="project-meta">
+<span>Logistics</span>
+<span>Coordination</span>
+<span>Operations</span>
+</div>
+
+</div>
+
+</div>
+
+<div class="project-card">
+
+<img src="https://images.pexels.com/photos/210182/pexels-photo-210182.jpeg">
+
+<div class="project-content">
+
+<h3>
+Digital & Social Media Campaigns
+</h3>
+
+<p>
+Led planning,
+content development,
+documentation,
+branding,
+and production support
+for campaigns with brands,
+NGOs,
+and development partners across Bangladesh.
+</p>
+
+<div class="project-meta">
+<span>Campaign</span>
+<span>Branding</span>
+<span>Production</span>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- SOFTWARE SKILLS -->
+
+<section class="section" id="skills">
+
+<div class="section-title">
+
+<h2>Technical & Software Skills</h2>
+
 </div>
 
 <div class="skills-grid">
-<div class="skill-box"><i class="fa-solid fa-map"></i><h4>ArcGIS</h4></div>
-<div class="skill-box"><i class="fa-solid fa-earth-asia"></i><h4>QGIS</h4></div>
-<div class="skill-box"><i class="fa-solid fa-chart-line"></i><h4>Power BI</h4></div>
-<div class="skill-box"><i class="fa-solid fa-code"></i><h4>Python</h4></div>
-<div class="skill-box"><i class="fa-solid fa-train"></i><h4>Railway Planning</h4></div>
-<div class="skill-box"><i class="fa-solid fa-road"></i><h4>Transport Modelling</h4></div>
-<div class="skill-box"><i class="fa-solid fa-building"></i><h4>ETABS</h4></div>
-<div class="skill-box"><i class="fa-solid fa-compass-drafting"></i><h4>AutoCAD</h4></div>
+
+<div class="skill-box">
+<i class="fa-solid fa-compass-drafting"></i>
+<h4>AutoCAD</h4>
 </div>
+
+<div class="skill-box">
+<i class="fa-solid fa-building"></i>
+<h4>ETABS</h4>
+</div>
+
+<div class="skill-box">
+<i class="fa-solid fa-cubes"></i>
+<h4>SAP2000</h4>
+</div>
+
+<div class="skill-box">
+<i class="fa-solid fa-mountain-city"></i>
+<h4>Plaxis</h4>
+</div>
+
+<div class="skill-box">
+<i class="fa-solid fa-map-location-dot"></i>
+<h4>QGIS</h4>
+</div>
+
+<div class="skill-box">
+<i class="fa-solid fa-chart-column"></i>
+<h4>Power BI</h4>
+</div>
+
+<div class="skill-box">
+<i class="fa-solid fa-code"></i>
+<h4>Python</h4>
+</div>
+
+<div class="skill-box">
+<i class="fa-solid fa-train-subway"></i>
+<h4>CUBE & SUMO</h4>
+</div>
+
+<div class="skill-box">
+<i class="fa-solid fa-camera"></i>
+<h4>Adobe Premiere Pro</h4>
+</div>
+
+<div class="skill-box">
+<i class="fa-solid fa-pen-ruler"></i>
+<h4>Adobe Illustrator</h4>
+</div>
+
+<div class="skill-box">
+<i class="fa-solid fa-image"></i>
+<h4>Adobe Photoshop</h4>
+</div>
+
+<div class="skill-box">
+<i class="fa-solid fa-database"></i>
+<h4>STATA & Biogeme</h4>
+</div>
+
+</div>
+
 </section>
 
-<section class="section" id="gallery">
+<!-- LEADERSHIP -->
+
+<section class="section">
+
 <div class="section-title">
-<h2>Infrastructure Gallery</h2>
-<p>
-Railway systems, transport corridors, GIS analytics, infrastructure consultancy,
-and transportation engineering inspirations.
-</p>
+
+<h2>Leadership & Activities</h2>
+
 </div>
 
-<div class="gallery-grid">
-<img src="https://images.pexels.com/photos/46148/aircraft-jet-landing-cloud-46148.jpeg">
-<img src="https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg">
-<img src="https://images.pexels.com/photos/210182/pexels-photo-210182.jpeg">
-<img src="https://images.pexels.com/photos/1105766/pexels-photo-1105766.jpeg">
-<img src="https://images.pexels.com/photos/256381/pexels-photo-256381.jpeg">
-<img src="https://images.pexels.com/photos/302428/pexels-photo-302428.jpeg">
+<div class="about-grid">
+
+<div class="card">
+
+<h3>
+Leadership Roles
+</h3>
+
+<ul>
+
+<li>Founding Member — Humans of IUT</li>
+
+<li>Organizing Committee Member — Cennovation 2018–2019</li>
+
+<li>Campaign Lead — Cyber Savers</li>
+
+<li>Treasurer — IUT CEE Cricket Team 2021</li>
+
+<li>Organizing Secretary — Scintilla Science Club</li>
+
+<li>Corresponding Secretary — Josephite Cultural Forum</li>
+
+</ul>
+
 </div>
+
+<div class="card">
+
+<h3>
+Core Competencies
+</h3>
+
+<ul>
+
+<li>Strategic Planning</li>
+
+<li>Project Coordination</li>
+
+<li>Research & Analytics</li>
+
+<li>Team Collaboration</li>
+
+<li>Problem Solving</li>
+
+<li>Decision Making</li>
+
+<li>Communication & Presentation</li>
+
+<li>Infrastructure Consultancy</li>
+
+</ul>
+
+</div>
+
+</div>
+
 </section>
+
+<!-- CONTACT -->
 
 <section class="section" id="contact">
+
 <div class="section-title">
+
 <h2>Get In Touch</h2>
+
 <p>
-Open to research collaboration, infrastructure consultancy opportunities,
-and transportation systems projects.
+Open to research collaboration,
+transportation consultancy,
+infrastructure development projects,
+data analytics,
+and interdisciplinary engineering opportunities.
 </p>
+
 </div>
 
 <div class="contact-grid">
+
 <div class="card">
+
 <h3>Contact Information</h3>
-<div class="contact-item"><i class="fa-solid fa-envelope"></i> fardinkhanstj15@gmail.com</div>
-<div class="contact-item"><i class="fa-brands fa-linkedin"></i> linkedin.com/in/fardinfarhankhan</div>
-<div class="contact-item"><i class="fa-solid fa-location-dot"></i> Dhaka, Bangladesh</div>
+
+<div class="contact-item">
+<i class="fa-solid fa-envelope"></i>
+fardinkhanstj15@gmail.com
+</div>
+
+<div class="contact-item">
+<i class="fa-brands fa-linkedin"></i>
+linkedin.com/in/fardinfarhankhan
+</div>
+
+<div class="contact-item">
+<i class="fa-solid fa-location-dot"></i>
+Dhaka, Bangladesh
+</div>
+
+<div class="contact-item">
+<i class="fa-solid fa-globe"></i>
+sites.google.com/view/fardinfarhankhan
+</div>
+
 </div>
 
 <div class="card">
-<h3>Professional Focus</h3>
+
+<h3>
+Professional Focus
+</h3>
+
 <p>
-Transportation Engineering • Railway Modernization • Infrastructure Strategy • GIS & Spatial Analytics • Sustainable Mobility • Freight Logistics • Data-Driven Infrastructure Planning
+Transportation Engineering • Railway Modernization • Infrastructure Consultancy • GIS Analytics • Freight Logistics • Smart Mobility • Transport Modelling • Sustainable Transportation • Infrastructure Development • Research & Data Analytics
 </p>
+
 </div>
+
 </div>
+
 </section>
 
-<footer>
-<p>© 2026 Fardin Farhan Khan | Transportation Engineering & Infrastructure Consultancy Portfolio</p>
-</footer>
+<!-- FOOTER -->
 
-</body>
-</html>
+<footer>
+
+<p>
+© 2026 Fardin Farhan Khan |
+Civil Engineer • Transportation Researcher • Infrastructure Consultant
+</p>
+
+</footer>
