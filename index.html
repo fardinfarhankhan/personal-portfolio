@@ -5,687 +5,1097 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Fardin Farhan Khan</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet" />
 <style>
-  :root {
-    --bg: #0d1117;
-    --surface: #161b22;
-    --border: #21262d;
-    --accent: #58a6ff;
-    --accent2: #3fb950;
-    --accent3: #f78166;
-    --text: #e6edf3;
-    --muted: #8b949e;
-    --heading-font: 'Playfair Display', serif;
-    --mono-font: 'DM Mono', monospace;
-    --body-font: 'DM Sans', sans-serif;
-  }
+:root {
+  --bg: #08090c;
+  --surface: #0f1117;
+  --surface2: #161b27;
+  --border: #1e2535;
+  --border2: #2a3347;
+  --accent: #4f9cf9;
+  --accent2: #34d058;
+  --accent3: #f97316;
+  --accent4: #a78bfa;
+  --text: #e8edf5;
+  --muted: #7a8499;
+  --dim: #4a5568;
+  --heading: 'Cormorant Garamond', serif;
+  --mono: 'DM Mono', monospace;
+  --body: 'Outfit', sans-serif;
+}
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--body);
+  font-size: 15px;
+  line-height: 1.75;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
 
-  html { scroll-behavior: smooth; }
+/* ── GRAIN OVERLAY ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  opacity: 0.4;
+}
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--body-font);
-    font-size: 15px;
-    line-height: 1.7;
-    min-height: 100vh;
-  }
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: rgba(8,9,12,0.92);
+  backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid var(--border);
+  height: 58px;
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
+  gap: 0;
+}
+.nav-brand {
+  font-family: var(--heading);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text);
+  white-space: nowrap;
+  margin-right: 2.5rem;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.nav-brand span { color: var(--accent); }
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  flex: 1;
+}
+.nav-links::-webkit-scrollbar { display: none; }
+.nav-links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.78rem;
+  font-family: var(--mono);
+  padding: 0 0.85rem;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  transition: color .2s, border-color .2s;
+  letter-spacing: .03em;
+}
+.nav-links a:hover { color: var(--accent); border-color: var(--accent); }
+.nav-links .has-sub { position: relative; }
+.nav-links .has-sub:hover .sub-nav { display: flex; }
+.sub-nav {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 58px;
+  left: 0;
+  background: rgba(10,12,18,0.98);
+  border: 1px solid var(--border2);
+  border-radius: 0 0 8px 8px;
+  min-width: 220px;
+  padding: 0.5rem 0;
+  z-index: 100;
+}
+.sub-nav a {
+  height: auto;
+  padding: 0.5rem 1.2rem;
+  border: none;
+  font-size: 0.75rem;
+  display: block;
+}
+.sub-nav a:hover { background: var(--surface2); color: var(--accent); }
 
-  /* ── NAV ── */
-  nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(13,17,23,0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    gap: 0;
-    padding: 0 2rem;
-    height: 56px;
-    overflow-x: auto;
-  }
-  nav .brand {
-    font-family: var(--heading-font);
-    font-weight: 700;
-    font-size: 1.05rem;
-    color: var(--text);
-    white-space: nowrap;
-    margin-right: 2rem;
-    text-decoration: none;
-  }
-  nav a {
-    color: var(--muted);
-    text-decoration: none;
-    font-size: 0.82rem;
-    font-family: var(--mono-font);
-    padding: 0 0.9rem;
-    height: 56px;
-    display: flex;
-    align-items: center;
-    white-space: nowrap;
-    border-bottom: 2px solid transparent;
-    transition: color .2s, border-color .2s;
-  }
-  nav a:hover { color: var(--text); border-color: var(--accent); }
+/* ── MAIN LAYOUT ── */
+main { padding-top: 58px; position: relative; z-index: 1; }
 
-  /* ── HERO ── */
-  .hero {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 4rem 2rem 3rem;
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 2.5rem;
-    align-items: start;
-  }
-  .avatar {
-    width: 96px;
-    height: 96px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #1f6feb 0%, #388bfd 50%, #58a6ff 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--heading-font);
-    font-size: 2.4rem;
-    font-weight: 900;
-    color: #fff;
-    flex-shrink: 0;
-    box-shadow: 0 0 0 4px var(--border), 0 0 0 8px #1f6feb33;
-  }
-  .hero-info h1 {
-    font-family: var(--heading-font);
-    font-size: 2rem;
-    font-weight: 900;
-    color: var(--text);
-    line-height: 1.2;
-  }
-  .hero-info .handle {
-    font-family: var(--mono-font);
-    color: var(--muted);
-    font-size: 0.9rem;
-    margin-top: 0.2rem;
-  }
-  .hero-info .bio {
-    margin-top: 1rem;
-    color: var(--muted);
-    font-size: 0.93rem;
-    max-width: 600px;
-  }
-  .badge-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 1rem;
-  }
-  .badge {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 0.2rem 0.8rem;
-    font-size: 0.75rem;
-    font-family: var(--mono-font);
-    color: var(--muted);
-  }
-  .badge.green { color: var(--accent2); border-color: #238636; }
-  .badge.blue  { color: var(--accent);  border-color: #1f6feb; }
-  .socials {
-    display: flex;
-    gap: 0.75rem;
-    margin-top: 1.2rem;
-    flex-wrap: wrap;
-  }
-  .socials a {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    color: var(--muted);
-    text-decoration: none;
-    font-size: 0.8rem;
-    font-family: var(--mono-font);
-    transition: color .2s;
-  }
-  .socials a:hover { color: var(--accent); }
-  .socials svg { width: 16px; height: 16px; fill: currentColor; }
+/* ── HERO / HOME ── */
+.hero-section {
+  min-height: calc(100vh - 58px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 4rem 2rem 3rem;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(79,156,249,0.08) 0%, transparent 70%),
+              radial-gradient(ellipse 50% 40% at 80% 80%, rgba(167,139,250,0.05) 0%, transparent 60%);
+  position: relative;
+}
+.hero-section::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 10%; right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border2), transparent);
+}
+.hero-avatar {
+  width: 110px; height: 110px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #60a5fa 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--heading);
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: #fff;
+  box-shadow: 0 0 0 4px var(--border), 0 0 0 8px rgba(79,156,249,0.15), 0 20px 60px rgba(79,156,249,0.2);
+  margin-bottom: 2rem;
+  animation: float 6s ease-in-out infinite;
+}
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.hero-name {
+  font-family: var(--heading);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+.hero-name em { font-style: italic; color: var(--accent); }
+.hero-tagline {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-top: 0.6rem;
+  letter-spacing: .06em;
+}
+.hero-summary {
+  max-width: 680px;
+  margin: 1.8rem auto 0;
+  font-size: 1rem;
+  color: #9ba8be;
+  font-weight: 300;
+  line-height: 1.8;
+}
+.hero-cta {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--accent);
+  color: #05090f;
+  padding: 0.7rem 1.8rem;
+  border-radius: 8px;
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  font-weight: 500;
+  text-decoration: none;
+  letter-spacing: .03em;
+  transition: transform .2s, box-shadow .2s, background .2s;
+  box-shadow: 0 4px 24px rgba(79,156,249,0.3);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(79,156,249,0.4); background: #6aadff; }
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: var(--text);
+  padding: 0.7rem 1.8rem;
+  border-radius: 8px;
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  text-decoration: none;
+  letter-spacing: .03em;
+  border: 1px solid var(--border2);
+  transition: border-color .2s, color .2s, background .2s;
+}
+.btn-secondary:hover { border-color: var(--accent); color: var(--accent); background: rgba(79,156,249,0.06); }
+.hero-stats {
+  display: flex;
+  gap: 3rem;
+  margin-top: 3rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.stat { text-align: center; }
+.stat-value {
+  font-family: var(--heading);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--accent);
+  display: block;
+  line-height: 1;
+}
+.stat-label {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--muted);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-top: 0.25rem;
+}
 
-  /* ── LAYOUT ── */
-  .page { max-width: 900px; margin: 0 auto; padding: 0 2rem 5rem; }
+/* ── PAGE SECTIONS ── */
+.page-content { max-width: 960px; margin: 0 auto; padding: 0 2rem 6rem; }
 
-  /* ── SECTION ── */
-  .section { margin-top: 3rem; }
-  .section-title {
-    font-family: var(--heading-font);
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--text);
-    padding-bottom: 0.6rem;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-  }
-  .section-title .dot {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: var(--accent);
-    display: inline-block;
-  }
-  .section-title .dot.green { background: var(--accent2); }
-  .section-title .dot.red   { background: var(--accent3); }
+section.content-section { padding-top: 4.5rem; }
 
-  /* ── CARD ── */
-  .card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 1.25rem 1.5rem;
-    margin-bottom: 1rem;
-    transition: border-color .2s;
-  }
-  .card:hover { border-color: #30363d; }
-  .card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-  .card-title {
-    font-family: var(--heading-font);
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--accent);
-  }
-  .card-date {
-    font-family: var(--mono-font);
-    font-size: 0.72rem;
-    color: var(--muted);
-    white-space: nowrap;
-  }
-  .card-subtitle {
-    font-size: 0.82rem;
-    font-family: var(--mono-font);
-    color: var(--muted);
-    margin-top: 0.15rem;
-  }
-  .card-body { margin-top: 0.75rem; font-size: 0.88rem; color: #c9d1d9; }
-  .card-body ul { list-style: none; padding: 0; }
-  .card-body ul li {
-    padding: 0.2rem 0 0.2rem 1rem;
-    position: relative;
-    color: #8b949e;
-  }
-  .card-body ul li::before {
-    content: '▸';
-    position: absolute;
-    left: 0;
-    color: var(--accent);
-  }
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.section-icon {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+.section-icon.blue { background: rgba(79,156,249,0.12); }
+.section-icon.green { background: rgba(52,208,88,0.12); }
+.section-icon.orange { background: rgba(249,115,22,0.12); }
+.section-icon.purple { background: rgba(167,139,250,0.12); }
+.section-title-text {
+  font-family: var(--heading);
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+.section-subtitle {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  margin-top: 0.1rem;
+}
 
-  /* ── EDU CARDS ── */
-  .edu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px,1fr)); gap: 1rem; }
-  .edu-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 1.2rem;
-    transition: border-color .2s;
-  }
-  .edu-card:hover { border-color: #30363d; }
-  .edu-degree {
-    font-family: var(--mono-font);
-    font-size: 0.72rem;
-    color: var(--accent2);
-    text-transform: uppercase;
-    letter-spacing: .05em;
-  }
-  .edu-institution {
-    font-family: var(--heading-font);
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: var(--text);
-    margin-top: 0.35rem;
-  }
-  .edu-detail { font-size: 0.8rem; color: var(--muted); margin-top: 0.2rem; }
-  .edu-result {
-    font-family: var(--mono-font);
-    font-size: 0.78rem;
-    color: var(--accent);
-    margin-top: 0.5rem;
-  }
+/* ── EDUCATION ── */
+.edu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; }
+.edu-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: border-color .25s, transform .25s, box-shadow .25s;
+  position: relative;
+}
+.edu-card:hover { border-color: var(--border2); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.4); }
+.edu-card-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+  filter: saturate(0.7);
+}
+.edu-card-body { padding: 1.25rem; }
+.edu-degree-badge {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--accent2);
+  background: rgba(52,208,88,0.1);
+  border: 1px solid rgba(52,208,88,0.25);
+  border-radius: 4px;
+  padding: 0.15rem 0.55rem;
+  display: inline-block;
+}
+.edu-inst {
+  font-family: var(--heading);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-top: 0.5rem;
+  line-height: 1.3;
+}
+.edu-dept { font-size: 0.8rem; color: var(--muted); margin-top: 0.2rem; }
+.edu-result {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--accent);
+  margin-top: 0.6rem;
+}
 
-  /* ── SKILLS ── */
-  .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 1rem; }
-  .skill-group {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 1rem 1.2rem;
-  }
-  .skill-group-title {
-    font-family: var(--mono-font);
-    font-size: 0.72rem;
-    color: var(--accent);
-    text-transform: uppercase;
-    letter-spacing: .06em;
-    margin-bottom: 0.6rem;
-  }
-  .skill-tag {
-    display: inline-block;
-    background: #21262d;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 0.15rem 0.55rem;
-    font-size: 0.75rem;
-    font-family: var(--mono-font);
-    color: var(--muted);
-    margin: 0.2rem 0.2rem 0 0;
-  }
+/* ── EMPLOYMENT ── */
+.job-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  transition: border-color .25s;
+}
+.job-card:hover { border-color: var(--border2); }
+.job-header {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.5rem 1.5rem 0;
+  align-items: flex-start;
+}
+.job-logo {
+  width: 70px; height: 70px;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+  background: var(--surface2);
+}
+.job-meta { flex: 1; min-width: 0; }
+.job-company {
+  font-family: var(--heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+.job-title { font-size: 0.88rem; color: var(--muted); font-family: var(--mono); margin-top: 0.15rem; }
+.job-period {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--dim);
+  margin-top: 0.2rem;
+}
+.job-desc {
+  padding: 1rem 1.5rem 0;
+  font-size: 0.82rem;
+  color: var(--muted);
+  font-style: italic;
+}
+.job-bullets {
+  padding: 0.75rem 1.5rem 1.5rem;
+  list-style: none;
+}
+.job-bullets li {
+  padding: 0.2rem 0 0.2rem 1.4rem;
+  position: relative;
+  font-size: 0.87rem;
+  color: #7a8fa8;
+}
+.job-bullets li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-size: 0.75rem;
+  top: 0.3rem;
+}
 
-  /* ── TEST SCORES ── */
-  .score-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-  .score-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 1.2rem;
-    text-align: center;
-  }
-  .score-exam {
-    font-family: var(--heading-font);
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--text);
-  }
-  .score-value {
-    font-family: var(--mono-font);
-    font-size: 2rem;
-    font-weight: 500;
-    color: var(--accent);
-    margin: 0.3rem 0;
-  }
-  .score-breakdown { font-size: 0.78rem; color: var(--muted); }
+/* ── RESEARCH ── */
+.research-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.25rem;
+  transition: border-color .2s;
+  position: relative;
+  overflow: hidden;
+}
+.research-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px; height: 100%;
+  background: var(--accent);
+}
+.research-card:hover { border-color: var(--border2); }
+.research-title {
+  font-family: var(--heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.research-sub { font-family: var(--mono); font-size: 0.73rem; color: var(--muted); margin-top: 0.2rem; }
+.research-body { font-size: 0.87rem; color: #7a8fa8; margin-top: 0.8rem; line-height: 1.7; }
 
-  /* ── INTERESTS ── */
-  .interest-list { display: flex; flex-wrap: wrap; gap: 0.6rem; }
-  .interest-tag {
-    background: var(--surface);
-    border: 1px solid #1f6feb44;
-    border-radius: 20px;
-    padding: 0.3rem 1rem;
-    font-size: 0.82rem;
-    color: var(--accent);
-    font-family: var(--body-font);
-  }
+/* ── SKILLS ── */
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 1rem; }
+.skill-group {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.1rem 1.3rem;
+  transition: border-color .2s;
+}
+.skill-group:hover { border-color: var(--border2); }
+.skill-group-name {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: .09em;
+  color: var(--accent);
+  margin-bottom: 0.65rem;
+}
+.skill-tag {
+  display: inline-block;
+  background: rgba(79,156,249,0.06);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 0.18rem 0.55rem;
+  font-size: 0.73rem;
+  font-family: var(--mono);
+  color: var(--muted);
+  margin: 0.2rem 0.2rem 0 0;
+  transition: border-color .2s, color .2s;
+}
+.skill-tag:hover { border-color: var(--accent); color: var(--accent); }
+.score-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem; }
+.score-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: border-color .2s;
+}
+.score-card:hover { border-color: var(--border2); }
+.score-exam { font-family: var(--heading); font-size: 1.1rem; font-weight: 700; color: var(--text); }
+.score-value { font-family: var(--heading); font-size: 3rem; font-weight: 600; color: var(--accent); line-height: 1.1; margin: 0.3rem 0; }
+.score-breakdown { font-family: var(--mono); font-size: 0.73rem; color: var(--muted); }
 
-  /* ── CERTS ── */
-  .cert-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 0.75rem; }
-  .cert-pill {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 0.65rem 1rem;
-    font-size: 0.8rem;
-    color: var(--muted);
-    font-family: var(--mono-font);
-    transition: border-color .2s, color .2s;
-  }
-  .cert-pill:hover { border-color: var(--accent); color: var(--text); }
+/* ── PROJECTS GRID ── */
+.projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; }
+.project-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: border-color .25s, transform .25s, box-shadow .25s;
+}
+.project-card:hover { border-color: var(--border2); transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.4); }
+.project-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+  filter: saturate(0.6) brightness(0.85);
+  transition: filter .3s;
+}
+.project-card:hover .project-img { filter: saturate(0.85) brightness(0.95); }
+.project-info { padding: 1rem 1.1rem; }
+.project-title {
+  font-family: var(--heading);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.4;
+}
+.project-desc { font-size: 0.78rem; color: var(--muted); margin-top: 0.4rem; line-height: 1.6; }
 
-  /* ── ACHIEVEMENTS ── */
-  .ach-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px,1fr)); gap: 1rem; }
-  .ach-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--accent2);
-    border-radius: 0 10px 10px 0;
-    padding: 1rem 1.2rem;
-  }
-  .ach-title {
-    font-family: var(--heading-font);
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: var(--text);
-  }
-  .ach-sub { font-size: 0.8rem; color: var(--muted); margin-top: 0.25rem; }
+/* ── BRAND LOGOS ── */
+.brands-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 1rem; }
+.brand-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  aspect-ratio: 16/9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color .25s, transform .2s;
+}
+.brand-card:hover { border-color: var(--border2); transform: scale(1.03); }
+.brand-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.4) brightness(0.9);
+  transition: filter .3s;
+}
+.brand-card:hover img { filter: saturate(0.9) brightness(1); }
 
-  /* ── COURSES ── */
-  details {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    margin-bottom: 0.75rem;
-    overflow: hidden;
-  }
-  summary {
-    padding: 0.9rem 1.2rem;
-    cursor: pointer;
-    font-family: var(--mono-font);
-    font-size: 0.85rem;
-    color: var(--accent);
-    list-style: none;
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-  }
-  summary::before { content: '▸'; transition: transform .2s; }
-  details[open] summary::before { transform: rotate(90deg); }
-  .course-list {
-    padding: 0 1.2rem 1rem;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 0.3rem;
-  }
-  .course-item { font-size: 0.78rem; color: var(--muted); font-family: var(--mono-font); }
+/* ── ACHIEVEMENTS ── */
+.ach-section-label {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .09em;
+  margin: 1.75rem 0 0.85rem;
+}
+.ach-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
+.ach-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: border-color .2s, transform .2s;
+}
+.ach-card:hover { border-color: var(--accent2); transform: translateY(-3px); }
+.ach-img {
+  width: 100%;
+  height: 130px;
+  object-fit: cover;
+  display: block;
+  filter: saturate(0.5);
+  transition: filter .3s;
+}
+.ach-card:hover .ach-img { filter: saturate(0.8); }
+.ach-body { padding: 0.9rem 1.1rem; }
+.ach-title { font-family: var(--heading); font-size: 0.95rem; font-weight: 700; color: var(--text); }
+.ach-sub { font-size: 0.78rem; color: var(--muted); margin-top: 0.25rem; }
 
-  /* ── FOOTER ── */
-  footer {
-    border-top: 1px solid var(--border);
-    text-align: center;
-    padding: 1.5rem 1rem;
-    font-size: 0.75rem;
-    color: var(--muted);
-    font-family: var(--mono-font);
-  }
-  footer a { color: var(--accent); text-decoration: none; }
+/* ── CERTIFICATIONS ── */
+.cert-main-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.3rem 1.5rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  flex-wrap: wrap;
+  transition: border-color .2s;
+}
+.cert-main-card:hover { border-color: var(--border2); }
+.cert-main-title { font-family: var(--heading); font-size: 1rem; font-weight: 700; color: var(--accent); }
+.cert-main-sub { font-size: 0.8rem; color: var(--muted); font-family: var(--mono); margin-top: 0.15rem; }
+.cert-date { font-family: var(--mono); font-size: 0.7rem; color: var(--dim); white-space: nowrap; }
+.cert-pills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 0.6rem; margin-top: 1rem; }
+.cert-pill {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.6rem 0.9rem;
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  color: var(--muted);
+  transition: border-color .2s, color .2s, background .2s;
+}
+.cert-pill:hover { border-color: var(--accent); color: var(--text); background: rgba(79,156,249,0.06); }
 
-  @media (max-width: 600px) {
-    .hero { grid-template-columns: 1fr; }
-    .score-grid { grid-template-columns: 1fr; }
-  }
+/* ── COURSES ── */
+details {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin-bottom: 0.75rem;
+  overflow: hidden;
+  transition: border-color .2s;
+}
+details:hover { border-color: var(--border2); }
+details[open] { border-color: var(--border2); }
+summary {
+  padding: 1rem 1.3rem;
+  cursor: pointer;
+  font-family: var(--mono);
+  font-size: 0.83rem;
+  color: var(--accent);
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  user-select: none;
+}
+summary::before { content: '▸'; font-size: 0.75rem; transition: transform .2s; }
+details[open] summary::before { transform: rotate(90deg); }
+.course-list {
+  padding: 0.5rem 1.3rem 1.3rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 0.25rem;
+}
+.course-item { font-size: 0.76rem; color: var(--muted); font-family: var(--mono); padding: 0.1rem 0; }
+
+/* ── PERSONAL ── */
+.personal-intro {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  font-size: 0.9rem;
+  color: #8a97ad;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+.memberships-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; }
+.member-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: border-color .2s, transform .2s;
+}
+.member-card:hover { border-color: var(--accent4); transform: translateY(-3px); }
+.member-img {
+  width: 100%;
+  height: 110px;
+  object-fit: cover;
+  filter: saturate(0.4);
+  transition: filter .3s;
+}
+.member-card:hover .member-img { filter: saturate(0.7); }
+.member-body { padding: 0.9rem 1.1rem; }
+.member-role { font-family: var(--mono); font-size: 0.7rem; color: var(--accent2); text-transform: uppercase; letter-spacing: .08em; }
+.member-org { font-family: var(--heading); font-size: 0.95rem; font-weight: 600; color: var(--text); margin-top: 0.2rem; }
+.member-id { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); margin-top: 0.15rem; }
+.leadership-list {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.3rem 1.5rem;
+  margin-top: 1.5rem;
+  list-style: none;
+}
+.leadership-list li {
+  padding: 0.35rem 0 0.35rem 1.4rem;
+  position: relative;
+  font-size: 0.87rem;
+  color: #7a8fa8;
+  border-bottom: 1px solid rgba(30,37,53,0.6);
+}
+.leadership-list li:last-child { border-bottom: none; }
+.leadership-list li::before {
+  content: '◆';
+  position: absolute;
+  left: 0;
+  color: var(--accent4);
+  font-size: 0.55rem;
+  top: 0.55rem;
+}
+.competencies-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.7rem; margin-top: 1.5rem; }
+.competency-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.7rem 1rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.competency-item::before {
+  content: '✓';
+  color: var(--accent2);
+  font-size: 0.75rem;
+  flex-shrink: 0;
+}
+.gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 0.75rem; margin-top: 1.5rem; }
+.gallery-img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  filter: saturate(0.6);
+  transition: filter .3s, transform .3s;
+}
+.gallery-img:hover { filter: saturate(1); transform: scale(1.02); }
+
+/* ── RESEARCH INTERESTS ── */
+.interests-wrap { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.5rem; }
+.interest-chip {
+  background: rgba(79,156,249,0.07);
+  border: 1px solid rgba(79,156,249,0.2);
+  border-radius: 20px;
+  padding: 0.35rem 1rem;
+  font-size: 0.82rem;
+  color: var(--accent);
+  font-family: var(--body);
+  transition: background .2s, border-color .2s;
+}
+.interest-chip:hover { background: rgba(79,156,249,0.15); border-color: var(--accent); }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 3rem 2rem;
+  position: relative;
+  z-index: 1;
+}
+.footer-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2rem;
+  align-items: start;
+}
+.footer-name {
+  font-family: var(--heading);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.footer-desc { font-size: 0.85rem; color: var(--muted); margin-top: 0.4rem; max-width: 400px; }
+.footer-socials {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  align-items: flex-end;
+}
+.footer-socials a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--muted);
+  text-decoration: none;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  transition: color .2s;
+}
+.footer-socials a:hover { color: var(--accent); }
+.footer-socials svg { width: 15px; height: 15px; fill: currentColor; flex-shrink: 0; }
+.footer-bottom {
+  max-width: 960px;
+  margin: 2rem auto 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.footer-copy { font-family: var(--mono); font-size: 0.72rem; color: var(--dim); }
+.footer-copy a { color: var(--accent); text-decoration: none; }
+
+/* ── DIVIDER ── */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border2) 40%, transparent);
+  margin: 0;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 700px) {
+  .score-grid, .footer-inner { grid-template-columns: 1fr; }
+  .footer-socials { align-items: flex-start; }
+  .hero-stats { gap: 1.5rem; }
+  .nav-links a { padding: 0 0.55rem; font-size: 0.72rem; }
+}
 </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <a class="brand" href="#home">FK</a>
-  <a href="#about">About</a>
-  <a href="#education">Education</a>
-  <a href="#employment">Employment</a>
-  <a href="#research">Research</a>
-  <a href="#skills">Skills</a>
-  <a href="#achievements">Achievements</a>
-  <a href="#certifications">Certifications</a>
-  <a href="#courses">Courses</a>
+  <a href="#home" class="nav-brand">Fardin <span>FK</span></a>
+  <div class="nav-links">
+    <a href="#home">Home</a>
+    <a href="#education">Education</a>
+    <a href="#employment">Employment</a>
+    <div class="has-sub">
+      <a href="#research">Academic ▾</a>
+      <div class="sub-nav">
+        <a href="#research">Research &amp; Projects</a>
+        <a href="#courses">Courses Attended</a>
+        <a href="#skills">Skills &amp; Scores</a>
+        <a href="#research-interests">Research Interests</a>
+      </div>
+    </div>
+    <div class="has-sub">
+      <a href="#corp-projects">Portfolio ▾</a>
+      <div class="sub-nav">
+        <a href="#corp-projects">Corporate Projects</a>
+        <a href="#brands">Brand Affiliations</a>
+      </div>
+    </div>
+    <div class="has-sub">
+      <a href="#achievements">Recognition ▾</a>
+      <div class="sub-nav">
+        <a href="#achievements">Achievements</a>
+        <a href="#certifications">Certifications</a>
+      </div>
+    </div>
+    <a href="#personal">Personal</a>
+  </div>
 </nav>
 
-<!-- HERO -->
-<section id="home">
-<div class="hero">
-  <div class="avatar">FF</div>
-  <div class="hero-info">
-    <h1>Fardin Farhan Khan</h1>
-    <div class="handle">@fardinkhan03 · Civil Engineer · Data Scientist · Business Developer</div>
-    <div class="bio">
-      Civil Engineer with an M.Sc in Applied Statistics &amp; Data Science (Jahangirnagar University) and currently pursuing M.Engg in Transportation Safety at BUET. Specializing in transportation systems, travel behaviour, and data-driven infrastructure planning.
-    </div>
-    <div class="badge-row">
-      <span class="badge green">● Available</span>
-      <span class="badge blue">Transportation Safety · BUET</span>
-      <span class="badge">GRE 328 · IELTS 7.0</span>
-      <span class="badge">Last updated: Jan 2026</span>
-    </div>
-    <div class="socials">
-      <a href="mailto:fardinkhanstj15@gmail.com">
-        <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
-        fardinkhanstj15@gmail.com
-      </a>
-      <a href="https://www.linkedin.com/in/fardinkhan03" target="_blank">
-        <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        LinkedIn
-      </a>
-      <a href="https://www.facebook.com/TehBaittaGoat" target="_blank">
-        <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-        Facebook
-      </a>
-      <a href="https://twitter.com/TehBaittaGoat" target="_blank">
-        <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-        Twitter / X
-      </a>
-    </div>
+<main>
+
+<!-- ── HOME ── -->
+<section id="home" class="hero-section">
+  <div class="hero-avatar">FF</div>
+  <h1 class="hero-name">Fardin <em>Farhan</em> Khan</h1>
+  <div class="hero-tagline">Civil Engineer · Data Scientist · Business Developer</div>
+  <p class="hero-summary">
+    Civil Engineer with an M.Sc in Applied Statistics &amp; Data Science (Jahangirnagar University) and currently pursuing M.Engg in Transportation Safety at BUET. Specializing in transportation systems, travel behaviour, and data-driven infrastructure planning. Currently working as Assistant Manager – Business Development at SMEC International, contributing to large-scale infrastructure projects across the transport, water, and power sectors funded by ADB, World Bank, and JICA.
+  </p>
+  <div class="hero-cta">
+    <a href="https://1drv.ms/b/c/99ec525d83d72e25/IQA-UlHgud5FTrHnQDuIIydyAXgf2HzoTXB0UHrrI3BOC4c?e=UBsAjA" target="_blank" class="btn-primary">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download CV
+    </a>
+    <a href="mailto:fardinkhanstj15@gmail.com" class="btn-secondary">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+      Contact Me
+    </a>
   </div>
-</div>
-</section>
-
-<div class="page">
-
-<!-- ABOUT -->
-<section id="about" class="section">
-  <h2 class="section-title"><span class="dot"></span> Professional Overview</h2>
-  <div class="card">
-    <div class="card-body">
-      <p>Civil Engineer with a Master's degree in Applied Statistics and Data Science from Jahangirnagar University, currently pursuing a Master of Engineering in Transportation Safety at Bangladesh University of Engineering and Technology (BUET), specializing in transportation systems, travel behaviour, and data-driven infrastructure planning. Work focuses on applying statistical and computational methods to analyze mobility patterns and support efficient and sustainable transport solutions, particularly in developing country contexts.</p>
-      <br>
-      <p>Professionally working as <strong>Assistant Manager – Business Development at SMEC</strong>, contributing to large-scale infrastructure projects across the transport, water, and power sectors, funded by ADB, the World Bank, and JICA. Contributed to <strong>50+ EOIs</strong> and <strong>30+ RFPs</strong> for projects valued between <strong>USD 1M–120M</strong>, supporting acquisition of approximately <strong>USD 38M</strong> in consultancy assignments. Also engaged in media, branding, and communication initiatives across 40+ projects with organizations including UNDP, bKash, Pathao, Ericsson, and Grameenphone.</p>
-    </div>
+  <div class="hero-stats">
+    <div class="stat"><span class="stat-value">50+</span><span class="stat-label">EOIs Submitted</span></div>
+    <div class="stat"><span class="stat-value">$38M</span><span class="stat-label">Consultancy Won</span></div>
+    <div class="stat"><span class="stat-value">328</span><span class="stat-label">GRE Score</span></div>
+    <div class="stat"><span class="stat-value">3.71</span><span class="stat-label">M.Sc CGPA</span></div>
   </div>
 </section>
 
-<!-- EDUCATION -->
-<section id="education" class="section">
-  <h2 class="section-title"><span class="dot green"></span> Education</h2>
+<div class="page-content">
+
+<!-- ── EDUCATION ── -->
+<section id="education" class="content-section">
+  <div class="section-header">
+    <div class="section-icon green">🎓</div>
+    <div>
+      <div class="section-title-text">Education</div>
+      <div class="section-subtitle">Academic Background</div>
+    </div>
+  </div>
   <div class="edu-grid">
     <div class="edu-card">
-      <div class="edu-degree">M.Engg · In Progress</div>
-      <div class="edu-institution">Bangladesh University of Engineering and Technology (BUET)</div>
-      <div class="edu-detail">Transportation Safety · Accident Research Institute</div>
-      <div class="edu-result">Major: Transportation Safety</div>
+      <img class="edu-card-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUC96oF-uceoI20YG7RkY_cFShJJ_FRgfhmdMdRhOKb0Jr33L6TTVJst7Ps5dXLlYi1iSCvcY-SdMy5IIy19bHBQr4tgwuZA-4_cj5oM6l0v4LjmoqEd2st2cNi91iPyT371wTpWJ665UCRGpspwvW7_Acem-734ZugSyB3pjNxamy3GkfomimB46y17griNMp89CCBqUvRf7vVb4g8VGTfomT6_kpe2OPPi7Vg=w1280" alt="BUET" loading="lazy" />
+      <div class="edu-card-body">
+        <span class="edu-degree-badge">M.Engg · In Progress</span>
+        <div class="edu-inst">Bangladesh University of Engineering and Technology (BUET)</div>
+        <div class="edu-dept">Transportation Safety · Accident Research Institute</div>
+        <div class="edu-result">Major: Transportation Safety</div>
+      </div>
     </div>
     <div class="edu-card">
-      <div class="edu-degree">M.Sc · Completed</div>
-      <div class="edu-institution">Jahangirnagar University</div>
-      <div class="edu-detail">Applied Statistics and Data Science</div>
-      <div class="edu-result">CGPA 3.71 / 4.00</div>
+      <img class="edu-card-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUDNtpCmj0YfByGfwYXc2f22w9UTGRIyy7QvcUYPszCcV2I4RMKzb0BSfLuv6ze88OqfAVSJ7ra14Auuk5N0ZUmBPgLR1NfpXPjhqFlSu-AA-Xe-w5tXAwyRkzNploPrSgpFRFQOEwiAOt-vhF1e-DmwzP0b1bZaxjd2WQVZeguUQpBaB7MAlfCP-AcHywNnXAtRDHnJF4ODY9py-UEaAp1gkKpLrh5kUOWJ=w1280" alt="Jahangirnagar University" loading="lazy" />
+      <div class="edu-card-body">
+        <span class="edu-degree-badge">M.Sc · Completed</span>
+        <div class="edu-inst">Jahangirnagar University</div>
+        <div class="edu-dept">Applied Statistics and Data Science</div>
+        <div class="edu-result">CGPA 3.71 / 4.00</div>
+      </div>
     </div>
     <div class="edu-card">
-      <div class="edu-degree">B.Sc · Completed</div>
-      <div class="edu-institution">Islamic University of Technology (IUT)</div>
-      <div class="edu-detail">Civil &amp; Environmental Engineering</div>
-      <div class="edu-result">CGPA 3.34 / 4.00</div>
+      <img class="edu-card-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUB_MsTeVYqJr3iB-K0wg7JI8NC9GKllSDBNcb5MPt7OikNDLRmEec69flVmSG4CJndZJ7ddjd77puEKxTaiatX4JRZOKMypYvBQW_40AcLGPCZ7nWejwmycUNZt5TgGyEeu5Mq7PDqlY5RDzAXbut4c6JD06nQ9yl47ZVkXVWG9c2Kz60cDEXWDRhAB36gfayZpN6N8JYc_ac8pCXoNNZp03WZVrrYqUG_bHMw=w1280" alt="IUT" loading="lazy" />
+      <div class="edu-card-body">
+        <span class="edu-degree-badge">B.Sc · Completed</span>
+        <div class="edu-inst">Islamic University of Technology (IUT)</div>
+        <div class="edu-dept">Civil &amp; Environmental Engineering</div>
+        <div class="edu-result">CGPA 3.34 / 4.00</div>
+      </div>
     </div>
     <div class="edu-card">
-      <div class="edu-degree">HSC</div>
-      <div class="edu-institution">Notre Dame College</div>
-      <div class="edu-detail">Higher Secondary Certificate</div>
-      <div class="edu-result">GPA 5.00 / 5.00</div>
+      <img class="edu-card-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUDKA_3DknoJMFPA8PYQ5Zsfi6KZUg65w-RPTZUhaedKE2WGA53Rr0-t0wGb46RQxLbnmN1PQMaTbgsMYiWuifRTUqbeCca9kXWh4uPAqheOO-OwCiPVC4WUPDuI-PgDI6x1jcp8ECNWUxTkbzwr95cgDXY2aCkb_1oHQhRryXQn2zKQGYaKcxbF-EyealWyAUeqONWCTieDQZp8--17aRSGhPk3t8ic_S7xH04=w1280" alt="Notre Dame College" loading="lazy" />
+      <div class="edu-card-body">
+        <span class="edu-degree-badge">HSC</span>
+        <div class="edu-inst">Notre Dame College</div>
+        <div class="edu-dept">Higher Secondary Certificate</div>
+        <div class="edu-result">GPA 5.00 / 5.00</div>
+      </div>
     </div>
     <div class="edu-card">
-      <div class="edu-degree">SSC</div>
-      <div class="edu-institution">St. Joseph Higher Secondary School</div>
-      <div class="edu-detail">Secondary School Certificate</div>
-      <div class="edu-result">GPA 5.00 / 5.00</div>
+      <img class="edu-card-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUB_IXUv1m37PZ3zTiAO14MvIb16rqgGJ042uJs3iadGUBYiqRkaCKMFamianJtRfoZDIrmw-hvw24gYOJps6rjUCrMJuj1TtRTKVmX-d9gz1Jn6droL7Qrwe9jxMX3kLngfC7bPMYdwCYph1ZAY9hsOmQFOoNvXk-lixPsG80GY3YXAsAZCqZNvZXpY5E4Z30IJMZDXafmx6Z8DWO6p8K7c26IHwahYTKrCfXg=w1280" alt="St. Joseph" loading="lazy" />
+      <div class="edu-card-body">
+        <span class="edu-degree-badge">SSC</span>
+        <div class="edu-inst">St. Joseph Higher Secondary School</div>
+        <div class="edu-dept">Secondary School Certificate</div>
+        <div class="edu-result">GPA 5.00 / 5.00</div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- EMPLOYMENT -->
-<section id="employment" class="section">
-  <h2 class="section-title"><span class="dot red"></span> Employment History</h2>
+<div class="section-divider" style="margin-top:4rem;"></div>
 
-  <div class="card">
-    <div class="card-header">
-      <div>
-        <div class="card-title">SMEC International Pty. Ltd.</div>
-        <div class="card-subtitle">Assistant Manager – Business Development</div>
-      </div>
-      <div class="card-date">Oct 2023 – Present</div>
-    </div>
-    <div class="card-body">
-      <p style="color:#8b949e;font-size:0.83rem;margin-bottom:.6rem;">Engineering consultancy operating across roads, bridges, railways, airports, ports, water resources &amp; power sectors.</p>
-      <ul>
-        <li>Strategic market analysis across Roads &amp; Highways, Bridges, Rail, Metro, Water, and Power sectors</li>
-        <li>Led preparation and submission of &gt;50 EOIs and &gt;30 RFPs for major infrastructure projects</li>
-        <li>Developed technical and financial proposals for projects ranging from $1M to $120M</li>
-        <li>Coordinated with national and international experts to enhance technical methodologies and proposal quality</li>
-        <li>Built long-term client relationships with government agencies and donors including ADB, World Bank, JICA</li>
-        <li>Collaborated with partner firms to establish joint ventures for large-scale tenders</li>
-        <li>Ensured 100% compliance with donor and client guidelines</li>
-      </ul>
+<!-- ── EMPLOYMENT ── -->
+<section id="employment" class="content-section">
+  <div class="section-header">
+    <div class="section-icon orange">💼</div>
+    <div>
+      <div class="section-title-text">Employment History</div>
+      <div class="section-subtitle">Professional Experience</div>
     </div>
   </div>
 
-  <div class="card">
-    <div class="card-header">
-      <div>
-        <div class="card-title">ETCBL Global</div>
-        <div class="card-subtitle">Executive – Business Development</div>
+  <div class="job-card">
+    <div class="job-header">
+      <img class="job-logo" src="https://lh3.googleusercontent.com/sitesv/AA5AbUBfcC-87M4WUYgz1xixjmn8WGtXxdEzb2vFseIKnoxlj7HqEhKb3H_ZW-T5NqyDFWwqezinLXJAKN_MiwCsdr8GZD0X1eQ--EB_Y7L3vo5VGQXSLhvUQe4Oe9p9Dad8O5scU_EwoLLiBuO1w3MulsFOXpgiPu6Dk0V9qyzDEpUsDfTROJY1JAg-uaQayFc1U2ObOiQqNwjKpWIhA1KLbdttbGFVggZNwTi5=w1280" alt="SMEC" loading="lazy" />
+      <div class="job-meta">
+        <div class="job-company">SMEC International Pty. Ltd.</div>
+        <div class="job-title">Assistant Manager – Business Development</div>
+        <div class="job-period">October 2023 – Present</div>
       </div>
-      <div class="card-date">Jun 2022 – Jun 2023</div>
     </div>
-    <div class="card-body">
-      <p style="color:#8b949e;font-size:0.83rem;margin-bottom:.6rem;">Engineering consultancy specializing in transmission line and substation design, project management, and power infrastructure.</p>
-      <ul>
-        <li>Managed client engagement with major utilities: PGCB, BPDB, BREB, DPDC, DESCO</li>
-        <li>Identified and secured new business through targeted outreach, strategic planning, and market research</li>
-        <li>Prepared detailed EOIs and tender submissions for international and domestic projects</li>
-        <li>Developed client databases and streamlined tracking systems for opportunity management</li>
-      </ul>
+    <div class="job-desc">Engineering consultancy providing services across roads, bridges, railways, airports, ports, water resources &amp; power sectors.</div>
+    <ul class="job-bullets">
+      <li>Conducted strategic market analysis across Roads &amp; Highways, Bridges, Rail, Metro, Water, and Power sectors</li>
+      <li>Led preparation and submission of &gt;50 EOIs and &gt;30 RFPs for major infrastructure projects</li>
+      <li>Developed technical and financial proposals for projects ranging from $1M to $120M in value</li>
+      <li>Coordinated with national and international experts to enhance technical methodologies and proposal quality</li>
+      <li>Built and maintained long-term client relationships with government agencies and donors including ADB, World Bank, JICA</li>
+      <li>Collaborated with partner firms to establish joint ventures for large-scale tenders</li>
+      <li>Ensured 100% compliance with donor and client guidelines, maintaining strong quality assurance</li>
+    </ul>
+  </div>
+
+  <div class="job-card">
+    <div class="job-header">
+      <img class="job-logo" src="https://lh3.googleusercontent.com/sitesv/AA5AbUB-IUZWNSkZuo7brwDk5J7HSaDBXkGmzhAvhqYvgip8g77QBuM6y658491-SyeCkko9MYg5pS1fqE73qt1KcCipml1bwLRINM_TirS7_6WTeVrFqwTZuvWrIWRHEeNTE3G5FCPJW44ZjXpl52AqNifpeQGTQtyROD-_f_4Nw9tfBxbx88rlIQKsVrUXH2GzOK1gf-ybl9mVjSVatNfOMBb19u0qVpVr5oOt=w1280" alt="ETCBL" loading="lazy" />
+      <div class="job-meta">
+        <div class="job-company">ETCBL Global</div>
+        <div class="job-title">Executive – Business Development</div>
+        <div class="job-period">June 2022 – June 2023</div>
+      </div>
+    </div>
+    <div class="job-desc">Engineering consultancy specializing in transmission line and substation design, project management, and power infrastructure.</div>
+    <ul class="job-bullets">
+      <li>Managed client engagement with major utilities: PGCB, BPDB, BREB, DPDC, DESCO</li>
+      <li>Identified and secured new business through targeted outreach, strategic planning, and market research</li>
+      <li>Prepared detailed EOIs and tender submissions for international and domestic projects</li>
+      <li>Delivered professional presentations and proposals at client meetings and industry events</li>
+      <li>Developed client databases and streamlined tracking systems for opportunity management</li>
+    </ul>
+  </div>
+
+  <div class="job-card">
+    <div class="job-header">
+      <img class="job-logo" src="https://lh3.googleusercontent.com/sitesv/AA5AbUC5Wo243oOQTM961doN0e07GSDqSvHeYAqehXlc8olBsl6IPY7Au6UmtDnM0-xJS9nWvYDKs9E_z1uSLN2_DHgX0-LIGCugLnNPQ2rHO3QM58RuUPR_BE0Q7Gtrrxg5Ch4DVR4u4OgYsfLmQqWPC4-huy8jLu5AvCzGgDTU2BcnVnMh8ETlZO14QAIqbE002uk5gd9LKAdtXNOz__t6D8HakSujoIvFB16D=w1280" alt="Chalkboard" loading="lazy" />
+      <div class="job-meta">
+        <div class="job-company">Chalkboard Communications Ltd.</div>
+        <div class="job-title">Head of Operations</div>
+        <div class="job-period">October 2020 – Present · www.chalkboardofficial.com</div>
+      </div>
+    </div>
+    <div class="job-desc">Communication and advertising company focusing on client-based marketing, content creation, and product management.</div>
+    <ul class="job-bullets">
+      <li>Developing digital content: Articles, Infographics, Motion Graphics, Comics, Audio Visuals, 2D Animation, Documentaries</li>
+      <li>Working with team to plan and execute fully integrated marketing and content strategies for clients</li>
+      <li>Managing social media (Facebook, Instagram, LinkedIn) &amp; website</li>
+      <li>Designing campaigns on various social issues and creating communication materials</li>
+    </ul>
+  </div>
+
+  <div class="job-card">
+    <div class="job-header">
+      <img class="job-logo" src="https://lh3.googleusercontent.com/sitesv/AA5AbUAgEOVmRDKxPbRVv0NO6IUPLbDr_mVc4UCnVNDxaWuvv5dJezAZXDjOGuhV8xSHy6r5URObUuDaK73TW8eFXIguPJH6X0gGBK5PhnF0jPQV7xHnC7tG6Cx03f-t0swdQXjgeHImliUqzB46URAvcvrC5EK-4Hfyeg4jFAYBVXcWLBeOIUKHCy26i5JYtPcUo71RR1TZ17DRnEtON6C1cMUQ4b0droyde8U21_k=w1280" alt="Syndic Atelier" loading="lazy" />
+      <div class="job-meta">
+        <div class="job-company">Syndic Atelier Ltd.</div>
+        <div class="job-title">Chief Technical Officer</div>
+        <div class="job-period">October 2019 – August 2023 · www.syndicatelier.com</div>
+      </div>
+    </div>
+    <div class="job-desc">Event planning, event management, live broadcasting, and event marketing for conferences, concerts, and corporate events.</div>
+    <ul class="job-bullets">
+      <li>Brainstorming and implementing event plans and concepts</li>
+      <li>Handling budgeting, invoicing, and logistics</li>
+      <li>Liaising and negotiating with vendors, influencers, and artists</li>
+      <li>Negotiating sponsorship deals and campaign ideation towards brands</li>
+      <li>Managing branding, communication, and post-event reporting &amp; analysis</li>
+    </ul>
+  </div>
+
+  <div class="job-card">
+    <div class="job-header">
+      <img class="job-logo" src="https://lh3.googleusercontent.com/sitesv/AA5AbUDcY8JaE7-vfbNEIvRWT4f6XIvDvnFe2L6k7O1YwQ5m3f3sSPgIrsqVdVWAJo-UYkO6H3z5Ff_L56b5kG1b5Bmr9eSgBc4I49f9YvwwHH1GZ4v3Ny_YJZwecAqBh5P6iLHkIGsqOK91_qR5HUQsCe_f3GzOyAZR9pg7r9Yca6NiDcnRIIKHyAZeBiPnuIE9mbQuX2f18AkVF24nhnqksmQ5CUDk8IWFRj1fNBI=w1280" alt="Rantages" loading="lazy" />
+      <div class="job-meta">
+        <div class="job-company">Rantages.INC</div>
+        <div class="job-title">Content Editor</div>
+        <div class="job-period">June 2017 – December 2025 · www.rantages.com</div>
+      </div>
+    </div>
+    <div class="job-desc">Bangladesh's first crude humor site, formed in 2009 with ~10 lac total audience.</div>
+    <ul class="job-bullets">
+      <li>Ideation and implementation of meme campaigns</li>
+      <li>Content creation promoting TVC, OVC, and static content for brands</li>
+      <li>B2C pitching for yearly content plans and budget &amp; invoice handling</li>
+      <li>Moderation and monetization of social media groups and pages</li>
+    </ul>
+  </div>
+</section>
+
+<div class="section-divider" style="margin-top:4rem;"></div>
+
+<!-- ── RESEARCH ── -->
+<section id="research" class="content-section">
+  <div class="section-header">
+    <div class="section-icon blue">🔬</div>
+    <div>
+      <div class="section-title-text">Research &amp; Projects</div>
+      <div class="section-subtitle">Academic Research</div>
     </div>
   </div>
 
-  <div class="card">
-    <div class="card-header">
-      <div>
-        <div class="card-title">Chalkboard Communications Ltd.</div>
-        <div class="card-subtitle">Head of Operations</div>
-      </div>
-      <div class="card-date">Oct 2020 – Present</div>
-    </div>
-    <div class="card-body">
-      <p style="color:#8b949e;font-size:0.83rem;margin-bottom:.6rem;">Communication and advertising company focusing on client-based marketing, content creation, and product management.</p>
-      <ul>
-        <li>Developing digital content: Articles, Infographics, Motion Graphics, Comics, Audio Visuals, 2D Animation, Documentaries</li>
-        <li>Working with teams to plan and execute integrated marketing and content strategies</li>
-        <li>Managing social media (Facebook, Instagram, LinkedIn) &amp; website</li>
-        <li>Designing campaigns on various social issues and creating Communication Materials</li>
-      </ul>
-    </div>
+  <div class="research-card">
+    <div class="research-title">Household Travel Data Analysis</div>
+    <div class="research-sub">M.Engg Research – BUET · Accident Research Institute</div>
+    <div class="research-body">Socio-economic and Mode Choice Analysis on Household Travel Data of Narayanganj City Corporation. Comprehensive transport data analysis involving descriptive statistics, feature engineering, and relationship identification across key variables. Includes OD analysis, trip generation modeling using multiple linear regression, and mode choice prediction using multinomial logistic regression and random forest techniques. Currently in preliminary stage; intended for development into a publishable master's thesis.</div>
   </div>
 
-  <div class="card">
-    <div class="card-header">
-      <div>
-        <div class="card-title">Syndic Atelier Ltd.</div>
-        <div class="card-subtitle">Chief Technical Officer</div>
-      </div>
-      <div class="card-date">Oct 2019 – Aug 2023</div>
-    </div>
-    <div class="card-body">
-      <p style="color:#8b949e;font-size:0.83rem;margin-bottom:.6rem;">Event planning, event management, live broadcasting, and event marketing for conferences, concerts, and corporate events.</p>
-      <ul>
-        <li>Brainstorming and implementing event plans and concepts</li>
-        <li>Liaising and negotiating with vendors and managing logistics, influencers, and artists</li>
-        <li>Negotiating sponsorship deals and campaign ideation towards brands</li>
-        <li>Managing branding, communication, and post-event reporting &amp; analysis</li>
-      </ul>
-    </div>
+  <div class="research-card">
+    <div class="research-title">Big Data Project – The Simpsons</div>
+    <div class="research-sub">M.Sc Project · Jahangirnagar University · Supervisor: Farhana Akter Bina</div>
+    <div class="research-body">Deep Analysis on the Simpsons Image Dataset. Applied machine learning and big data methodologies under the Department of Statistics and Data Science, Jahangirnagar University.</div>
   </div>
 
-  <div class="card">
-    <div class="card-header">
-      <div>
-        <div class="card-title">Rantages.INC</div>
-        <div class="card-subtitle">Content Editor</div>
-      </div>
-      <div class="card-date">Jun 2017 – Dec 2025</div>
+  <div class="research-card">
+    <div class="research-title">Investigating Trip Generation and Modal Choice During Emergency Dispatch in Bangladesh</div>
+    <div class="research-sub">Undergraduate Thesis · IUT · Supervisor: Prof. Dr. Moinul Hossain</div>
+    <div class="research-body">Applied statistical and Bayesian belief techniques to analyze emergency travel demand. Explored modal choice dynamics under time-sensitive conditions and contributed to understanding transport system responsiveness in developing country contexts.</div>
+  </div>
+
+  <div class="research-card">
+    <div class="research-title">Final Year Design Project</div>
+    <div class="research-sub">B.Sc FYDP · Islamic University of Technology</div>
+    <div class="research-body">Design of a 12-storey residential building in the Purbachal New Town Project area, the largest planned township in Bangladesh. Included Initial Environmental Examination (IEE), structural analysis and design using ETABS and AutoCAD, transportation and geotechnical considerations, construction sequencing, and overall project feasibility assessment from a multidisciplinary civil engineering perspective.</div>
+  </div>
+
+  <div id="research-interests" style="margin-top:2rem;">
+    <div class="section-header" style="margin-bottom:1rem;">
+      <div class="section-icon purple">🔭</div>
+      <div><div class="section-title-text">Research Interests</div></div>
     </div>
-    <div class="card-body">
-      <p style="color:#8b949e;font-size:0.83rem;margin-bottom:.6rem;">Bangladesh's first crude humor site, formed in 2009 with ~10 lac total audience.</p>
-      <ul>
-        <li>Ideation and implementation of meme campaigns</li>
-        <li>Content creation promoting TVC, OVC, and static content for brands</li>
-        <li>B2C pitching for yearly content plans and budget &amp; invoice handling</li>
-        <li>Moderation and monetization of social media groups and pages</li>
-      </ul>
+    <div class="interests-wrap">
+      <span class="interest-chip">Travel Behavior &amp; Transportation Modelling</span>
+      <span class="interest-chip">Road Safety &amp; Collision Analysis</span>
+      <span class="interest-chip">Public Transit Systems</span>
+      <span class="interest-chip">Computational &amp; Statistical Modelling</span>
+      <span class="interest-chip">Sustainable Transportation in Developing Countries</span>
+      <span class="interest-chip">Pavement &amp; Railway Engineering</span>
+      <span class="interest-chip">Data-Driven Infrastructure Decision-Making</span>
+      <span class="interest-chip">Urban Mobility &amp; Accessibility Analysis</span>
     </div>
   </div>
 </section>
 
-<!-- RESEARCH -->
-<section id="research" class="section">
-  <h2 class="section-title"><span class="dot"></span> Research &amp; Projects</h2>
+<div class="section-divider" style="margin-top:4rem;"></div>
 
-  <div class="card">
-    <div class="card-header">
-      <div>
-        <div class="card-title">Household Travel Data Analysis</div>
-        <div class="card-subtitle">M.Engg Research – BUET</div>
-      </div>
-    </div>
-    <div class="card-body">
-      <p>Socio-economic and Mode Choice Analysis on Household Travel Data of Narayanganj City Corporation. Comprehensive transport data analysis involving descriptive statistics, feature engineering, and relationship identification across key variables. Includes OD analysis, trip generation modeling using multiple linear regression, and mode choice prediction using multinomial logistic regression and random forest techniques. Currently in preliminary stage; intended for development into a publishable master's thesis.</p>
+<!-- ── SKILLS ── -->
+<section id="skills" class="content-section">
+  <div class="section-header">
+    <div class="section-icon green">⚙️</div>
+    <div>
+      <div class="section-title-text">Software &amp; Technical Skills</div>
+      <div class="section-subtitle">Tools &amp; Proficiencies</div>
     </div>
   </div>
-
-  <div class="card">
-    <div class="card-header">
-      <div>
-        <div class="card-title">Big Data Project – The Simpsons</div>
-        <div class="card-subtitle">M.Sc Project · Jahangirnagar University</div>
-      </div>
-    </div>
-    <div class="card-body">
-      <p>Deep Analysis on the Simpsons Image Dataset. Supervised by Farhana Akter Bina, Department of Statistics and Data Science, Jahangirnagar University.</p>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-header">
-      <div>
-        <div class="card-title">Undergraduate Thesis</div>
-        <div class="card-subtitle">B.Sc Thesis · IUT · Supervisor: Prof. Dr. Moinul Hossain</div>
-      </div>
-    </div>
-    <div class="card-body">
-      <p><em>Investigating Trip Generation and Modal Choice Approach During Emergency Dispatch in Bangladesh.</em></p>
-      <ul>
-        <li>Applied statistical and Bayesian belief techniques to analyze emergency travel demand</li>
-        <li>Explored modal choice dynamics under time-sensitive conditions</li>
-        <li>Contributed to understanding transport system responsiveness in developing countries</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-header">
-      <div>
-        <div class="card-title">Final Year Design Project</div>
-        <div class="card-subtitle">B.Sc FYDP · IUT</div>
-      </div>
-    </div>
-    <div class="card-body">
-      <p>Design of a 12-storey residential building in the Purbachal New Town Project area, the largest planned township in Bangladesh. Included Initial Environmental Examination (IEE), structural analysis and design using ETABS and AutoCAD, transportation and geotechnical considerations, construction sequencing, and overall project feasibility assessment from a multidisciplinary civil engineering perspective.</p>
-    </div>
-  </div>
-
-  <div style="margin-top:1rem;">
-    <h3 style="font-family:var(--heading-font);font-size:1rem;color:var(--text);margin-bottom:.75rem;">Research Interests</h3>
-    <div class="interest-list">
-      <span class="interest-tag">Travel Behavior &amp; Transportation Modelling</span>
-      <span class="interest-tag">Road Safety &amp; Collision Analysis</span>
-      <span class="interest-tag">Public Transit Systems</span>
-      <span class="interest-tag">Computational &amp; Statistical Modelling</span>
-      <span class="interest-tag">Sustainable Transportation in Developing Countries</span>
-      <span class="interest-tag">Pavement &amp; Railway Engineering</span>
-      <span class="interest-tag">Data-Driven Infrastructure Decision-Making</span>
-      <span class="interest-tag">Urban Mobility &amp; Accessibility Analysis</span>
-    </div>
-  </div>
-</section>
-
-<!-- SKILLS -->
-<section id="skills" class="section">
-  <h2 class="section-title"><span class="dot green"></span> Software &amp; Technical Skills</h2>
   <div class="skills-grid">
     <div class="skill-group">
-      <div class="skill-group-title">Engineering Software</div>
+      <div class="skill-group-name">Engineering Software</div>
       <span class="skill-tag">AutoCAD 2D/3D</span>
       <span class="skill-tag">ETABS</span>
       <span class="skill-tag">SAP</span>
@@ -694,7 +1104,7 @@
       <span class="skill-tag">SPSS</span>
     </div>
     <div class="skill-group">
-      <div class="skill-group-title">Transportation Simulation</div>
+      <div class="skill-group-name">Transportation Simulation</div>
       <span class="skill-tag">CUBE</span>
       <span class="skill-tag">SUMO</span>
       <span class="skill-tag">Biogeme</span>
@@ -702,20 +1112,20 @@
       <span class="skill-tag">STATA</span>
     </div>
     <div class="skill-group">
-      <div class="skill-group-title">Programming</div>
+      <div class="skill-group-name">Programming</div>
       <span class="skill-tag">Python 2.7</span>
       <span class="skill-tag">R</span>
       <span class="skill-tag">SQL</span>
     </div>
     <div class="skill-group">
-      <div class="skill-group-title">Office Suite</div>
+      <div class="skill-group-name">Office Suite</div>
       <span class="skill-tag">MS Word</span>
       <span class="skill-tag">MS Excel</span>
       <span class="skill-tag">MS PowerPoint</span>
       <span class="skill-tag">MS Project</span>
     </div>
     <div class="skill-group">
-      <div class="skill-group-title">Creative Tools</div>
+      <div class="skill-group-name">Creative Tools</div>
       <span class="skill-tag">Adobe Illustrator</span>
       <span class="skill-tag">Adobe Photoshop</span>
       <span class="skill-tag">Adobe Premiere Pro</span>
@@ -723,144 +1133,444 @@
     </div>
   </div>
 
-  <h3 style="font-family:var(--heading-font);font-size:1rem;color:var(--text);margin:1.5rem 0 .75rem;">Test Scores</h3>
-  <div class="score-grid">
-    <div class="score-card">
-      <div class="score-exam">GRE</div>
-      <div class="score-value">328</div>
-      <div class="score-breakdown">Quant: 166 &nbsp;|&nbsp; Verbal: 162 &nbsp;|&nbsp; AWA: 3.5</div>
-    </div>
-    <div class="score-card">
-      <div class="score-exam">IELTS</div>
-      <div class="score-value">7.0</div>
-      <div class="score-breakdown">L: 7.5 &nbsp;|&nbsp; R: 7.5 &nbsp;|&nbsp; W: 7.0 &nbsp;|&nbsp; S: 6.5</div>
+  <div style="margin-top:2rem;">
+    <div style="font-family:var(--heading);font-size:1.15rem;font-weight:600;color:var(--text);margin-bottom:1rem;">Standardized Test Scores</div>
+    <div class="score-grid">
+      <div class="score-card">
+        <div class="score-exam">GRE</div>
+        <div class="score-value">328</div>
+        <div class="score-breakdown">Quant: 166 &nbsp;|&nbsp; Verbal: 162 &nbsp;|&nbsp; AWA: 3.5</div>
+      </div>
+      <div class="score-card">
+        <div class="score-exam">IELTS</div>
+        <div class="score-value">7.0</div>
+        <div class="score-breakdown">L: 7.5 &nbsp;|&nbsp; R: 7.5 &nbsp;|&nbsp; W: 7.0 &nbsp;|&nbsp; S: 6.5</div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ACHIEVEMENTS -->
-<section id="achievements" class="section">
-  <h2 class="section-title"><span class="dot red"></span> Achievements</h2>
+<div class="section-divider" style="margin-top:4rem;"></div>
 
-  <div style="font-family:var(--mono-font);font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.75rem;">Adjudicating Experience</div>
-  <div class="ach-grid">
-    <div class="ach-card">
-      <div class="ach-title">Judge</div>
-      <div class="ach-sub">InnoVerse: Tech Business Pitch Competition — IUB Programming Week</div>
-    </div>
-    <div class="ach-card">
-      <div class="ach-title">Adjudicator</div>
-      <div class="ach-sub">Parody News Reading — 7th National English Carnival by NDEC</div>
-    </div>
-    <div class="ach-card">
-      <div class="ach-title">Adjudicator</div>
-      <div class="ach-sub">Meme-con — DRMC National Art Festival 2020</div>
-    </div>
-    <div class="ach-card">
-      <div class="ach-title">Meme Expert</div>
-      <div class="ach-sub">Notre Dame Art Club Presents SPECTRUM 2.0</div>
-    </div>
-    <div class="ach-card">
-      <div class="ach-title">Adjudicator</div>
-      <div class="ach-sub">Extempore Speech — 15th JLRC Language Festival</div>
+<!-- ── CORPORATE PROJECTS ── -->
+<section id="corp-projects" class="content-section">
+  <div class="section-header">
+    <div class="section-icon orange">🏗️</div>
+    <div>
+      <div class="section-title-text">Corporate Projects</div>
+      <div class="section-subtitle">Infrastructure &amp; Communication Portfolio</div>
     </div>
   </div>
-
-  <div style="font-family:var(--mono-font);font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin:1.5rem 0 .75rem;">Team &amp; Personal Achievements</div>
-  <div class="ach-grid">
-    <div class="ach-card">
-      <div class="ach-title">Joy Bangla Youth Award 2021</div>
-      <div class="ach-sub">Team achievement award</div>
+  <div class="projects-grid">
+    <div class="project-card">
+      <img class="project-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUDoeAzBKhwKrMkIEf6Us227ZsQ197xi8rCk5jFYOxXFdPvEMA5uxJ2IQdL02XjOISOKZ_YL8VP3_jQ1Fwq8h9-yy7uR8nlN0UEyON53Qki_AlQgtbYk5wg1GkSE3UOxc8wGcFMCG9-gTagOm_zUL-idccJqDFnsUnJwT_WGGrgOtIkoyjvlEXoV8wP7nc0dzv574UEcQXc327dn0Zc9wwWXlQYdN9Zf_fnRKb4=w1280" alt="Dhaka Chittagong Freight Corridor" loading="lazy" />
+      <div class="project-info">
+        <div class="project-title">Feasibility Study – Dhaka Chittagong Freight Corridor</div>
+        <div class="project-desc">Developed technical approach, methodology, and project workplan contributing to securing US$ 2.5M project.</div>
+      </div>
     </div>
-    <div class="ach-card">
-      <div class="ach-title">Winner – UNDP Digital Khichuri Challenge</div>
-      <div class="ach-sub">Campaign victory under United Nations Development Programme</div>
+    <div class="project-card">
+      <img class="project-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUCxxDNjdhgX_ibEjOjlqVf2NNdoJIjHxJJPnCX23DLkzDqI8D8Ujj-FsSwFCH1T29NC4uDEYZa08-xhxqtv4T5a0PF491Q_yJqr-1fDNcdSuKaSW2zYvGazOdIhj1Y-SYqlHaNgq8LlUWxbV4Li64NWdkH348mzQu8LTrkec832FFv0BS6THKokrqKTKr3RAVAeqE_xrejZ1WHJtym4VQASB8wael5Y-lRa=w1280" alt="Dhaka Elevated Expressway" loading="lazy" />
+      <div class="project-info">
+        <div class="project-title">Independent Engineer – First Dhaka Elevated Expressway</div>
+        <div class="project-desc">Developed technical approach contributing to securing this US$ 2M project.</div>
+      </div>
     </div>
-    <div class="ach-card">
-      <div class="ach-title">Plan International Equality Awards 2021</div>
-      <div class="ach-sub">Team recognition</div>
+    <div class="project-card">
+      <img class="project-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUCB1c4lbENbFgXBkTl60nV3JSx9rk1gMPmIRTT3PuXKWZ9yBAcPYTSTX05J12CHr7SKgIHbJC4pdGHEvpi6U5_38fozpJ9Y9bajpCTI5U0feguPyiS510LhWRGXwWxNUtkaKquRJlPi7M5h3ipRxvJ4YFULRkEWgQjNT_r8OHkAaj9tMmMZ9iLoPGmN_TjrMVTZHN2vUyySdTYyK32FnNg-cRiY1QHwMaLh=w1280" alt="Joydebpur-Ishurdi Rail" loading="lazy" />
+      <div class="project-info">
+        <div class="project-title">Detailed Design – Joydebpur-Ishurdi Dual Gauge Railway</div>
+        <div class="project-desc">Developed approach and workplan contributing to securing this US$ 6M project.</div>
+      </div>
     </div>
-    <div class="ach-card">
-      <div class="ach-title">Dreamcatcher — Radio Shadhin</div>
-      <div class="ach-sub">Featured for the indoor concert 'Just Another Gig' during pandemic</div>
+    <div class="project-card">
+      <img class="project-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUAKSTjanYjNep5dmgE5G-UBVq4oSbyDA0bv6GjW2tWiCVhlmsoAeBs8C0Qf2YvmsnHzK-y-qxMGkgdUiroUkSxImar0fXdhqoGHtmMsRl3vylvjryFZsazHiH0kCmNn-qTSBeTDz6WNS8hy0O122QLPJ5wILQ0ctPoE5ZBI-vChTOVgbtoGE_bKg_fg0w8vxA2XXw7s1XvM81Ov8gBJFIacSPyBYW-m3Z3A=w1280" alt="SASEC" loading="lazy" />
+      <div class="project-info">
+        <div class="project-title">SASEC Integrated Trade Facilitation – NBR Part</div>
+        <div class="project-desc">Contributed to securing this US$ 3M ADB-funded project.</div>
+      </div>
     </div>
-    <div class="ach-card">
-      <div class="ach-title">Industrial Training — Grade A−</div>
-      <div class="ach-sub">Month-long industrial training sessions and field visits</div>
+    <div class="project-card">
+      <img class="project-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUA1vjPNDLZOpQLTO7jl-_Kr6rCUSeGt2LGkGch_PDwqx4c3kLCJpTfQmeQ1G36Ja-0Ezx6hoAbweDq5sDhgKQaLxoMCj_vLxJhRUCnL4hNcv9uwNn640msQq_mvD9_iYz7D_9bGSeoI4txGrOGhwzV9qZMEsnvfd7UgfG0UopXKJp3zLxIlaNWOVezsr68q6b-1ZfnXcPO9gxuf150OQ0H9L-gTvo4tnhzV=w1280" alt="RIVER Project" loading="lazy" />
+      <div class="project-info">
+        <div class="project-title">RIVER – Resilient Infrastructure for Adaptation &amp; Vulnerability Reduction</div>
+        <div class="project-desc">Contributing to securing this US$ 20M project.</div>
+      </div>
     </div>
-    <div class="ach-card">
-      <div class="ach-title">Google Local Guide – Level 7</div>
-      <div class="ach-sub">Community building and helping people via Google Maps</div>
+    <div class="project-card">
+      <img class="project-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUACGxfPlC9AfkQ4bmDQ9GCi9OMNRAEeA5r6NO4ImqsJ2hS6uGu6ceCok4AUjb0C4Lqcx7892mZU2toMFPYtGrbkRWSs0QxgoaZCN0qog0BUUA71BLQ6oHfXWyErwiPokU88aIlpBZdEXFcrOXNwTGuRc3Y_A81y44t5Y5ba936ptpRWkNwpgfS8YtnL1rvzZ08A0a82ABRorHz0cUg-yXpWVfngOroa6BGAOxc=w1280" alt="Sylhet Rail Rehabilitation" loading="lazy" />
+      <div class="project-info">
+        <div class="project-title">2022 Flood – Sylhet-Chhatak Bazar Rail Rehabilitation</div>
+        <div class="project-desc">Contributing to securing this US$ 1M rehabilitation project.</div>
+      </div>
     </div>
-    <div class="ach-card">
-      <div class="ach-title">Certified Supply Chain Analyst (CSCA)</div>
-      <div class="ach-sub">Awarded upon completion of ISCEA supply chain courses</div>
+    <div class="project-card">
+      <img class="project-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUC9VFeeG6_rxAZK1Q9CFdGuQE0CDQGR_UMAFKgeTXhWLiHQGKMah47e9_dtVXCyu1b6puNKs7Kmzku400K7gGBYTPBRigW7HteBfcDY24MMkdqgEbOpWUMX9IQZBjEteM_c4bJeecPlwaYZue345hyZ0XrYJb16JhdnBQ1Mi8we82qWqrX7_W-sGnU=w1280" alt="Mortein Campaign" loading="lazy" />
+      <div class="project-info">
+        <div class="project-title">'Don't Buy Mortein' Campaign</div>
+        <div class="project-desc">Meme marketing and content creation from Rantages and Tanvir Sultan MBA.</div>
+      </div>
     </div>
-    <div class="ach-card">
-      <div class="ach-title">70% Scholarship – PTAK Prize 2020</div>
-      <div class="ach-sub">Representing Islamic University of Technology</div>
+    <div class="project-card">
+      <img class="project-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUABWPgQfaf61ZsIyaX-ksYRm4121A9puMqbshqhgR6d_jymw6QFeazX8i8fXFPU4qMqr8d_ao3lK8RrMIrdVNRgsFkWath5DeO_L2Q5ewCFwmmTeDGn0p630yr_01uIpJQWveQgIKIFQlshZTnA9vhVabWdbVBK-_ETucCIkfePsTtKpmYNhO8mpwIro1tII3aQxlXhoYLeL2ksuKocD8GCj2FIly6NMJHgouY=w1280" alt="WPFD 2024" loading="lazy" />
+      <div class="project-info">
+        <div class="project-title">World Press Freedom Day 2024</div>
+        <div class="project-desc">Simultaneous Interpretation Service for WPFD-2024.</div>
+      </div>
     </div>
-    <div class="ach-card">
-      <div class="ach-title">Students Welfare Scholarship</div>
-      <div class="ach-sub">Talentpool section — St. Joseph Higher Secondary School (2013)</div>
+    <div class="project-card">
+      <img class="project-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUC3Xvnqlvh2KJsiEkOGQq113lgTinwIJnbTHCZ42brZ-jwpKsvmsQAbmkOVG4i2XABSpde58rRzEh5E82NC-5KziIUk7t1HamT0_IZc1K9l-ybkqEPtrJeFKhLmDuSDggITJO__9ajwVkMuTEa3r-GbUBhhaWuFk0sTabviX0JWr66R8dRes_kH3Dok7SBRMStGVFbyqNU=w1280" alt="BICSAA 2023" loading="lazy" />
+      <div class="project-info">
+        <div class="project-title">BICSAA Award Giving Ceremony 2023</div>
+        <div class="project-desc">Production support, logistical assistance and cinematography.</div>
+      </div>
     </div>
-    <div class="ach-card">
-      <div class="ach-title">Senior Young Learner – British Council</div>
-      <div class="ach-sub">Completed course with High Distinction and promoted to Senior Young Learner</div>
+    <div class="project-card">
+      <img class="project-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUDgq1nPUBm_LaVTIrxPgpNoUab7Snx1Vxda0jIeB6dS5E7BZ9n0RrpYXGSOmdWU4MH9p1ZW6XGDF8NEiHTX5MXOEDmRB-qfaiTnkX-KSkNk0Gv-p8eg6lN6Nmrbi69RY-coJmOlbsXGk-B-sxAIZWDZ1xjOBYlVG6Hh4krPm7VeAYuVikTTpddOC_MD3H3EsuZMZZdBQNlmt_a8I9hBz8vMbIoLwKLF8Xfs_7s=w1280" alt="ILO Interpretation" loading="lazy" />
+      <div class="project-info">
+        <div class="project-title">Simultaneous Interpreting – International Trade Union Congress (ILO)</div>
+        <div class="project-desc">Simultaneous interpreting services for ILO Bangladesh.</div>
+      </div>
     </div>
-    <div class="ach-card">
-      <div class="ach-title">UNSW Global Educational Assessment</div>
-      <div class="ach-sub">High Distinction in Mathematics — Year 2010</div>
+    <div class="project-card">
+      <img class="project-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUAhoTsoq4OTQ7yXQUTFw80X_CBWsiaLK206L8woAjx6QeFEoc_shM7aLGz5D_SPHAIItd2ItlbNnFGxIjsGgKAEvsMbtmN2S7fy_nFfMzFOvI6shXs7mT42NBPE52JKlltqqoSPi1uI_9xBaxkG2dJT1bq1qpzX8DWQ7eynwKI6tgHzWf8xJPLEUGNNk3Nc0Epqk8-iK5_jFS6kaxeN6w_r7ylbMyqjzayMbDw=w1280" alt="Commonwealth" loading="lazy" />
+      <div class="project-info">
+        <div class="project-title">Transport &amp; Logistical Support – Commonwealth Delegation</div>
+        <div class="project-desc">Served as local coordinator for The Commonwealth Secretariat.</div>
+      </div>
+    </div>
+    <div class="project-card">
+      <img class="project-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUCsbapn0N-A_oY1BFGxJKPFYeau62nr5AgxCnSWe-TTeD8xYQFWd5Krb_at6a9wnlka3k-SRDQKAjrVaBrZhWjr84mkQZxyhPgWihVenNES_cgpV9kKRfz_UMMnzCZMbUC-Dj_sg4LYamf8W9ZCaLTYVGOakboiVF2BSLHR8klw3RfoYaJu8wxDpSAvYAgqd4vm3nPLbWqAxcOovRBBolrayJOagS8R2JIHYqE=w1280" alt="Sheikh Hasina Talk" loading="lazy" />
+      <div class="project-info">
+        <div class="project-title">'Let's Talk with Sheikh Hasina' – CRi</div>
+        <div class="project-desc">Production and logistical support for the event organized by CRi.</div>
+      </div>
+    </div>
+    <div class="project-card">
+      <img class="project-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUAwJdXHSUpM-qW55R8EI8sDvfJX-eCATvJp5hk7sAsHyP2vUVNCIfVeoy8N0UaHA2VLYA6fa1NPAhb8s4MS1h3yWKTe77AMoYZJUkYJXBCFJLfyic3_VYh5TY1-C-5Qeayjy9SmnZ847eF7Wp62aMsHEJFLYABjHfQLzI8ktJKUxchlj1gVk_oHpgxW4mpGgAxuT8PsMH_WNBXynUbuabbq2CqkBl_J9q8HPN4=w1280" alt="CDD Documentary" loading="lazy" />
+      <div class="project-info">
+        <div class="project-title">Video Documentary &amp; Photo Booklet – Centre for Disability in Development</div>
+        <div class="project-desc">Videography and photo booklet services for CDD.</div>
+      </div>
+    </div>
+    <div class="project-card">
+      <img class="project-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUCVNKZbcLAGxlbesM_kR0QIMMY5wiQwL72birq7-lf4gr8f4ycLZUfpTfb548-6SzFqoNZTCZ8jCi4QTkmA06WpO-RSUoTQ0XEo4OyF2G3fsZiA7rAcY-FIcTmW44YWq7WILhBPMkTlFldMaNE0Plf-MsFu41r6-Ol3YE_Dtj7xYTHk9TN348WzXGq_L-KHGcN9elc_mukOBdZVf4SJdJzLNyG40Xux9mcL37Q=w1280" alt="UNODC Glo.ACT 2023" loading="lazy" />
+      <div class="project-info">
+        <div class="project-title">UNODC Glo.ACT 2023</div>
+        <div class="project-desc">Bidding, negotiation, financials and project management for SIS and interpretation services.</div>
+      </div>
+    </div>
+    <div class="project-card">
+      <img class="project-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUDcs1PUhqNjH4IrtS55wMBfklD0S3aZd0eQaGn0CVz6WjjXQpNRp-VkaYSdTVSsBGhTt0Su4etV9r5i2bQLThtH62pHF2Cgey9IkbtobzU9lPjQ3j4xMXK0AH78lzPtkUycxObZSQO6MqUiq8v-Vtx245iS5Fgsppw9_S_lAnByswC1sfcIAbcXYULGCvP1mUMCDBLxamQU8-6-d1vQFz-Yuke9CwSdzD9Ew-Q=w1280" alt="BICSAA Website" loading="lazy" />
+      <div class="project-info">
+        <div class="project-title">BICSAA Website Development &amp; Management 2023</div>
+        <div class="project-desc">Website development, designing, and management for bicsaa.gov.bd.</div>
+      </div>
+    </div>
+    <div class="project-card">
+      <img class="project-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUD6A-BTxvmVQ6tkikyeFdbKmwDVOH12qgaO6bHzlRyMqNUyOh96SPerQ1xYbi2cTh93ENYiu6m3CYKftlq4_kyq2sFvAQGiNBrOu7npavzKlRRCUVapHByxN7jDdkwV6HGhxv4scdeC_9VvvrkuaL8oj4xDQAcmLJ-sBuri1rYBLbdBkbp8NqhqvGIMMUasBd_6pukhtIliUMWfBkeWcHR2AIwKP47rsiAXz6I=w1280" alt="UNDP Short Video" loading="lazy" />
+      <div class="project-info">
+        <div class="project-title">Short Video Series on Civic Responsibilities – UNDP</div>
+        <div class="project-desc">Developed TikTok content, Reels and YouTube Shorts with influencers across Bangladesh.</div>
+      </div>
+    </div>
+    <div class="project-card">
+      <img class="project-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUAV77BrWjgFQwitTIRpuhUVkfEF2NcJHCPNQcwrqy3cogHbDwTk7hQvefCdt4YI_rASVnjkb8uzDi2X39xKR-v-Qy1xEjv-FrH2bYeoz3Ly2qyxpg8GuSifrIj8ED0gve-sKuc4WkzU1_F4AJ1j1NSYn7NXTEiS5AvRzdHAjVmEUcrvZzM7mh2gf_8P-j_FhzdLkpYw5PYyvN-qGJH_EPrabMCjrakNrv2kaFc=w1280" alt="PGCB Training" loading="lazy" />
+      <div class="project-info">
+        <div class="project-title">Training on Transmission Line Tower Design – PGCB Engineers</div>
+        <div class="project-desc">Material development and facilitation of 10-day training program.</div>
+      </div>
+    </div>
+    <div class="project-card">
+      <img class="project-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUCbmUxeVqWsQUONICbruigpWEoiebP0a6Q3lgiy3hj5i6PfNjypa1ULxhDIvNiBikjCjeUsO2uibaMtiL4qT2KjTnk7249RvrC5n3cAKzHvGFevs29VfywOxoOuejNL5fsAHAUWTtc7WS8upBV7wDBj81F-KqCPke-ev2aAYhfocXllgUonBmiTvPf9tV3QsJMZV7lSuZhWmyX0Ftkx8w2HOrAexm6YF0mx4rc=w1280" alt="Digital Khichuri 2022" loading="lazy" />
+      <div class="project-info">
+        <div class="project-title">Digital Khichuri Challenge 2022 – National Gala Round</div>
+        <div class="project-desc">Event planning and execution of the national gala round.</div>
+      </div>
+    </div>
+    <div class="project-card">
+      <img class="project-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUD8xV-gHgURIh8t3lJpdHmOnRuLX_RprX7vXLmQwSmCRYf3lbr7tlLbIb0fIUHzIxEFdJsmXoPb_0rB7pCQAzmg_beZk6mA11kc6dOjgZzSwAtgtE0m9C6pstEnfBYckdRWseDyXxhLKaLvU4SdAP4-NOQoMHhxQNx0gHE0eQGJ-vBIwxdRw6mS=w1280" alt="Rock and Rhythm 2022" loading="lazy" />
+      <div class="project-info">
+        <div class="project-title">Rock and Rhythm – 2022</div>
+        <div class="project-desc">Stage visualization, implementation, logistics, vendor management and volunteer support.</div>
+      </div>
+    </div>
+    <div class="project-card">
+      <img class="project-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUCpApLA2gDoz1b46upLAqXENXmFfuuasdGsAD66fFz30mPlC6ZAIm-02pblaWosBkN5KRvhmZg57diARKSAKtanc3dz_eD20b8lg-jep7dpWRoRd8CU8dTIPbpjSpsH2OmZBm1_jiYEIEOTnLtxSV_4j08VtpP70Bq0x9DC9yhjERkLGEHdhHhZ9e8m6YfeSqLqi3Nx3Lug2C2oMay0FC58TZ-4rc13GqWJ=w1280" alt="UNDP Peace Talk" loading="lazy" />
+      <div class="project-info">
+        <div class="project-title">UNDP Peace Talk Cafe – 2022</div>
+        <div class="project-desc">Planning and execution of UNDP Peace Talk Cafe-2022.</div>
+      </div>
+    </div>
+    <div class="project-card">
+      <img class="project-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUAzPhLcLB0kgO2mrbcL1uvB6EPfaTYsNP_T-Smve5B0YLo93wx0JEkhGgZ0FC3TJHHwJaMzfwrqp8Mag_uiqSB4tcWuCBcPOksJu_w5A5peUvBxi2evGCkt1wd9LoKTUsYivmNnTfVNnzzFPXgZqeTSIOwnBqoTj2dtcZctIM4lkbJRUPLRxGbIwkabDNCpTfMN6ztAE4o0B2NuvckWVTwyDzggDM6fQ59FJPk=w1280" alt="UNDP SIP for Change" loading="lazy" />
+      <div class="project-info">
+        <div class="project-title">'SIP for Change' Campaign – UNDP</div>
+        <div class="project-desc">Planning and execution of 16 Days Activism on violence against women.</div>
+      </div>
+    </div>
+    <div class="project-card">
+      <img class="project-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUASmFNLgSJyi5pcgTV10MYszT2bmYWbUMZeLoEkFlb1VUUbWTSiZa9qxBfWinQQA5DfcIJHwJaMzfwrqp8Mag_uiqSB4tcWuCBcPOksJu_w5A5peUvBxi2evGCkt1wd9LoKTUsYivmNnTfVNnzzFPXgZqeTSIOwnBqoTj2dtcZctIM4lkbJRUPLRxGbIwkabDNCpTfMN6ztAE4o0B2NuvckWVTwyDzggDM6fQ59FJPk=w1280" alt="bKash 2022" loading="lazy" />
+      <div class="project-info">
+        <div class="project-title">EID-ul-Fitr Salami Campaign – bKash 2022</div>
+        <div class="project-desc">Eid Salami campaign through content creation, seeding, and meme marketing.</div>
+      </div>
+    </div>
+    <div class="project-card">
+      <img class="project-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUAbHX8mLtjns2YAZ89LwGqngiQFQB4li7YY8XLZSSZ0c3S4HI2PHYeVpdIovvihuvU3-Mw-IxQ7m8DKamZ__jWBChMh7ZbdvG5zxrUWQ84SeGvzIhRtUiQLwiy0bhgpvHc_CfAffZ-36u7X3SyOcrjFeYAfhBPV0=w1280" alt="bKash 2021" loading="lazy" />
+      <div class="project-info">
+        <div class="project-title">EID-ul-Fitr Salami Campaign – bKash 2021</div>
+        <div class="project-desc">Eid Salami campaign from RGP through content creation and template seeding.</div>
+      </div>
+    </div>
+    <div class="project-card">
+      <img class="project-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUCf3O-LqFhUIGSYhFL2Ic1GCBuLPp0vtl3EcU62EWiPNLgqAwXDkpN2TJQaRBrwshtTI6lYrKJcA-O8U5cGR0RAOI3_OZMyA71knNb6x_hlqZ6ejMFBajIwCWbMFSPHCSI5wyUxNa27ZD7dfcgNbTEptqV4B0V5h_6KxrPFBFJ-AJFRzuqVD8oHriIaQaiT1CA_rG4Wih9N-2wVDUZJPDcnm_ZAcSGPogXb=w1280" alt="Rantages Show S1" loading="lazy" />
+      <div class="project-info">
+        <div class="project-title">The Rantages Show – Season 01 &amp; 02</div>
+        <div class="project-desc">Planned and produced all episodes of The Rantages Show in 2020 and 2021.</div>
+      </div>
+    </div>
+    <div class="project-card">
+      <img class="project-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUB0gzphOW6UXzHmFvu5ROSQlGFZPuLm4XXUZynPqn9hXPpVHou4DSgKkCiK8-oaWOLknJskog7I6oe4OSgDlPtUF6bRsTNojgT-ew29TkzzTcuxOBaDXa48ylIJKA9lvE8JD_VyqNHn5eBsU-X212RAKDcYXM4Ya3ib5Yh5g=w1280" alt="Pathao" loading="lazy" />
+      <div class="project-info">
+        <div class="project-title">Pathao Promotional Campaign 2018–2019</div>
+        <div class="project-desc">Year-long promotional campaign contributing to content creation, template seeding, and meme marketing.</div>
+      </div>
+    </div>
+    <div class="project-card">
+      <img class="project-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUCRgbDXdQSmg3KJbrM2LI7_1jr0F0ZRK1KRgP_AzZx3-ZEAdrMYGxOkr876Yw0RKz9fI_oyU7O1fw6SNqyOajZepT9aXusGiRZyOaNTP0LIk3jkkoXYOdPd1lC23EwYIO7TKn3nMt7c_fDRb_G_5NaqEw82gmWN_g0P9FtbV5Ys2M97xf4HeHiRocFAFVbZiqSFEPXHYYN915J2CRM-lmIrACy3qRpc4_8P=w1280" alt="Just Another Gig" loading="lazy" />
+      <div class="project-info">
+        <div class="project-title">Just Another Gig – Act 01</div>
+        <div class="project-desc">Organized, planned and executed an indoor plugged concert under Syndic Atelier Ltd.</div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- CERTIFICATIONS -->
-<section id="certifications" class="section">
-  <h2 class="section-title"><span class="dot"></span> Certifications &amp; Training</h2>
+<div class="section-divider" style="margin-top:4rem;"></div>
 
-  <div class="card" style="margin-bottom:1.25rem;">
-    <div class="card-header">
-      <div>
-        <div class="card-title">Integrity and Regulation in Citywide Inclusive Sanitation</div>
-        <div class="card-subtitle">WIN · ITN-BUET · ESAWAS — 20-hour course on TAPA principles</div>
-      </div>
-      <div class="card-date">18–20 May 2026</div>
+<!-- ── BRAND AFFILIATIONS ── -->
+<section id="brands" class="content-section">
+  <div class="section-header">
+    <div class="section-icon purple">🤝</div>
+    <div>
+      <div class="section-title-text">Brand Affiliations</div>
+      <div class="section-subtitle">Organizations &amp; Partners</div>
+    </div>
+  </div>
+  <div class="brands-grid">
+    <div class="brand-card"><img src="https://lh3.googleusercontent.com/sitesv/AA5AbUA8pJVesH_g54JxHcSWrK3ISLt1wBElbXgmR1SJ-LLz85Z8BeOqWI08aBjQrptZ4Bomovz0i6hDwuQ9fUsOjEELtZPbR_sVfWlyF_5RLa5qEu8WOM-TQXl1ieU80BJp5Kk0BXakODNcoWfg3mJFrfalmbZeg61OKV4ha8llTaA4roR6VjWTs7oqn0Q=w1280" alt="Bangladesh Railway" loading="lazy" /></div>
+    <div class="brand-card"><img src="https://lh3.googleusercontent.com/sitesv/AA5AbUC-YULsPCDD_H3251DPsbqBwdyMBI2T3nMPFMu9_-eBaKphFuvrRNOt3LXGYeH8pt8WQTUpuZBhueNHEjiWB7t2PvoyCbHKpfqVP71qEzw5f4gyDAcwvv950Cku-VDpUxnOeeD3GW9Wje1purO2YCtHlmDhHddShp_M61tYsUqLg7qLUQ4SmqQqGSQ=w1280" alt="Bangladesh Bridge Authority" loading="lazy" /></div>
+    <div class="brand-card"><img src="https://lh3.googleusercontent.com/sitesv/AA5AbUBfWXj62tp_wPkAetwBRA3lBZxScDAfbnr0QpDmPkM_QUIGkwi15EI75tEZ5F5yv8r5VdO5Rx5ipxK-ikJyx__7v7jlYHarEJfcBGQj58yHaa5jrxeaGB2jSIzyGtDbEo4ApfIdrwCjzcPcfjFXSgqfx56dp7ap4dD_H5nCJkNfQVlZlL63WrplEQX_Ppnq2uH1rNvkjnN1E7cuh7NSm8CcHmRh9IDwrg=w1280" alt="National Board of Revenue" loading="lazy" /></div>
+    <div class="brand-card"><img src="https://lh3.googleusercontent.com/sitesv/AA5AbUBSbPOkEOQcCdJxLCHjtoJ-1TIsScghPU2jdtDDO8w5gvP9fzCQIj7tVmd-YVplR1tJfAoQ7JPB2z7VHswuUw9pBcJa5Rzc8m-4M3mMM9653kL49serkRP0aCgWio2G3JZdV43ba1QFPOnSOGxtF2GetdpGzJaxKr6GV5ukJZOP5EGxdoyMZ12I3DZNv7c_AyQPrGRvGeZED2Ly7JHnu1-Ej8JdG55D0aqShRM=w1280" alt="Roads and Highways Dept" loading="lazy" /></div>
+    <div class="brand-card"><img src="https://lh3.googleusercontent.com/sitesv/AA5AbUDLkpFzZw7yvYyn1JnlfXH8Ad3n4sO-owdZ3xM1cqttaaF3XB5XbzSGGUOtbeIoxLZzKEmHcpNkRNzsBOAftzy6mR93M7L-gJLjFnThN-V1K1rQLKNWCEDrjdNkvUTiV75QqhoXIUAjkjPW3wX2Tv0zMZVxzU4oAHqIAPNzn9eh0l9mKDShc0X3hd_-qdsnouGh1sDAkprWWKqCYsQNI_TGDPL1kHRdyj7Y=w1280" alt="LGED" loading="lazy" /></div>
+    <div class="brand-card"><img src="https://lh3.googleusercontent.com/sitesv/AA5AbUA9TnvCrCuRDDIdaepqmHcoM1Ll8Hc54NqLcxDHpcabutgGnnfOVx2e1ob4OkduSHGrRqf83suSh0eaMkCVAD4qgKLeKnHM40aBaEIkSZBxad2jq5gtEYcnvC6_3g1lIXvoqO9i1NKRmJRIc8AHCkmjaFfjdsRAZp-Ut1-5ZTzlNRw1RF4xw3PWU6ZbCCtD4Gh16FP1rtTjugxHJswD3F1QU4nUE02cXJXJepg=w1280" alt="The Commonwealth" loading="lazy" /></div>
+    <div class="brand-card"><img src="https://lh3.googleusercontent.com/sitesv/AA5AbUApFCC1731cGYxRV-YdV6KVuBwIZiYrI-MqAN063OJeiRi94m0AtbIwC28SBlweAulY3pyu_lL_GbtC3kpmTMi-70x-nsA_9xuYbxtGJ5eN2EUoFCfQHlbviy-fcOGO_wgIk2pmtnkVSu5cV_8d_Xml9_aDyOH683vxLN1zro0sGXwvjxxzbPic_8JhCHnaxW-NwhMzv8E-Cm55pv0WnwaM6G4VmBAuR6XIsC4=w1280" alt="Reckitt Benckiser" loading="lazy" /></div>
+    <div class="brand-card"><img src="https://lh3.googleusercontent.com/sitesv/AA5AbUDjMO9J_kC-Bq_ON6SMj5ankQ7OuPgTKyaJGOnC6Pxa_1GKzJbyMtwg2MVbWmYPThY6WHk2-zxFRfwnYXtGWXtGRIZOhAZ5-NxFWXjl4CeUJgdZt6P5Hl3B7bKL=w1280" alt="Transparency International" loading="lazy" /></div>
+    <div class="brand-card"><img src="https://lh3.googleusercontent.com/sitesv/AA5AbUAC11QBjLR5COHUjVonyvh7MkJ7wgVEa_e-16DjtfEwMcDK1iKy_bJxmNWVvMzIpz2Wg4kWm9awjDrDC-5rJAPzMDy7RCNYz_pxogMbTuZPkUHE-T9N13SsfJsOww1UseyosjVIyyqFDyTxY358qzLUGzHGT-QTjsuYKntXEZgCeoGXX1Yv-c7n5AI=w1280" alt="ILO" loading="lazy" /></div>
+    <div class="brand-card"><img src="https://lh3.googleusercontent.com/sitesv/AA5AbUCdZW8mchn_UOksez8xEm9BykvKT9JXIH50ZfbUlglCHdqAOL98BtMlc-LEj_huYClQtd4WE92vMdwVPvTAp0SQk3AKg7IiX39I1Zwb04CkqeqflSqoc-_IlEnjw7GyC2kJiRlIv6RpnWCYkpEW4Gywn6WgqThGKlwRzY5NvMzU0AKHZ2wf3FxBooI=w1280" alt="CRI" loading="lazy" /></div>
+    <div class="brand-card"><img src="https://lh3.googleusercontent.com/sitesv/AA5AbUCyMI0cENi_NpWrfwukrzNXlkhyE0yB8eBd2KVqXSSFdghG-uXoK02NaYG7aHRbCftcWgwwcIjvWpfYS5Gx1hvZmvMt0hpONV9j4X9lsAUREGbb5em9K8ZwQ_8A9CNQFwj6A2sI0m2caO-EhbVeo71RUGYzDNF_Sfwa8lukSelDebn3ocgLIaK6dLMeeEsivIvaAzQcPEHmV1ArRzMjOkxUE-0i2t2Bu2Z2jPU=w1280" alt="CDD" loading="lazy" /></div>
+    <div class="brand-card"><img src="https://lh3.googleusercontent.com/sitesv/AA5AbUADmz44-jToHEWZLwgWWCPnJ5Lu_4q16cYLJaDx3c9Uw_ATT6YQpXm17tzJwvxBm3sgVzzPYm_ON8HOr98bZf-ySA7Ej95tXFr1hDxqa6AraWTxdNL12cPraf7XhHzB1QPGDiU_TsF8upCXLxNe0at5KPD1MnJhTGU8G_LToG69sVu2gsiMFeQOhtGqFhADE4D74YI_39WTUeQ=w1280" alt="UNDP" loading="lazy" /></div>
+    <div class="brand-card"><img src="https://lh3.googleusercontent.com/sitesv/AA5AbUDQ55GUpdFyuDj00ReMGp7YXFNzWXeCKr4Fw5OsaEKAbTVx-YUgQouvl3PbpK7r3JRKwCFKpCoUSsrQIRA9FaEDItD4-8QYURHAub-vdaORkODRCZh96W_QrTu-AhGoBYgnsIscgk8sd3KsYGHiIoOfUaGp7q-EeMBP9tcz2KM0rcdyOzNIT4LZx1Jpob_ok-_lyZRugT6Ohxi1vpFkAcSu6X428YruTeyL=w1280" alt="UNODC" loading="lazy" /></div>
+    <div class="brand-card"><img src="https://lh3.googleusercontent.com/sitesv/AA5AbUDfuQVY_lnh-JD_evV8RmN9wjKJqWAVKfbooJ0jP7JjBAcSz-yHUDI2zu1MiyvolHEkBoWSAqT7f0fWbmMvqVTBnVS1MMznWYwtJEmILVBNAbAPVIsTXrQMGJq0CywQwF3IkrskUCVNr0C_fuicnEGJHbnGe9WrG_oC5oLOuuol8dt9poxt-_CAquEqsIUp_JLQfrz6q8x73cQvdF4TATyPMmxgRJkkqqRv5xI=w1280" alt="Young Bangla" loading="lazy" /></div>
+    <div class="brand-card"><img src="https://lh3.googleusercontent.com/sitesv/AA5AbUBimtyPyzI6vphG6oqUXeBLW-_0l5xZIPjwiInSi6MFHcR4wOXV128jYB-Y4QVBpOhYq2FLshWxuZMtm8-BoZh_5tKqJAi1Mh1dqmQBJXKr8WVKB_lnNFjPe7iI=w1280" alt="GAIN" loading="lazy" /></div>
+    <div class="brand-card"><img src="https://lh3.googleusercontent.com/sitesv/AA5AbUDeftECUPVGN3U0jv5BV4cnUq26q2pd6u_bG7Rx5AnaJ76PpnMU9909QZ-6FO1WC-ROB_m367XcXUw9qS5OEmAMVSfGdmm25KlMyfXX32N1ND9U5KtQC5JxhDCx5iz3wCs4ThN9UGFWB2rxyT1oDZMnxbjhGSNK1a4PWclSB8gYcfooVh0ctC9Z3q38VE5PWgi7Z101p_XRgMnfZnCFT3TRZ4K2-8ci187sMvQ=w1280" alt="Marico" loading="lazy" /></div>
+    <div class="brand-card"><img src="https://lh3.googleusercontent.com/sitesv/AA5AbUDqYRvS5A0RUgwu-bDY8e2FOEzbvKCPJC8BaMSXbV6f_riZJf-0OdQbMyqeHbBE8SDX7_GhZAZoFNPtMrzZz8_jVVHA8FIVpb6lnLx_rDJCFm1cF24fg6TW3f4txkGLRcuT8YZPsqqHg79KO5rIQoUZq1qjCMNDKeC68CFcu9sTumfBAnm3J5x1D37S-lPD7Ivcu7Z07p-TmX7_LylfA-m9Jg9YosMBV0EJA10=w1280" alt="PGCB" loading="lazy" /></div>
+    <div class="brand-card"><img src="https://lh3.googleusercontent.com/sitesv/AA5AbUCl43NkbrgMTEexNeyFt2f5Nc3Qu37ycJnIHOTMyPduGf2OJgL-MnDKuakfNpsU7prnpLVdTUr5eMB2ezCWjU36KbT81qRAXwMxAnDsknvcypdgggJsK8KIRFSxQwNFq8FFYHryT09BfXQ4kv5OInKWl8Rxfh73RMy2ZnJ3pFfk4TUBaUhlrgDaGQo=w1280" alt="Grameenphone" loading="lazy" /></div>
+    <div class="brand-card"><img src="https://lh3.googleusercontent.com/sitesv/AA5AbUCjTKeR5hYt2GMeicJYAIO4urF2xEdcRUQTXDM6gP9rCjUuN6pU4xEiVk5fOUaqtS89Ur6NJlTjoRsyChwyaBLG4bNn27HCZPRV9B9hkq1GQimECd7fUa-pzm_ry7zY101vCbrHEfG0LRH90D7e6VqPvZnMk_qDRbwFPBF9tjUqj3V2GOwHb00=w1280" alt="Decathlon" loading="lazy" /></div>
+    <div class="brand-card"><img src="https://lh3.googleusercontent.com/sitesv/AA5AbUDzmj9R7e2QS6IdxF1VVdbuCNeWXF8EiCkn-2oW9HPhKbh_5ObAfw72kbHm_wIi4HeCCbPEXu1QbV67YDrT7IgEWG5YmRMggrbNJiIWFe79I9cLqRvfygTaftzUQfqASAlED9u14fIXx7WitXfw5dQ-T8AAi8kcns0bG6W-dCa5z_OEewD3VnVwXudlOYEYtWicUXuBtffGbdEumbxrb0sLaQD1B6Y3lic=w1280" alt="Pathao" loading="lazy" /></div>
+    <div class="brand-card"><img src="https://lh3.googleusercontent.com/sitesv/AA5AbUD1I46W3GxpBvvnSuS-QolgEiaSjAtMJfDItL1dMve1eZ3qVAcJhVpseT-V039wAn1_LrabUMG4uqvWO1jgZmMOLkOWNI-6gAl06sc8YDSHn68zWNAD-cmPvEfcV2hS3NqdzyD1oBbmqlNIFIyyUu6EPEAlBZsqxxXdDT-U1c5h3AzPjmoeGZ9b=w1280" alt="IUT" loading="lazy" /></div>
+    <div class="brand-card"><img src="https://lh3.googleusercontent.com/sitesv/AA5AbUBSbP7KIBiwIDWqNYoUji7wi6GSj-LfGpabjGF53oDGN97YYJqkD8CMXvjDrRXvVRpSTcYwWiwWttI7X-Vl-CV_uaDJScSeQSHO_ZdRHq5US8QvUejnNtomlk4sxMlrPe7gi-maaBCn7A6MaqyOjc8kG4_UaclZAbu_OndtZyYT1fiEpfT-40TBk4=w1280" alt="Dominos" loading="lazy" /></div>
+    <div class="brand-card"><img src="https://lh3.googleusercontent.com/sitesv/AA5AbUD9ZLov1R0dsK3rPS_kijzkiPYAbkIUdDdGJF89iq_63AVUSRA_tBw5W8ZmY1GlhXBqqLckAeuQ8KeRPKa2z2AkLV3jrC3BHh9DeDmJbQlbuxWctpy0F-80EC9Vu-1GHxanJS-6OFoXELg0aGcRVmGNZMhRQxlox6CbA6zjzgWp7s15JaIfSocZ494=w1280" alt="bKash" loading="lazy" /></div>
+    <div class="brand-card"><img src="https://lh3.googleusercontent.com/sitesv/AA5AbUCghbUYgS9vYSSRck__JHh0WJdgpMIq2BGMah-S5zVnNIl40S8TSutcKGTDg5ZDkxTat0JqWa0jPLlBD_cHm0De8apSpyaSMKgZ6AXYCYiiOcKRxXqTSuzDleOSIQGVR49rgJDGMJ5OJUVxBV8_dteNlltFDoI_U57PQq3ca5pVOrYsUMPST0jCHAg=w1280" alt="Meghna Group" loading="lazy" /></div>
+    <div class="brand-card"><img src="https://lh3.googleusercontent.com/sitesv/AA5AbUAZwGlaH-eeW5zIjTFMwNydgkDjQ_V_Qc6BAjd_ztydSeXAdZ7_djMvX3HDS9YHbUswY2w8ZloRJcm2wT-CtQ1s2Nc08-XXd_PcjDUkkuGrYY2C6bhsNpbXPW35fqNHzr5SKq5WWJ5Cfm9ojkiRS-hrjvDEx9_9WKE1OcFEC0T_wMwkDVarud47Xe0=w1280" alt="Skitto" loading="lazy" /></div>
+    <div class="brand-card"><img src="https://lh3.googleusercontent.com/sitesv/AA5AbUCxrUQs7gU6ZzxLC7F6QGZ7wkcgpWfj8VxyMsVuA5G6kOaIc5ICU1MRU7-bEGzEXuEAfdTLbx-Vh9CB8wG81aGEafyTohs6qgSTGx7N-4y7r5e3JVlFbMcNLudy2RdPggulGun-FbiQEDosFaaS5kS71KrXhZXcIoX6c57Uwkmxtc6SpR9yLAX_uwo=w1280" alt="Impulse FC" loading="lazy" /></div>
+    <div class="brand-card"><img src="https://lh3.googleusercontent.com/sitesv/AA5AbUCfGOdjHl8jjlRK0ZzgYOlW3z9-t1_BRsuMJQWEEUGMpfnZxTqCFkIJ2Olp43jErW-Zdm6VaTvmw0GoqTH1R0dAcEvMMeZP_sobJteNXYiVrPHuok2ucn7xmUyB_CmnYoynbuXN6tDuypliWlXP0xVg2BR1SZ4woL1jlSLpt4Gs5f3hUD5WY5Mt=w1280" alt="Adventor" loading="lazy" /></div>
+    <div class="brand-card"><img src="https://lh3.googleusercontent.com/sitesv/AA5AbUCNGQa00MslgfOJB9JI-h1gNVFlqH3LUua_JX30N7jTZctyCc70-r2aZTRkFpvQ3zcTVolqd1r68LEmRkLWIOU0tbVqytU4qtuWxW6VROaApgsLms-ogv5HA-VGeh4UI8RBSUlcZbHyyJImMl_l1GEJBkG8N2gJif8EIJLOUtcTPnPj9P4M1WTyAOs=w1280" alt="IUT CBS" loading="lazy" /></div>
+    <div class="brand-card"><img src="https://lh3.googleusercontent.com/sitesv/AA5AbUByd8O3RZCwl8U3Xvg0R9XQEk--L927UXs3iytUxCKwlWzyQitcuhjd4eU-a9zLUImVZA2JzaXZugsdpzQNOXdqoJZ6yujUYs2ljzLPIdCC6mxK2mAZoLOGQWWcXV7S5yL9SYhzFNLbWbhxgJLHvgTSemIqgC39ZUnBmJlQmrHuyJZ3NvpbcP8fyxAGgFkybzM94x38su7-7mZ-2H9TzxXMvQemRScSDECZ9nA=w1280" alt="Standard Chartered" loading="lazy" /></div>
+  </div>
+</section>
+
+<div class="section-divider" style="margin-top:4rem;"></div>
+
+<!-- ── ACHIEVEMENTS ── -->
+<section id="achievements" class="content-section">
+  <div class="section-header">
+    <div class="section-icon green">🏆</div>
+    <div>
+      <div class="section-title-text">Achievements</div>
+      <div class="section-subtitle">Recognition &amp; Awards</div>
     </div>
   </div>
 
-  <div class="card" style="margin-bottom:1.25rem;">
-    <div class="card-header">
-      <div>
-        <div class="card-title">Industrial Training Program 2021</div>
-        <div class="card-subtitle">Structural &amp; RCC design, road construction, quality control, river training</div>
+  <div class="ach-section-label">Adjudicating Experience</div>
+  <div class="ach-grid">
+    <div class="ach-card">
+      <img class="ach-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUBrEf9v6BLgKvZppgtPlNseyTOGogUFMkDB-D3sNsvnLWhJycyIbgHvlZ8dZAnL3ABsv2W8ixy1ypmekV1mxty_JAokpnSm7bS0QGCZDDwxhw70IHZGtDpFsedRSZPkHRGbjctXp2pdwIbEvAWQhB8npGHEIZf9woEVGGwvsDbJgRoXBqQm1pOBoPU=w1280" alt="Judge IUB" loading="lazy" />
+      <div class="ach-body">
+        <div class="ach-title">Judge</div>
+        <div class="ach-sub">InnoVerse: Tech Business Pitch Competition – IUB Programming Week</div>
       </div>
-      <div class="card-date">27 Sep – 17 Oct 2021</div>
+    </div>
+    <div class="ach-card">
+      <img class="ach-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUAI_sdrygLSAhTv6INNlQY6YqyFfXZZzI_IsMt9aWQW3ivKAsgfsThgQao9zSTi4FSaAdnjJOleusJ9U-8_TzwrvEjUBhgAKl4KqsGWfJnUbiOcOboUSC74PrJS_86F4rHc0xh8H9M9LVg82cJkODVFm9xNP1I_zekbD5DvH5rLwoBo3XSFoWkzHEg=w1280" alt="NDEC" loading="lazy" />
+      <div class="ach-body">
+        <div class="ach-title">Adjudicator</div>
+        <div class="ach-sub">Parody News Reading – 7th National English Carnival by NDEC</div>
+      </div>
+    </div>
+    <div class="ach-card">
+      <img class="ach-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUCCiZZYI-sVQSiApjEORnEhPkx-dHk08BozLjiUUDnM5EIctauhe2dgC8_7_SXyBbS9fetfQjWwnaV1YWuA3uZsJia3wAA0OwYH6PELd4G6o6eL5iYNlnITZOsz67wc2PoBLr3AgMXGm2nRGiH9HQ75Je7GWGjsZOVnwe9BJYQ7cuJHm6yNkXZ19_OGVCkrMwgC9MNcptvG6of6Kfs=w1280" alt="DRMC" loading="lazy" />
+      <div class="ach-body">
+        <div class="ach-title">Adjudicator</div>
+        <div class="ach-sub">Meme-con – DRMC National Art Festival 2020</div>
+      </div>
+    </div>
+    <div class="ach-card">
+      <img class="ach-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUADC3Uiw7rmrzsxENw8vTPzCPO2c6s5Mxx3ODsrtn0Z4k6_1gnf3GEx8mdSpFktILLDqmvGhq4uNlxri1ebF6tBPNZI6_186U_HS1dwgcDIsBuWjR5RyMnwg41n3OhvRimdAEWYsEc9Or5ppEwzm0qEcNgbmgSXtxdCxZ3Aw5K2yq-E0KO1RgGvX8=w1280" alt="Notre Dame Spectrum" loading="lazy" />
+      <div class="ach-body">
+        <div class="ach-title">Meme Expert</div>
+        <div class="ach-sub">Notre Dame Art Club Presents SPECTRUM 2.0</div>
+      </div>
+    </div>
+    <div class="ach-card">
+      <img class="ach-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUAuWm_kWHsVnRoQ4YrloFYu7vS4CeDJmL0EOET2M7P3TScd-VzyE7DYPPtcvKdVeAN2tVCDlGQ-ceEbF_dP7zd3iH2xG08i2UrcmOdjg_956g08YgRZv090HGXvB2Xx3GehllFWCvaxCtlqtffcxslfoqIB50EkWjZOhQu58CQRhgViuVHGt3qVzfReyuzNJJFlADWpAACAQTk8zsAx6ZnKuEOq3T1Av6pVyPo=w1280" alt="JLRC" loading="lazy" />
+      <div class="ach-body">
+        <div class="ach-title">Adjudicator</div>
+        <div class="ach-sub">Extempore Speech – 15th JLRC Language Festival</div>
+      </div>
     </div>
   </div>
 
-  <div class="card" style="margin-bottom:1.25rem;">
-    <div class="card-header">
-      <div>
-        <div class="card-title">Industrial Visit – Seven Rings Cement Industry, Kaliganj, Gazipur</div>
-        <div class="card-subtitle">Day-long industrial training on working methods &amp; employment practices</div>
+  <div class="ach-section-label">Team Achievements</div>
+  <div class="ach-grid">
+    <div class="ach-card">
+      <img class="ach-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUCZHqr8JfGtyhuf8-OKzIbLWnfdHuwXZufivbMLu4v-LyFsHIkuBbHIUzamW0Wmses1OPTbnv6RB4xsfnDsc2AJs-a7TxpzWRCmvDB3xW-MlqsRuqqoC1v7-R9LvyjfU1dF_S87fJIFXhVHwBJjJKQQXqfsRoEAWZ1UpeGiEts5Nuen2dkXcbGT_9A=w1280" alt="Joy Bangla Youth Award" loading="lazy" />
+      <div class="ach-body">
+        <div class="ach-title">Joy Bangla Youth Award 2021</div>
+        <div class="ach-sub">Team achievement award</div>
       </div>
-      <div class="card-date">8 Nov 2019</div>
+    </div>
+    <div class="ach-card">
+      <img class="ach-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUD_Ppuy1x5PxlwW5ydGmc4KQDfDyMLdWOvfYGX4qn-cqbdV8AxMIt9yY_i-8sJv15gV3-eH9ipR_cPdQt1aieJtpejtMnD4wYaCHqjrqvb1yt8nKvNY6fYKmjNOCIyfcfxyoJOud5vHo3d_rqdX7ibSZ2aVXBiG5QBoXvHOHjk77O2c3SuKjYgY7l0RJeeVvJfl3a9-oQy3yzQ-ECcDq9d9plLdCQrfkCOrmsA=w1280" alt="UNDP DKC" loading="lazy" />
+      <div class="ach-body">
+        <div class="ach-title">Winner – Digital Khichuri Challenge (UNDP)</div>
+        <div class="ach-sub">Campaign victory under United Nations Development Programme</div>
+      </div>
+    </div>
+    <div class="ach-card">
+      <img class="ach-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUB5tkQwsljGkdVEg4Rp9Yibh2J99TAAn7hWFtyfuZcBPcgtL6Oep1kIPus-0CxcYZIsAmxUfC6jFEJWqmYIMg0AUla9wLoxBmxL3v_pbbk4bU73i20LES-tEWQyUoK_srqhfyfjFohcA2GkRlO5hQ16e6YShrKGK0tauaJeakNNCihJj3qFdba_zMOVYGoLu_7A_PigSGkacHnl3w8C1k-t0eOH0yhsI3mg=w1280" alt="Plan International" loading="lazy" />
+      <div class="ach-body">
+        <div class="ach-title">Plan International Equality Awards 2021</div>
+        <div class="ach-sub">Team recognition</div>
+      </div>
     </div>
   </div>
 
-  <div class="card" style="margin-bottom:1.5rem;">
-    <div class="card-header">
-      <div>
-        <div class="card-title">Waste-to-Energy Technologies for Sustainable Municipal SWM</div>
-        <div class="card-subtitle">Incineration, anaerobic digestion, gasification, pyrolysis, RDF, landfill-based energy</div>
+  <div class="ach-section-label">Personal Achievements</div>
+  <div class="ach-grid">
+    <div class="ach-card">
+      <img class="ach-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUAM1Te9CjoATfJVlNZleGx7kMQL2iFJB5K4HZTrj-BwvrBNnQ-VU5MyUl9RetPWGdH9WGpl4OzbaXSh7tcsMKmAqT0I1_Yhf4jRArdVprRnA0zaM_J6dxoLYKfIa9AYf53dlhl7d-jSPYWUC5_xNg9IpQ5kVyzgtEYt4SM-25q75Sn7xB9kO8WLvp9DPMjWLoQ9NuH3aioewzReaIrXiFb-zF9n9PcKhHBruB4=w1280" alt="Dreamcatcher Radio Shadhin" loading="lazy" />
+      <div class="ach-body">
+        <div class="ach-title">Dreamcatcher – Radio Shadhin</div>
+        <div class="ach-sub">Featured for the indoor concert 'Just Another Gig' during pandemic</div>
       </div>
-      <div class="card-date">29 Jun – 1 Jul 2022</div>
+    </div>
+    <div class="ach-card">
+      <img class="ach-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUDSTQ26cW6LGa7jDqBRWbOTq1atsZqMlDiGx1SoArEYEAFvkm0hHnr6sLtkSxGHolV7vZHh1PYZh0jh9kO6ftFBzeLAtDoYrCE-L5uTi4NpFgX6Bq5q3iTVFbl6gIBt-CFzt1OGfwHwMjXji_hcNcvS6RD9zoHv84TlFBYfU8KmQoTAKWVNDsZByu2xhh4Tn74tIU_Va6nwENQR8EMGnyyhfuh_KcoMwKbe=w1280" alt="Industrial Training" loading="lazy" />
+      <div class="ach-body">
+        <div class="ach-title">Industrial Training – Grade A−</div>
+        <div class="ach-sub">Monthlong industrial training sessions and field visits</div>
+      </div>
+    </div>
+    <div class="ach-card">
+      <img class="ach-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUAj6hkz8peu90ayrnpm4z4auAV8cNxfN52wtLEH4aJVDbybZ9x3XpZc-676yUKffLvSrJXibOvbmz1olVDO4HCm6E6xpBHZ6nu8sznllx6VCYowF6NnGGah8vs4khi4Eu3KOzKWAnAbkqP9XuwHuFttoTYW1sdYNW0Pb2BvCSUDSYDKdruyKrPxu_N_nUsWC4Aq-2jvSDc0_fUfa2nJmyRuenf--IyZyZ3G9o=w1280" alt="Google Local Guide" loading="lazy" />
+      <div class="ach-body">
+        <div class="ach-title">Google Local Guide – Level 7</div>
+        <div class="ach-sub">Community building and helping people via Google Maps</div>
+      </div>
+    </div>
+    <div class="ach-card">
+      <img class="ach-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUB-UnzxbV5nrjQOipVn7K1q1bcKspRblufouoknukpgtgNJrOR_EOlQdevgvcTMZUrLzmNIq0qClpD1elK8Gd2XtsfjzQuyX-1rgpab01bC4b3kXpWLQW3_UbnSbpYDx6fp03idjU661run0KlyTv09LSd2Hg9K17DRhSu07Jdxz-jw-hW6o8Z5IZUGuRG-V2Pot0lTA4MRFHQRBH8SwVRn7yPkfYD-hSaM_rc=w1280" alt="CSCA" loading="lazy" />
+      <div class="ach-body">
+        <div class="ach-title">Certified Supply Chain Analyst (CSCA)</div>
+        <div class="ach-sub">Awarded upon completion of ISCEA supply chain courses</div>
+      </div>
+    </div>
+    <div class="ach-card">
+      <img class="ach-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUACUJNcQKIuvDuYfsSGlt4XQh1xHFxDfJdMRV-NY55A8xRBFd6iQsc3ecr66ZQui5sreD4Fz5a_LYF2htdQk0sLzuUGZG2YfhxYmoN9VxoAA831Zq-nsdpgW7F17qw7E5S59qxLph4e1H1e2OUPieyY_IualKHoesKgCtcgsRXZX3ZpA-gIDeUTLjKs5fBUtldho6WQCgXjvedJ2dDoIgIMTlbyeXoUnQxLycU=w1280" alt="PTAK Prize" loading="lazy" />
+      <div class="ach-body">
+        <div class="ach-title">70% Scholarship – PTAK Prize 2020</div>
+        <div class="ach-sub">Representing Islamic University of Technology</div>
+      </div>
+    </div>
+    <div class="ach-card">
+      <img class="ach-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUD08VaANGkEZ1MVmnKJ_doPdd6JQIYUmdT_QBRMkUIz3CPxPOYQiXqN3TFFm5-C6M6KDUt3KZmBfJTKa2EpaNYsjkyqFtBdtAovQEN-JGWmghNR0seJyql_X7tSL-G6nAuGxT2h4TlXUv3ZUu9CjSeBNA1ACQ4mry9BAnaxRV77EmhoxfAtdMiKfCBQB-AjvC-sCmSGeW7CEfxKUpE7DV9cKKIWrAYgx1QL=w1280" alt="Students Welfare Scholarship" loading="lazy" />
+      <div class="ach-body">
+        <div class="ach-title">Students Welfare Scholarship</div>
+        <div class="ach-sub">Talentpool section – St. Joseph Higher Secondary School (2013)</div>
+      </div>
+    </div>
+    <div class="ach-card">
+      <img class="ach-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUAdlOhJS9YT93ZdIHwJ61ch45cq-jtc6nGKjCfAX9s_4kxdFVeHQ-pAigjB5JFBzG5Wi5e68poY5acXCOE1tcISEa8nv98nXPzGbQa9ENU7GSBjyd_VMln6g20vDgZttSvBHpaUUe5Vypy2A2-3LLs0nLCsHhLN_aVP6TjAMRYTGBqrUI_0-UtBtFWMEe0f5Q5GpyOTYJa4VlPZ-EQQROQ-QySWMz2NlC3MSoo=w1280" alt="British Council" loading="lazy" />
+      <div class="ach-body">
+        <div class="ach-title">Senior Young Learner – British Council</div>
+        <div class="ach-sub">High Distinction, promoted to Senior Young Learner</div>
+      </div>
+    </div>
+    <div class="ach-card">
+      <img class="ach-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUCC8P6S1pSM5Jsf99j1ytYjSMuagOBfFP6m7UKq-ht4dzY03-Y5ucqm17QF9gCJOr9e7KEyFVndWlF-maehll82T7PmV9OE_ERvpGsVrbdwl2DSwvi8K4GS7qwESDCW7aFcVs1BCZpozpawvijuKG_xsbP1b4OkSYUJbryaWMSoOT2Zy-48Chxg3TOKhuqKfp2c_KYsiaMyViMgoXXE4w741ENAboE76CK5kMo=w1280" alt="UNSW" loading="lazy" />
+      <div class="ach-body">
+        <div class="ach-title">UNSW Global Educational Assessment</div>
+        <div class="ach-sub">High Distinction in Mathematics – Year 2010</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider" style="margin-top:4rem;"></div>
+
+<!-- ── CERTIFICATIONS ── -->
+<section id="certifications" class="content-section">
+  <div class="section-header">
+    <div class="section-icon blue">📜</div>
+    <div>
+      <div class="section-title-text">Certifications &amp; Training</div>
+      <div class="section-subtitle">Professional Development</div>
     </div>
   </div>
 
-  <div style="font-family:var(--mono-font);font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.75rem;">Course Certifications</div>
-  <div class="cert-grid">
+  <div class="cert-main-card">
+    <div>
+      <div class="cert-main-title">Integrity and Regulation in Citywide Inclusive Sanitation (CWIS)</div>
+      <div class="cert-main-sub">WIN · ITN-BUET · ESAWAS — 20-hour course on TAPA principles</div>
+    </div>
+    <div class="cert-date">18–20 May 2026</div>
+  </div>
+  <div class="cert-main-card">
+    <div>
+      <div class="cert-main-title">Industrial Training Program 2021</div>
+      <div class="cert-main-sub">Structural &amp; RCC design, road construction, quality control, river training</div>
+    </div>
+    <div class="cert-date">27 Sep – 17 Oct 2021</div>
+  </div>
+  <div class="cert-main-card">
+    <div>
+      <div class="cert-main-title">Industrial Visit – Seven Rings Cement Industry, Kaliganj, Gazipur</div>
+      <div class="cert-main-sub">Day-long industrial training on working methods &amp; employment practices</div>
+    </div>
+    <div class="cert-date">8 Nov 2019</div>
+  </div>
+  <div class="cert-main-card">
+    <div>
+      <div class="cert-main-title">Waste-to-Energy Technologies for Sustainable Municipal SWM</div>
+      <div class="cert-main-sub">Incineration, anaerobic digestion, gasification, pyrolysis, RDF, landfill-based energy</div>
+    </div>
+    <div class="cert-date">29 Jun – 1 Jul 2022</div>
+  </div>
+
+  <div style="font-family:var(--mono);font-size:0.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.09em;margin:2rem 0 0.75rem;">Online Course Certifications</div>
+  <div class="cert-pills-grid">
     <div class="cert-pill">Course on Integrity and Regulation in CWIS</div>
     <div class="cert-pill">BMS Global Introductory Guide</div>
     <div class="cert-pill">IT Security Refresher Training</div>
@@ -887,9 +1597,27 @@
   </div>
 </section>
 
-<!-- COURSES -->
-<section id="courses" class="section">
-  <h2 class="section-title"><span class="dot green"></span> Courses Attended</h2>
+<div class="section-divider" style="margin-top:4rem;"></div>
+
+<!-- ── COURSES ── -->
+<section id="courses" class="content-section">
+  <div class="section-header">
+    <div class="section-icon purple">📚</div>
+    <div>
+      <div class="section-title-text">Courses Attended</div>
+      <div class="section-subtitle">Academic Coursework</div>
+    </div>
+  </div>
+
+  <details>
+    <summary>M.Engg – Transportation Safety (BUET)</summary>
+    <div class="course-list">
+      <span class="course-item">Transportation Safety Engineering</span>
+      <span class="course-item">Accident Analysis and Prevention</span>
+      <span class="course-item">Traffic Engineering and Management</span>
+      <span class="course-item">Research Methodology in Transportation</span>
+    </div>
+  </details>
 
   <details>
     <summary>M.Sc – Applied Statistics &amp; Data Science (Jahangirnagar University)</summary>
@@ -910,7 +1638,7 @@
   </details>
 
   <details>
-    <summary>B.Sc – Civil &amp; Environmental Engineering (IUT) — Click to expand all courses</summary>
+    <summary>B.Sc – Civil &amp; Environmental Engineering (IUT) — Click to expand all 70+ courses</summary>
     <div class="course-list">
       <span class="course-item">CEE 4101 – Introduction to Civil Engineering</span>
       <span class="course-item">CEE 4102 – Civil Engineering Drawing I</span>
@@ -993,11 +1721,151 @@
   </details>
 </section>
 
-</div><!-- /.page -->
+<div class="section-divider" style="margin-top:4rem;"></div>
 
+<!-- ── PERSONAL ── -->
+<section id="personal" class="content-section">
+  <div class="section-header">
+    <div class="section-icon purple">👤</div>
+    <div>
+      <div class="section-title-text">Personal</div>
+      <div class="section-subtitle">Profile, Memberships &amp; Gallery</div>
+    </div>
+  </div>
+
+  <div class="personal-intro">
+    A Civil Engineer with strong analytical, organizational, and problem-solving skills. A proactive and adaptable individual with a positive "can-do" attitude, capable of working effectively both independently and within a team environment. Able to perform efficiently under pressure while maintaining professionalism, responsiveness, and commitment to quality work.
+  </div>
+
+  <div style="font-family:var(--mono);font-size:0.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.09em;margin-bottom:0.9rem;">Professional Memberships</div>
+  <div class="memberships-grid">
+    <div class="member-card">
+      <img class="member-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUBIxqltUgS1-2kjmaQ-BOHpsei-f1xvDZU5NdotogmUTW5E78ofOWc6O3QoYtzd3JI7HjMVlydY0aFnkxkguSHQrZTi1fAbhWUpJI27IACD6JzSOR3fubiXzaAZROxGl6wm3hZ7DjcuSK1KzYoGgbE8XcGuqoyP2rC4lMCIjKNyxUL8hnKIFaRANWE=w1280" alt="IEB" loading="lazy" />
+      <div class="member-body">
+        <div class="member-role">Associate Member · ID: A-29714</div>
+        <div class="member-org">Institution of Engineers, Bangladesh (IEB)</div>
+      </div>
+    </div>
+    <div class="member-card">
+      <img class="member-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUC9MsTeAOVuuRItVrxMkgnCx2WNdqYnIkpl-IzFUj8lEcVml0UZ8ytJtx8sQFIBValqm7PYGyKvOCENnJ9VuG0jVb_64xT6C5uaLjhgrCHiwDkWIBIIMEFGX1WhqGx4W7h1ILZvnlHNP0Cq83IELqvDkWAEqo70Zf56-49OE5m9sr1deZXtDNV7=w1280" alt="ASCE" loading="lazy" />
+      <div class="member-body">
+        <div class="member-role">Member · ID: 12593046</div>
+        <div class="member-org">American Society of Civil Engineers (ASCE)</div>
+      </div>
+    </div>
+    <div class="member-card">
+      <img class="member-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUAaQi9RAOBWWpe1C5yVedZ6Jtnql6t-EYRh1M7mlt_Vz4DUKgj_A9A97OSYrbNCWf8nuRTpUUz-Ufnavd3KLQcYcF52GFhAMg0NA0ozqiZOAWpNSfCPh_YxhWuQFVcjSN81XopyPClK-jYLGHcNAy2GrG1Fp8uH2dUrznAgbv418irantf-9qKjTMY=w1280" alt="ISOC" loading="lazy" />
+      <div class="member-body">
+        <div class="member-role">Member · ID: 2366769</div>
+        <div class="member-org">Internet Society</div>
+      </div>
+    </div>
+    <div class="member-card">
+      <img class="member-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUBP6yLQYnDAt-6TOON8xlY8dmj5fFtRL61ZkGysBWScl0qaa73WsWDDcBaMBN-naLK2ve2F56cHHLpopMZy_CZzndu2Kzq6LOsW4HBFpUZyThfuMAQR3HdQACbwCfyR4OYt53xpkzp7XNOY1PD9ooPS2cs7SYNHx3yAVd8SOfNvtaMXWhqTXiM_qp7lscCyqr6HDte4OHFX4cENptwNSrpTq9CizxUtSBsqWeo=w1280" alt="ICE" loading="lazy" />
+      <div class="member-body">
+        <div class="member-role">Student Member · ID: 093987105</div>
+        <div class="member-org">Institution of Civil Engineers (ICE)</div>
+      </div>
+    </div>
+    <div class="member-card">
+      <img class="member-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUCwL82LugAd9CVCinDz9h7Etxo3VQXdudxOOfevWoaMfHcpMQLV9ygTQNOds4GYzZ4ZKRMNIz0Eo3LSl2D7hO9RgyLfyp6fdJNVEuwrSVUgv30l9WfgXRSPpaf-JApnstlTbcfJ_e9rMIcRZgNSzzIHlqAA0suXA-u6vRnXQNMTwsWJxPv5JkVBFJY=w1280" alt="ITE" loading="lazy" />
+      <div class="member-body">
+        <div class="member-role">Student Member · ID: S-1092703</div>
+        <div class="member-org">Institute of Transportation Engineers (ITE)</div>
+      </div>
+    </div>
+    <div class="member-card">
+      <img class="member-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUDjqItQTluL9ZtAPNyXd1H1Jwf4QVOp7hUIn6a0MqCJ0n_Rr8zzkrK6zG6gIvgyFYCaT61F8W8XPEM86GNdhkH7cXFj32R1RB1h1mvUCUtrgpHotpYG-74GUx87gzYthjulssGbyrey7-0bO_KeGi8iUDR7J3d2-j5AlQk6NItw-QxU72GvM0xVs2Q=w1280" alt="ACI" loading="lazy" />
+      <div class="member-body">
+        <div class="member-role">Student Member · ID: 02020088</div>
+        <div class="member-org">American Concrete Institute (ACI)</div>
+      </div>
+    </div>
+    <div class="member-card">
+      <img class="member-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUC-2kTlvRoFAyNy-1cY47MIy_-E8Ztw45aoGRBpDJbAyMZP8XdBeY9wRYqs3pG8eh_kCawziUIerE1jDYxWyGzp68pG9xVTQhGzw6nc8Wb6fXo7ZFRHJGxb320dHkyZnDQwMD0SHvQ_zF5OiS0F5lot9y4Y9gbjCknhJAx2DG80nRZYsiZ874gWUo=w1280" alt="IAENG" loading="lazy" />
+      <div class="member-body">
+        <div class="member-role">Member · ID: 565647</div>
+        <div class="member-org">International Association of Engineers (IAENG)</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="font-family:var(--mono);font-size:0.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.09em;margin:2rem 0 0.75rem;">Leadership Roles</div>
+  <ul class="leadership-list">
+    <li>Founding Member – Humans of IUT</li>
+    <li>Organizing Committee Member, Cennovation 2018–2019</li>
+    <li>Campaign Lead at 'Cyber Savers', a movement against Cybercrime</li>
+    <li>Treasurer at 'IUT CEE Cricket Team – 2021'</li>
+    <li>Organizing Secretary of 'Scintilla Science Club – 2014'</li>
+    <li>Corresponding Secretary of 'Josephite Cultural Forum – 2015'</li>
+  </ul>
+
+  <div style="font-family:var(--mono);font-size:0.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.09em;margin:2rem 0 0.75rem;">Core Competencies</div>
+  <div class="competencies-grid">
+    <div class="competency-item">Strong project coordination and engineering support experience</div>
+    <div class="competency-item">Skilled in BOQ, technical methodologies, and planning</div>
+    <div class="competency-item">Expertise in proposal writing, tender preparation, and market analysis</div>
+    <div class="competency-item">Effective stakeholder engagement and client communication</div>
+    <div class="competency-item">Strong analytical, problem-solving, and interpersonal skills</div>
+    <div class="competency-item">Adaptable, detail-oriented, and efficient under tight deadlines</div>
+    <div class="competency-item">English (Fluent in Speaking and Writing)</div>
+    <div class="competency-item">Bangla (Native Language)</div>
+  </div>
+
+  <div style="font-family:var(--mono);font-size:0.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.09em;margin:2rem 0 0.75rem;">Gallery</div>
+  <div class="gallery-grid">
+    <img class="gallery-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUBNTyrWgQSWdIhXdFkoDrh-gZFZLFo0guzXKr9sKdKekwt5ORrkE2BM2i59KaZqsN_xm1pWK6Yh5qY-NMsfFN3emQHaz7VkbCPqnB50xLz4SDdbgj1ArRn3rF4TI3ef2uXShxHRRcL4v9rH0vPNmh9mSHECzkIJKx1rE9LtiE_SdxE8UTfTPkZ0kfTDEhiNc2G2ZhiMEIhca1OT7_FNZkBPobNlq79wgYY6Gc=w1280" alt="Gallery 1" loading="lazy" />
+    <img class="gallery-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUCW0_HjHxsip5Csxd5vbqfN64WgvMsFnTSeRxJSGE74Jjw5drOexbMKjqxPDmV7YJr-e_Ht-CvlAyy7WXgJLoCUA0IUSv1tfO5G0mP4O_8GWJviwf3H-MHbmWzOQ96lWTVO7zmBcD5pUZKvnlVqIivgtG4X41teMbRUTTrU8ep8vpuBRikyOtRd1XTfzQju6vUFjTATH79GbEKeiz0Vx_sVMyLEGzvKgJjT=w1280" alt="Gallery 2" loading="lazy" />
+    <img class="gallery-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUBYGyhr80n_KpC-FWv0tpnj1qKS-iThowpZ57mE29QxsPSTNeXgHBrJhq8Ujfhiz5aBx1atRclUElhU2U7npFj2SKV3bIkcM7AhVkXYsoF28K8nmvTYyU0w0aVO_wUYexxFD80Pf_zF2GnbJRKBEagHrE_7ZG0r0cBF38BsuwMG6VubVdCcXfVzMWRWP_wocVsTkOvZggefo3LXzTJMkfR83geyWDO7xHZhv6E=w1280" alt="Gallery 3" loading="lazy" />
+    <img class="gallery-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUDMJppZfKZjZ05rA-pkHnfyQKx7Oj4p-Dl1lLE2pOI-mHZE5N2iKjPnacllXsIYtoOolJIhftRevhkX-SFvShEwfTmMolk_9MhYacB5p4ab6KOAs_PXsYtA0o8efZtUQavS4Y9BJKUa3WNecU4X26FSnkWj8guKvLedxngPu-jCmDf0Q4PAoBDS_q0la0gzPg8s1PV_hY2KlAGK1c60IGXxSECSyB-jWvHqZRk=w1280" alt="Gallery 4" loading="lazy" />
+    <img class="gallery-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUDaKh8eTIt4fx5BmfrDYy_kL3G-siSS5FS8-8wEn3YydqpbQZZRk9_OBMhGBe7OKgqszXXCPT_4qY8ZNvXiz1piwtvxZYUpPbtqx6R2dNlqR68JFWPWhiIGIDcquIYEi6rCxhhE2wy4cUvBeQYCZ7fhNAU26WVc_8Bnb_RF1enGIuJWYw_rNcoHS0-Hj_lPHcMP1Ep08rKGEsOMZ1fKYGKunWW4Y5IiiUDTrg8=w1280" alt="Gallery 5" loading="lazy" />
+    <img class="gallery-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUAWV0XOd45VUCVlO3PLyoin0ToYTHLgoGYurkDq8OKpMAXiLUhrNY_wRoAYN8F9_-5DVIvILDDyzz_2e_FrAjTHTKc3QbU_WSSvXSf53gCMR8T6jQscinMBJL8S_DGIuuqJNiKjYXUFpJVfmiSPvFZjGwsCsYNVcxK8_D2ucherQf7P64QD1oCA7ucRJYmDckXKQvqEqMHESG8mr7mOCwvqRgl37BlFauBI8wc=w1280" alt="Gallery 6" loading="lazy" />
+    <img class="gallery-img" src="https://lh3.googleusercontent.com/sitesv/AA5AbUAABRNp3KkHibC7Evz335TqlF_sDv9M2A91Jt6C3OUiYTQPb8r-FF803VW9M0v1d47LF2DkON3cjvnVjVW3moXKmYxRWkGpS7xppxkryKIR52agrPOkp9-H4USOTP2KOBYHcH40MRKrVYFgsgKspk_ZmL7_xl-SiBmzmblLuq3fyMk2MIuVJr0qfKGboGCoKUFMtq4bUC0lkJMuKbDUDaW1O1mItvhdQ-2j48M=w1280" alt="Gallery 7" loading="lazy" />
+  </div>
+</section>
+
+</div><!-- /.page-content -->
+</main>
+
+<!-- ── FOOTER ── -->
 <footer>
-  <p>© 2026 Fardin Farhan Khan · <a href="mailto:fardinkhanstj15@gmail.com">fardinkhanstj15@gmail.com</a> · Last Updated: January 2026</p>
-  <p style="margin-top:.3rem;">Source: <a href="https://sites.google.com/view/fardinfarhankhan" target="_blank">sites.google.com/view/fardinfarhankhan</a></p>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-name">Fardin Farhan Khan</div>
+      <div class="footer-desc">Civil Engineer · Data Scientist · Business Developer<br>M.Engg Transportation Safety (BUET) · M.Sc Applied Statistics (JU)</div>
+      <div style="margin-top:1.2rem;display:flex;gap:0.75rem;flex-wrap:wrap;">
+        <a href="https://1drv.ms/b/c/99ec525d83d72e25/IQA-UlHgud5FTrHnQDuIIydyAXgf2HzoTXB0UHrrI3BOC4c?e=UBsAjA" target="_blank" class="btn-primary" style="font-size:0.75rem;padding:0.5rem 1.2rem;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download CV
+        </a>
+        <a href="mailto:fardinkhanstj15@gmail.com" class="btn-secondary" style="font-size:0.75rem;padding:0.5rem 1.2rem;">
+          Contact Me
+        </a>
+      </div>
+    </div>
+    <div class="footer-socials">
+      <a href="mailto:fardinkhanstj15@gmail.com">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        fardinkhanstj15@gmail.com
+      </a>
+      <a href="https://www.linkedin.com/in/fardinkhan03" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        linkedin.com/in/fardinkhan03
+      </a>
+      <a href="https://www.facebook.com/TehBaittaGoat" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        facebook.com/TehBaittaGoat
+      </a>
+      <a href="https://twitter.com/TehBaittaGoat" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        twitter.com/TehBaittaGoat
+      </a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 Fardin Farhan Khan · Last Updated: January 2026</div>
+    <div class="footer-copy">Source: <a href="https://sites.google.com/view/fardinfarhankhan" target="_blank">sites.google.com/view/fardinfarhankhan</a></div>
+  </div>
 </footer>
 
 </body>
